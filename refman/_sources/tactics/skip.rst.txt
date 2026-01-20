@@ -39,7 +39,7 @@ Variant: ``skip`` (Hoare logic)
    abort.
 
 ------------------------------------------------------------------------
-Variant: ``skip`` (Relational Hoare logic)
+Variant: ``skip`` (Relational Probabilistic Hoare logic)
 ------------------------------------------------------------------------
 
 In the relational Hoare logic setting, the `skip`` tactic applies only

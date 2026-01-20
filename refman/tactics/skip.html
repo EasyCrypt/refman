@@ -49,7 +49,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <cite>skip</cite></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#variant-skip-hoare-logic">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Hoare logic)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#variant-skip-relational-hoare-logic">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Hoare logic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-skip-relational-probabilistic-hoare-logic">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Probabilistic Hoare logic)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#variant-skip-probabilistic-hoare-logic">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Probabilistic Hoare logic)</a></li>
 </ul>
 </li>
@@ -94,7 +94,7 @@ task is to prove that the precondition implies the postcondition.</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#variant-skip-hoare-logic" id="id1">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Hoare logic)</a></p></li>
-<li><p><a class="reference internal" href="#variant-skip-relational-hoare-logic" id="id2">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Hoare logic)</a></p></li>
+<li><p><a class="reference internal" href="#variant-skip-relational-probabilistic-hoare-logic" id="id2">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Probabilistic Hoare logic)</a></p></li>
 <li><p><a class="reference internal" href="#variant-skip-probabilistic-hoare-logic" id="id3">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Probabilistic Hoare logic)</a></p></li>
 </ul>
 </nav>
@@ -106,8 +106,8 @@ task is to prove that the precondition implies the postcondition.</p>
   <script type="application/json" id="proofnav-0-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : hoare[M.f : p x ==> q res].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,95,109,148,155,163,169,176],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> bool"},{"goals":[],"message":"info: added predicate q : int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n\npost = q x\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => q x{hr}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Hoare logic example"}</script>
 </div>
 </section>
-<section id="variant-skip-relational-hoare-logic">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Hoare logic)</a><a class="headerlink" href="#variant-skip-relational-hoare-logic" title="Link to this heading"></a></h2>
+<section id="variant-skip-relational-probabilistic-hoare-logic">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Probabilistic Hoare logic)</a><a class="headerlink" href="#variant-skip-relational-probabilistic-hoare-logic" title="Link to this heading"></a></h2>
 <p>In the relational Hoare logic setting, the <cite>skip`</cite> tactic applies only
 when both programs are empty, in which case it reduces the relational
 judgment to obligations on the preconditions and postconditions alone.</p>
