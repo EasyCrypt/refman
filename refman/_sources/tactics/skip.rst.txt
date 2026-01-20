@@ -2,21 +2,21 @@
 Tactic: `skip`
 ========================================================================
 
-The `skip` tactic applies to program-logic goals where the program(s) under
-consideration are empty. In this situation, program execution performs
-no computation and produces no state changes.
+The ``skip`` tactic applies to program-logic goals where the program(s)
+under consideration are empty. In this situation, program execution
+performs no computation and produces no state changes.
 
-Applying `skip` eliminates the program component of the goal and reduces
+Applying ``skip`` eliminates the program component of the goal and reduces
 the proof obligation to a pure logical goal. Concretely, the remaining
 task is to prove that the precondition implies the postcondition.
 
-The `skip` tactic does not attempt to solve this logical obligation itself.
+The ``skip`` tactic does not attempt to solve this logical obligation itself.
 
 .. contents::
    :local:
 
 ------------------------------------------------------------------------
-In Hoare logic
+Variant: ``skip`` (Hoare logic)
 ------------------------------------------------------------------------
 
 .. ecproof::
@@ -39,7 +39,7 @@ In Hoare logic
    abort.
 
 ------------------------------------------------------------------------
-In Relational Hoare logic
+Variant: ``skip`` (Relational Hoare logic)
 ------------------------------------------------------------------------
 
 In the relational Hoare logic setting, the `skip`` tactic applies only
@@ -66,14 +66,14 @@ judgment to obligations on the preconditions and postconditions alone.
    abort.
 
 ------------------------------------------------------------------------
-In Probabilistic Hoare logic
+Variant: ``skip`` (Probabilistic Hoare logic)
 ------------------------------------------------------------------------
 
-In the probabilistic Hoare logic setting, applying `skip` generates an
+In the probabilistic Hoare logic setting, applying ``skip`` generates an
 additional proof obligation compared to the pure Hoare case. Besides the
 logical implication between the precondition and the postcondition, one
 must also prove that the probability weight of the empty program, namely
-`1%r`, satisfies the bound specified in the judgment.
+``1%r``, satisfies the bound specified in the judgment.
 
 .. ecproof::
    :title: Probabilistic Hoare logic example
