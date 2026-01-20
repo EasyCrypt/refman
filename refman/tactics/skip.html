@@ -18,7 +18,7 @@
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=5e5ff161"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
       <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -48,9 +48,10 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <cite>skip</cite></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#variant-skip-hoare-logic">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Hoare logic)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#variant-skip-relational-probabilistic-hoare-logic">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Probabilistic Hoare logic)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#variant-skip-probabilistic-hoare-logic">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Probabilistic Hoare logic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-skip-hl">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (HL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-skip-prhl">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (pRHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-skip-phl">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (pHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-skip-ehl">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (eHL)</a></li>
 </ul>
 </li>
 </ul>
@@ -93,32 +94,33 @@ task is to prove that the precondition implies the postcondition.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">skip</span></code> tactic does not attempt to solve this logical obligation itself.</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#variant-skip-hoare-logic" id="id1">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Hoare logic)</a></p></li>
-<li><p><a class="reference internal" href="#variant-skip-relational-probabilistic-hoare-logic" id="id2">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Probabilistic Hoare logic)</a></p></li>
-<li><p><a class="reference internal" href="#variant-skip-probabilistic-hoare-logic" id="id3">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Probabilistic Hoare logic)</a></p></li>
+<li><p><a class="reference internal" href="#variant-skip-hl" id="id1">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (HL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-skip-prhl" id="id2">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (pRHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-skip-phl" id="id3">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (pHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-skip-ehl" id="id4">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (eHL)</a></p></li>
 </ul>
 </nav>
-<section id="variant-skip-hoare-logic">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Hoare logic)</a><a class="headerlink" href="#variant-skip-hoare-logic" title="Link to this heading"></a></h2>
+<section id="variant-skip-hl">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (HL)</a><a class="headerlink" href="#variant-skip-hl" title="Link to this heading"></a></h2>
 
 <div class="proofnav-sphinx">
   <div id="proofnav-0" class="proofnav-mount"></div>
   <script type="application/json" id="proofnav-0-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : hoare[M.f : p x ==> q res].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,95,109,148,155,163,169,176],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> bool"},{"goals":[],"message":"info: added predicate q : int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n\npost = q x\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => q x{hr}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Hoare logic example"}</script>
 </div>
 </section>
-<section id="variant-skip-relational-probabilistic-hoare-logic">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Relational Probabilistic Hoare logic)</a><a class="headerlink" href="#variant-skip-relational-probabilistic-hoare-logic" title="Link to this heading"></a></h2>
+<section id="variant-skip-prhl">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (pRHL)</a><a class="headerlink" href="#variant-skip-prhl" title="Link to this heading"></a></h2>
 <p>In the relational Hoare logic setting, the <cite>skip`</cite> tactic applies only
 when both programs are empty, in which case it reduces the relational
 judgment to obligations on the preconditions and postconditions alone.</p>
 
 <div class="proofnav-sphinx">
   <div id="proofnav-1" class="proofnav-mount"></div>
-  <script type="application/json" id="proofnav-1-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int & int.\npred q : int & int.\n\nlemma L : equiv[M.f ~ M.f : p x{1} x{2} ==> q res{1} res{2}].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,101,121,184,191,199,205,212],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> int -> bool"},{"goals":[],"message":"info: added predicate q : int -> int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x : int} [programs are in sync]\n&2 (right) : {x : int}\n\npre = p x{1} x{2}\n\n\npost = q x{1} x{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, p x{1} x{2} => q x{1} x{2}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Relational Hoare logic example"}</script>
+  <script type="application/json" id="proofnav-1-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int & int.\npred q : int & int.\n\nlemma L : equiv[M.f ~ M.f : p x{1} x{2} ==> q res{1} res{2}].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,101,121,184,191,199,205,212],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> int -> bool"},{"goals":[],"message":"info: added predicate q : int -> int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x : int} [programs are in sync]\n&2 (right) : {x : int}\n\npre = p x{1} x{2}\n\n\npost = q x{1} x{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, p x{1} x{2} => q x{1} x{2}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Probabilistic Relational Hoare logic example"}</script>
 </div>
 </section>
-<section id="variant-skip-probabilistic-hoare-logic">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (Probabilistic Hoare logic)</a><a class="headerlink" href="#variant-skip-probabilistic-hoare-logic" title="Link to this heading"></a></h2>
+<section id="variant-skip-phl">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (pHL)</a><a class="headerlink" href="#variant-skip-phl" title="Link to this heading"></a></h2>
 <p>In the probabilistic Hoare logic setting, applying <code class="docutils literal notranslate"><span class="pre">skip</span></code> generates an
 additional proof obligation compared to the pure Hoare case. Besides the
 logical implication between the precondition and the postcondition, one
@@ -128,6 +130,18 @@ must also prove that the probability weight of the empty program, namely
 <div class="proofnav-sphinx">
   <div id="proofnav-2" class="proofnav-mount"></div>
   <script type="application/json" id="proofnav-2-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : phoare[M.f : p x ==> q res] >= (1%r / 2%r).\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,95,109,164,171,179,185,192],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> bool"},{"goals":[],"message":"info: added predicate q : int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n    [>=] 1%r / 2%r\n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n    [>=] 1%r / 2%r\n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\nBound   : [>=] 1%r / 2%r\n\npre = p x\n\n\npost = q x\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => 1%r / 2%r <= 1%r\n","Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => q x{hr}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Probabilistic Hoare logic example"}</script>
+</div>
+</section>
+<section id="variant-skip-ehl">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">skip</span></code> (eHL)</a><a class="headerlink" href="#variant-skip-ehl" title="Link to this heading"></a></h2>
+<p>In expectation Hoare logic, where the precondition and postcondition are
+respectively a pre-expectation and a post-expectation, applying skip generates
+the obligation to prove that the post-expectation is bounded above by the
+pre-expectation.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-3" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-3-data">{"source":"require import AllCore Xreal.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\nop p : int -> xreal.\nop q : int -> xreal.\n\nlemma L : ehoare[M.f : p x ==> q res].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[29,86,108,129,169,176,184,190,197],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added operator p : int -> xreal"},{"goals":[],"message":"info: added operator q : int -> xreal"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n\npost = q x\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, q x{hr} <= p x{hr}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Expectation Hoare logic example"}</script>
 </div>
 </section>
 </section>

@@ -16,7 +16,7 @@ The ``skip`` tactic does not attempt to solve this logical obligation itself.
    :local:
 
 ------------------------------------------------------------------------
-Variant: ``skip`` (Hoare logic)
+Variant: ``skip`` (HL)
 ------------------------------------------------------------------------
 
 .. ecproof::
@@ -39,7 +39,7 @@ Variant: ``skip`` (Hoare logic)
    abort.
 
 ------------------------------------------------------------------------
-Variant: ``skip`` (Relational Probabilistic Hoare logic)
+Variant: ``skip`` (pRHL)
 ------------------------------------------------------------------------
 
 In the relational Hoare logic setting, the `skip`` tactic applies only
@@ -47,7 +47,7 @@ when both programs are empty, in which case it reduces the relational
 judgment to obligations on the preconditions and postconditions alone.
 
 .. ecproof::
-   :title: Relational Hoare logic example
+   :title: Probabilistic Relational Hoare logic example
 
    require import AllCore.
 
@@ -66,7 +66,7 @@ judgment to obligations on the preconditions and postconditions alone.
    abort.
 
 ------------------------------------------------------------------------
-Variant: ``skip`` (Probabilistic Hoare logic)
+Variant: ``skip`` (pHL)
 ------------------------------------------------------------------------
 
 In the probabilistic Hoare logic setting, applying ``skip`` generates an
@@ -90,6 +90,34 @@ must also prove that the probability weight of the empty program, namely
    pred q : int.
 
    lemma L : phoare[M.f : p x ==> q res] >= (1%r / 2%r).
+   proof.
+     proc. (*$*) skip.
+   abort.
+
+------------------------------------------------------------------------
+Variant: ``skip`` (eHL)
+------------------------------------------------------------------------
+
+In expectation Hoare logic, where the precondition and postcondition are
+respectively a pre-expectation and a post-expectation, applying skip generates
+the obligation to prove that the post-expectation is bounded above by the
+pre-expectation.
+
+.. ecproof::
+   :title: Expectation Hoare logic example
+
+   require import AllCore Xreal.
+   
+   module M = {
+     proc f(x : int) = {
+       return x;
+     }
+   }.
+   
+   op p : int -> xreal.
+   op q : int -> xreal.
+   
+   lemma L : ehoare[M.f : p x ==> q res].
    proof.
      proc. (*$*) skip.
    abort.
