@@ -105,7 +105,68 @@ task is to prove that the precondition implies the postcondition.</p>
 
 <div class="proofnav-sphinx">
   <div id="proofnav-0" class="proofnav-mount"></div>
-  <script type="application/json" id="proofnav-0-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : hoare[M.f : p x ==> q res].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,95,109,148,155,163,169,176],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> bool"},{"goals":[],"message":"info: added predicate q : int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n\npost = q x\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => q x{hr}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Hoare logic example"}</script>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : hoare[M.f : p x ==> q res].\nproof.\n  proc. skip.\nabort.\n",
+  "sentenceEnds":[
+    23,
+    80,
+    95,
+    109,
+    148,
+    155,
+    163,
+    169,
+    176
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n\npost = q x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => q x{hr}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":6,
+  "title":"Hoare logic example"
+}</script>
 </div>
 </section>
 <section id="variant-skip-prhl">
@@ -116,7 +177,68 @@ judgment to obligations on the preconditions and postconditions alone.</p>
 
 <div class="proofnav-sphinx">
   <div id="proofnav-1" class="proofnav-mount"></div>
-  <script type="application/json" id="proofnav-1-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int & int.\npred q : int & int.\n\nlemma L : equiv[M.f ~ M.f : p x{1} x{2} ==> q res{1} res{2}].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,101,121,184,191,199,205,212],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> int -> bool"},{"goals":[],"message":"info: added predicate q : int -> int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x : int} [programs are in sync]\n&2 (right) : {x : int}\n\npre = p x{1} x{2}\n\n\npost = q x{1} x{2}\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, p x{1} x{2} => q x{1} x{2}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Probabilistic Relational Hoare logic example"}</script>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int & int.\npred q : int & int.\n\nlemma L : equiv[M.f ~ M.f : p x{1} x{2} ==> q res{1} res{2}].\nproof.\n  proc. skip.\nabort.\n",
+  "sentenceEnds":[
+    23,
+    80,
+    101,
+    121,
+    184,
+    191,
+    199,
+    205,
+    212
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M.f ~ M.f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x : int} [programs are in sync]\n&2 (right) : {x : int}\n\npre = p x{1} x{2}\n\n\npost = q x{1} x{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, p x{1} x{2} => q x{1} x{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":6,
+  "title":"Probabilistic Relational Hoare logic example"
+}</script>
 </div>
 </section>
 <section id="variant-skip-phl">
@@ -129,7 +251,69 @@ must also prove that the probability weight of the empty program, namely
 
 <div class="proofnav-sphinx">
   <div id="proofnav-2" class="proofnav-mount"></div>
-  <script type="application/json" id="proofnav-2-data">{"source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : phoare[M.f : p x ==> q res] >= (1%r / 2%r).\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[23,80,95,109,164,171,179,185,192],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added predicate p : int -> bool"},{"goals":[],"message":"info: added predicate q : int -> bool"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n    [>=] 1%r / 2%r\n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n    [>=] 1%r / 2%r\n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\nBound   : [>=] 1%r / 2%r\n\npre = p x\n\n\npost = q x\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => 1%r / 2%r <= 1%r\n","Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => q x{hr}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Probabilistic Hoare logic example"}</script>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : phoare[M.f : p x ==> q res] >= (1%r / 2%r).\nproof.\n  proc. skip.\nabort.\n",
+  "sentenceEnds":[
+    23,
+    80,
+    95,
+    109,
+    164,
+    171,
+    179,
+    185,
+    192
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n    [>=] 1%r / 2%r\n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n    [>=] 1%r / 2%r\n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\nBound   : [>=] 1%r / 2%r\n\npre = p x\n\n\npost = q x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => 1%r / 2%r <= 1%r\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p x{hr} => q x{hr}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":6,
+  "title":"Probabilistic Hoare logic example"
+}</script>
 </div>
 </section>
 <section id="variant-skip-ehl">
@@ -141,7 +325,68 @@ pre-expectation.</p>
 
 <div class="proofnav-sphinx">
   <div id="proofnav-3" class="proofnav-mount"></div>
-  <script type="application/json" id="proofnav-3-data">{"source":"require import AllCore Xreal.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\nop p : int -> xreal.\nop q : int -> xreal.\n\nlemma L : ehoare[M.f : p x ==> q res].\nproof.\n  proc. skip.\nabort.\n","sentenceEnds":[29,86,108,129,169,176,184,190,197],"sentences":[{"goals":[],"message":""},{"goals":[],"message":""},{"goals":[],"message":"info: added operator p : int -> xreal"},{"goals":[],"message":"info: added operator q : int -> xreal"},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n\npost = q x\n"],"message":""},{"goals":["Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, q x{hr} <= p x{hr}\n"],"message":""},{"goals":[],"message":""}],"initialSentence":6,"title":"Expectation Hoare logic example"}</script>
+  <script type="application/json" id="proofnav-3-data">{
+  "source":"require import AllCore Xreal.\n\nmodule M = {\n  proc f(x : int) = {\n    return x;\n  }\n}.\n\nop p : int -> xreal.\nop q : int -> xreal.\n\nlemma L : ehoare[M.f : p x ==> q res].\nproof.\n  proc. skip.\nabort.\n",
+  "sentenceEnds":[
+    29,
+    86,
+    108,
+    129,
+    169,
+    176,
+    184,
+    190,
+    197
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added operator p : int -> xreal"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator q : int -> xreal"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n\npost = q x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, q x{hr} <= p x{hr}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":6,
+  "title":"Expectation Hoare logic example"
+}</script>
 </div>
 </section>
 </section>
