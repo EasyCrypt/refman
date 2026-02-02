@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: if &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: skip" href="skip.html" />
+    <link rel="prev" title="Proof tactics reference" href="../tactics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-if-hl">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (HL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-if-prhl">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (pRHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-if-side-prhl">Variant: <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">{side}</span></code> (pRHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-if-phl">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (pHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-if-ehl">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (eHL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <cite>skip</cite></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/if.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-if">
+<h1>Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#tactic-if" title="Link to this heading"></a></h1>
+<p>In EasyCrypt, the <code class="docutils literal notranslate"><span class="pre">if</span></code> tactic is a way of reasoning about program(s)
+that use conditionals. When a program begins with an if statement,
+execution will follow one path if the condition is <code class="docutils literal notranslate"><span class="pre">true</span></code> and another
+path if it is <code class="docutils literal notranslate"><span class="pre">false</span></code>. The tactic says that to prove the program is
+correct, you must consider both cases: you assume the condition holds
+and show that the <em>then</em> branch establishes the desired result, and you
+assume the condition does not hold and show that the <em>else</em> branch
+establishes the same result. EasyCrypt allows you to apply this rule
+only when the program starts with an if, so the proof can split immediately
+from the initial state.If the conditional appears deeper in the code, you
+can first use the seq tactic (or another tactic such as sp that eliminates
+the earlier statements) to separate the preceding statements from the
+conditional.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-if-hl" id="id1">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (HL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-if-prhl" id="id2">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (pRHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-if-side-prhl" id="id3">Variant: <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">{side}</span></code> (pRHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-if-phl" id="id4">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (pHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-if-ehl" id="id5">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (eHL)</a></p></li>
+</ul>
+</nav>
+<section id="variant-if-hl">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (HL)</a><a class="headerlink" href="#variant-if-hl" title="Link to this heading"></a></h2>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    var y : int;\n\n    if (x < 0) {\n      y <- -x;\n    } else {\n      y <- x;\n    }\n\n    return y;\n  }\n}.\n\npred p : glob M.\n\nlemma L : hoare[M.f : p (glob M) ==> 0 <= res].\nproof.\n  proc.\n  if.\n  (* First goal: (x < 0) holds *)\n  - wp. skip. smt().\n  (* Second goal: (x < 0) does not hold *)\n  - wp. skip. smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    164,
+    182,
+    231,
+    238,
+    246,
+    252,
+    294,
+    300,
+    307,
+    358,
+    364,
+    371,
+    376
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : unit -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n\npost = 0 <= res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n\npost = 0 <= res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt\n\n(1--)  if (x < 0) {             \n(1.1)    y <- -x                \n(1--)  } else {                 \n(1?1)    y <- x                 \n(1--)  }                        \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt /\\ x < 0\n\n(1)  y <- -x                  \n\npost = 0 <= y\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt /\\ ! x < 0\n\n(1)  y <- x                   \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt /\\ x < 0\n\n\npost = 0 <= -x\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt /\\ ! x < 0\n\n(1)  y <- x                   \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p tt /\\ x{hr} < 0 => 0 <= -x{hr}\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt /\\ ! x < 0\n\n(1)  y <- x                   \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt /\\ ! x < 0\n\n(1)  y <- x                   \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = p tt /\\ ! x < 0\n\n\npost = 0 <= x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, p tt /\\ ! x{hr} < 0 => 0 <= x{hr}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-if-prhl">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (pRHL)</a><a class="headerlink" href="#variant-if-prhl" title="Link to this heading"></a></h2>
+<p>In probabilistic relational Hoare logic, the <code class="docutils literal notranslate"><span class="pre">if</span></code> tactic is applied
+in a lock-step manner, meaning that the two programs being compared must
+proceed through the conditional in sync. This requires that their guards
+evaluate to the same boolean value in the related states, so that either
+both programs take the <em>then</em> branch or both take the <em>else</em> branch.</p>
+<p>As a result, using the <code class="docutils literal notranslate"><span class="pre">if</span></code> tactic involves establishing that the two
+conditions are equal under the current relational invariant before
+splitting into the two synchronized cases.</p>
+<p>Although synchronization ensures both guards take the same value, the
+implementation splits only on the left guard (rather than explicitly
+stating both are true or both are false).</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    var y : int;\n\n    if (x < 0) {\n      y <- -x;\n    } else {\n      y <- x;\n    }\n\n    return y;\n  }\n}.\n\nlemma L : equiv[M.f ~ M.f: x{1} = x{2} ==> res{1} = res{2}].\nproof.\n  proc.\n  if.\n  (* First goal: we prove that the guards are in sync. *)\n  - smt().\n  (* First goal: (x < 0) holds *)\n  - wp; skip. smt().\n  (* Second goal: (x < 0) does not hold *)\n  - wp; skip. smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    164,
+    226,
+    233,
+    241,
+    247,
+    316,
+    364,
+    371,
+    428,
+    435,
+    440
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f ~ M.f \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f ~ M.f \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int} [programs are in sync]\n&2 (right) : {x, y : int}\n\npre = x{1} = x{2}\n\n(1--)  if (x < 0) {             \n(1.1)    y <- -x                \n(1--)  } else {                 \n(1?1)    y <- x                 \n(1--)  }                        \n\npost = y{1} = y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, x{1} = x{2} => x{1} < 0 <=> x{2} < 0\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int} [programs are in sync]\n&2 (right) : {x, y : int}\n\npre = x{1} = x{2} /\\ x{1} < 0\n\n(1)  y <- -x                  \n\npost = y{1} = y{2}\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int} [programs are in sync]\n&2 (right) : {x, y : int}\n\npre = x{1} = x{2} /\\ ! x{1} < 0\n\n(1)  y <- x                   \n\npost = y{1} = y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int} [programs are in sync]\n&2 (right) : {x, y : int}\n\npre = x{1} = x{2} /\\ x{1} < 0\n\n(1)  y <- -x                  \n\npost = y{1} = y{2}\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int} [programs are in sync]\n&2 (right) : {x, y : int}\n\npre = x{1} = x{2} /\\ ! x{1} < 0\n\n(1)  y <- x                   \n\npost = y{1} = y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, x{1} = x{2} /\\ x{1} < 0 => -x{1} = -x{2}\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int} [programs are in sync]\n&2 (right) : {x, y : int}\n\npre = x{1} = x{2} /\\ ! x{1} < 0\n\n(1)  y <- x                   \n\npost = y{1} = y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int} [programs are in sync]\n&2 (right) : {x, y : int}\n\npre = x{1} = x{2} /\\ ! x{1} < 0\n\n(1)  y <- x                   \n\npost = y{1} = y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, x{1} = x{2} /\\ ! x{1} < 0 => x{1} = x{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Relational Hoare logic example (2-sided)"
+}</script>
+</div>
+</section>
+<section id="variant-if-side-prhl">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">{side}</span></code> (pRHL)</a><a class="headerlink" href="#variant-if-side-prhl" title="Link to this heading"></a></h2>
+<p>In the one-sided <code class="docutils literal notranslate"><span class="pre">if</span></code> tactic used in pRHL, the user specifies whether
+the conditional reasoning should be applied to the left or the right
+program. The tactic then performs a case analysis only on the <code class="docutils literal notranslate"><span class="pre">if</span></code>
+statement at the top of that chosen program, generating separate goals
+for the <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> branches on that side. Unlike the lock-step
+relational <code class="docutils literal notranslate"><span class="pre">if</span></code> tactic, no synchronization of guards is required, and
+the other program is not constrained to take the same branch or even to
+have a similar structure.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    var y : int;\n\n    if (x < 0) {\n      y <- -x;\n    } else {\n      y <- x;\n    }\n\n    return y;\n  }\n\n  proc g(x : int) = {\n    return `|x|;\n  }\n}.\n\nlemma L : equiv[M.f ~ M.g: x{1} = x{2} ==> res{1} = res{2}].\nproof.\n  proc.\n  if{1}.\n  (* First goal: (x < 0) holds (left program) *)\n  - wp; skip. smt().\n  (* Second goal: (x < 0) does not hold (left program) *)\n  - wp; skip. smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    208,
+    270,
+    277,
+    285,
+    294,
+    357,
+    364,
+    436,
+    443,
+    448
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f ~ M.g \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f ~ M.g \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int}\n&2 (right) : {x : int}\n\npre = x{1} = x{2}\n\nif (x < 0) {               (1--)                           \n  y <- -x                  (1.1)                           \n} else {                   (1--)                           \n  y <- x                   (1?1)                           \n}                          (1--)                           \n\npost = y{1} = `|x{2}|\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int}\n&2 (right) : {x : int}\n\npre = x{1} = x{2} /\\ x{1} < 0\n\ny <- -x                    (1)                           \n\npost = y{1} = `|x{2}|\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int}\n&2 (right) : {x : int}\n\npre = x{1} = x{2} /\\ ! x{1} < 0\n\ny <- x                     (1)                           \n\npost = y{1} = `|x{2}|\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, x{1} = x{2} /\\ x{1} < 0 => -x{1} = `|x{2}|\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int}\n&2 (right) : {x : int}\n\npre = x{1} = x{2} /\\ ! x{1} < 0\n\ny <- x                     (1)                           \n\npost = y{1} = `|x{2}|\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : int}\n&2 (right) : {x : int}\n\npre = x{1} = x{2} /\\ ! x{1} < 0\n\ny <- x                     (1)                           \n\npost = y{1} = `|x{2}|\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, x{1} = x{2} /\\ ! x{1} < 0 => x{1} = `|x{2}|\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Relational Hoare logic example (1-sided)"
+}</script>
+</div>
+</section>
+<section id="variant-if-phl">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (pHL)</a><a class="headerlink" href="#variant-if-phl" title="Link to this heading"></a></h2>
+<p>In probabilistic Hoare logic, the <code class="docutils literal notranslate"><span class="pre">if</span></code> tactic behaves much like in
+standard Hoare logic, except that the postcondition is expressed in terms
+of a probability bound. Since the if statement is the first command of
+the program, its guard is evaluated immediately in the initial state and
+therefore deterministically takes either the <code class="docutils literal notranslate"><span class="pre">true</span></code> or the <code class="docutils literal notranslate"><span class="pre">false</span></code>
+value, with probability 1. As a result, the program execution splits into
+one of the two branches without introducing any additional probabilistic
+choice at the level of control flow, and the probability bound is preserved
+by reasoning separately about each branch under the corresponding
+assumption on the guard.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-3" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-3-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    var y : int;\n\n    if (x < 0) {\n      y <- -x;\n    } else {\n      y <- x;\n    }\n\n    return y;\n  }\n}.\n\nlemma L : phoare[M.f : true ==> 0 <= res] = 1%r.\nproof.\n  proc.\n  if.\n  (* First goal: (x < 0) holds *)\n  - wp; skip. smt().\n  (* Second goal: (x < 0) does not hold *)\n  - wp; skip. smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    164,
+    214,
+    221,
+    229,
+    235,
+    283,
+    290,
+    347,
+    354,
+    359
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = true\n\n    M.f \n    [=] 1%r\n\npost = 0 <= res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = true\n\n    M.f \n    [=] 1%r\n\npost = 0 <= res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\nBound   : [=] 1%r\n\npre = true\n\n(1--)  if (x < 0) {             \n(1.1)    y <- -x                \n(1--)  } else {                 \n(1?1)    y <- x                 \n(1--)  }                        \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\nBound   : [=] 1%r\n\npre = true /\\ x < 0\n\n(1)  y <- -x                  \n\npost = 0 <= y\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\nBound   : [=] 1%r\n\npre = true /\\ ! x < 0\n\n(1)  y <- x                   \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, true /\\ x{hr} < 0 => 0 <= -x{hr}\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\nBound   : [=] 1%r\n\npre = true /\\ ! x < 0\n\n(1)  y <- x                   \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\nBound   : [=] 1%r\n\npre = true /\\ ! x < 0\n\n(1)  y <- x                   \n\npost = 0 <= y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, true /\\ ! x{hr} < 0 => 0 <= x{hr}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Probabilistic Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-if-ehl">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">if</span></code> (eHL)</a><a class="headerlink" href="#variant-if-ehl" title="Link to this heading"></a></h2>
+<p>In expectation Hoare logic, the <code class="docutils literal notranslate"><span class="pre">if</span></code> tactic behaves similarly to standard
+Hoare logic. Two subgoals are generated, where the pre-expection is additionally
+guarded by the branch condition and its negation, respectively. This naturally
+splits the goal of proving the upper-bound into two cases along the control
+flow.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-4" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-4-data">{
+  "source":"require import AllCore Xreal.\n\nmodule M = {\n  proc f(x : int) = {\n    var y : int;\n\n    if (x < 0) {\n      y <- -x;\n    } else {\n      y <- x;\n    }\n\n    return y;\n  }\n}.\n\nlemma L : ehoare[M.f : 0%xr ==> (!(0 <= res))%xr].\nproof.\n  proc.\n  if.\n  (* First goal: (x < 0) holds *)\n  - wp; skip. smt().\n  (* Second goal: (x < 0) does not hold *)\n  - wp; skip. smt().\nqed.\n",
+  "sentenceEnds":[
+    29,
+    170,
+    222,
+    229,
+    237,
+    243,
+    291,
+    298,
+    355,
+    362,
+    367
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = Rpbar.'0\n\n    M.f \n\npost = (! 0 <= res)%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = Rpbar.'0\n\n    M.f \n\npost = (! 0 <= res)%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = Rpbar.'0\n\n(1--)  if (x < 0) {             \n(1.1)    y <- -x                \n(1--)  } else {                 \n(1?1)    y <- x                 \n(1--)  }                        \n\npost = (! 0 <= y)%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (x < 0) `|` Rpbar.'0\n\n(1)  y <- -x                  \n\npost = (! 0 <= y)%xr\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` Rpbar.'0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, (! 0 <= -x{hr})%xr <= (x{hr} < 0) `|` Rpbar.'0\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` Rpbar.'0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` Rpbar.'0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, (! 0 <= x{hr})%xr <= (! x{hr} < 0) `|` Rpbar.'0\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Expectation Hoare logic example"
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tactics.html" class="btn btn-neutral float-left" title="Proof tactics reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="skip.html" class="btn btn-neutral float-right" title="Tactic: skip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
