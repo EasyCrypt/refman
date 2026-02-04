@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: splitwhile Tactic &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tactic: skip" href="skip.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <cite>skip</cite></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/splitwhile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-splitwhile-tactic">
+<h1>Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic<a class="headerlink" href="#tactic-splitwhile-tactic" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> tactic applies to program-logic goals where the program
+contains a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop.</p>
+<p>It belongs to a family of tactics that operate by rewriting the program
+into a semantically equivalent form. More precisely, given a loop of the
+form:</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="kr">while</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>applying <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> with a splitting condition <code class="docutils literal notranslate"><span class="pre">S</span></code> rewrites the loop
+into a structure where the execution is decomposed into two successive
+loops.</p>
+<p>In a nutshell, the original loop is split into:</p>
+<ul class="simple">
+<li><p>a first loop that executes iterations only while both the loop guard
+<code class="docutils literal notranslate"><span class="pre">b</span></code> and the splitting condition <code class="docutils literal notranslate"><span class="pre">S</span></code> hold,</p></li>
+<li><p>followed by a second loop that executes the remaining iterations of the
+original loop under the standard guard <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p></li>
+</ul>
+<p>Concretely, the loop is rewritten into an equivalent program of the shape:</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="kr">while</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">/</span>\<span class="w"> </span><span class="n">S</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">};</span>
+<span class="kr">while</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This transformation allows the user to reason separately about an initial
+phase of the loop execution where <code class="docutils literal notranslate"><span class="pre">S</span></code> is maintained, and a second phase
+that accounts for the rest of the iterations.</p>
+<p>Since this is a semantic-preserving program transformation, <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code>
+can be used in any program component, independently of the surrounding
+logic (Hoare logic, probabilistic Hoare logic, relational logics, etc.).</p>
+<p>The splitting condition must be supplied explicitly; it is not inferred
+automatically.</p>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>The general form of the tactic is:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">splitwhile</span> <span class="pre">{side}?</span> <span class="pre">{codepos}</span> <span class="pre">:</span> <span class="pre">({expr})</span></code></p>
+</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{expr}</span></code> is the splitting condition used to restrict the first phase of
+the loop execution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{codepos}</span></code> specifies the position of the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop in the program
+that should be rewritten.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{side}</span></code> is optional and is used in relational goals to specify on
+which program the transformation should be applied (left or right). If
+omitted, the tactic applies to the single program under consideration.</p></li>
+</ul>
+<p>The following example shows <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> on a Hoare goal. The program
+increments <code class="docutils literal notranslate"><span class="pre">x</span></code> until it reaches <code class="docutils literal notranslate"><span class="pre">10</span></code>. We split the loop into two phases:
+an initial phase where <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">5</span></code> holds, and then the remaining iterations.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc up_to_10(x : int) : int = {\n    while (x < 10) {\n      x <- x + 1;\n    }\n    return x;\n  }\n}.\n\nlemma up_to_10_correct :\n  hoare [ M.up_to_10 : true ==> res = 10 ].\nproof.\n  proc.\n  (* Split the loop at its position into:\n     while (x < 10 /\\ x < 5) { x <- x + 1 };\n     while (x < 10)          { x <- x + 1 } *)\n  splitwhile 1 : (x < 5).\n\n  (* The goal is the same, but with the program rewritten. *)\n  admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    138,
+    208,
+    215,
+    223,
+    383,
+    455,
+    460
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = true\n\n    M.up_to_10 \n\npost = res = 10\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = true\n\n    M.up_to_10 \n\npost = res = 10\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = true\n\n(1--)  while (x < 10) {         \n(1.1)    x <- x + 1             \n(1--)  }                        \n\npost = x = 10\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = true\n\n(1--)  while (x < 10 /\\ x < 5) {\n(1.1)    x <- x + 1             \n(1--)  }                        \n(2--)  while (x < 10) {         \n(2.1)    x <- x + 1             \n(2--)  }                        \n\npost = x = 10\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `up_to_10_correct'"
+    }
+  ],
+  "initialSentence":4
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="skip.html" class="btn btn-neutral float-left" title="Tactic: skip" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
