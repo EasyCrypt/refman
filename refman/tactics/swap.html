@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: swap &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tactic: splitwhile Tactic" href="splitwhile.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-single-statement">Example (single statement)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-swapping-a-block">Example (swapping a block)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-invalid-swap">Example (invalid swap)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/swap.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-swap">
+<h1>Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code><a class="headerlink" href="#tactic-swap" title="Link to this heading"></a></h1>
+<p>The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code> tactic applies to program-logic goals by rewriting the program
+into a semantically equivalent form where two consecutive, independent
+program fragments are exchanged.</p>
+<p>In a nutshell, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code> permutes commands when doing so does not change the
+program’s behavior (typically because the swapped fragments do not
+interfere, e.g., they write to disjoint variables and neither reads what the
+other writes).</p>
+<p>Applying <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code> replaces the current goal by the same goal, but with the
+selected commands swapped in the program. This is useful to expose a more
+convenient program structure, for example to align programs in relational
+proofs or to bring related statements closer together.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#example-single-statement" id="id2">Example (single statement)</a></p></li>
+<li><p><a class="reference internal" href="#example-swapping-a-block" id="id3">Example (swapping a block)</a></p></li>
+<li><p><a class="reference internal" href="#example-invalid-swap" id="id4">Example (invalid swap)</a></p></li>
+</ul>
+</nav>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code> tactic comes in several forms:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<ul class="simple">
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span>?<span class="w"> </span><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span></code></p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span>?<span class="w"> </span><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span></code></p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span>?<span class="w"> </span><span class="p">[{</span><span class="n">codepos1</span><span class="p">}..{</span><span class="n">codepos1</span><span class="p">}]</span><span class="w"> </span><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span>`</code></p></li>
+</ul>
+</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">side</span><span class="p">}</span></code> is optional and is either <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="mi">1</span></code> or <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="mi">2</span></code>. It selects the left or
+right program in relational goals. If omitted, the tactic applies to the
+single program under consideration.</p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span></code> denotes a <em>top-level code position</em>.</p></li>
+<li><p>A <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span></code> is either:</p>
+<ul>
+<li><p>a signed integer (<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">n</span></code> or <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">-</span><span class="n">n</span></code>), denoting a relative position, or</p></li>
+<li><p>an absolute code position written <code class="code highlight easycrypt docutils literal highlight-easycrypt">@<span class="w"> </span><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>The meaning of these forms is as follows:</p>
+<ul>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span>?<span class="w"> </span><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span></code></p>
+<p>swaps the two adjacent commands starting at the top-level position
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span></code>.</p>
+</li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span>?<span class="w"> </span><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span></code></p>
+<p>swaps the command at top-level position <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">codepos1</span><span class="p">}</span></code> with the command
+at the position designated by <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span></code>.</p>
+</li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span>?<span class="w"> </span><span class="p">[{</span><span class="n">codepos1</span><span class="p">}..{</span><span class="n">codepos1</span><span class="p">}]</span><span class="w"> </span><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span></code></p>
+<p>swaps a whole sequence of commands delimited by <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">[{</span><span class="n">codepos1</span><span class="p">}..{</span><span class="n">codepos1</span><span class="p">}]</span></code>
+with the commands starting at the position designated by <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span></code>.</p>
+</li>
+</ul>
+<p>In all cases, the swap is only valid when the exchanged fragments are
+independent, so that the transformation preserves the program semantics.</p>
+</section>
+<section id="example-single-statement">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Example (single statement)</a><a class="headerlink" href="#example-single-statement" title="Link to this heading"></a></h2>
+<p>The following example swaps two adjacent assignments that do not interfere.
+The returned result is unchanged, but the rewritten program may be more
+convenient for subsequent proof steps.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc reorder(x : int) : int = {\n    var a, b : int;\n    a <- x + 1;\n    b <- x + 2;\n    return a + b;\n  }\n}.\n\nlemma reorder_correct (n : int) :\n  hoare [ M.reorder : x = n ==> res = (n + 1) + (n + 2) ].\nproof.\n  proc.\n\n  (* Swap the command at position 1 with the next command (offset +1). *)\n  swap 1 1.\n\n  (* The goal is the same, but with the program rewritten. *)\n  admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    148,
+    242,
+    249,
+    257,
+    344,
+    416,
+    421
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.reorder \n\npost = res = n + 1 + (n + 2)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.reorder \n\npost = res = n + 1 + (n + 2)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- x + 2               \n\npost = a + b = n + 1 + (n + 2)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  b <- x + 2               \n(2)  a <- x + 1               \n\npost = a + b = n + 1 + (n + 2)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `reorder_correct'"
+    }
+  ],
+  "initialSentence":4
+}</script>
+</div>
+</section>
+<section id="example-swapping-a-block">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Example (swapping a block)</a><a class="headerlink" href="#example-swapping-a-block" title="Link to this heading"></a></h2>
+<p>The following example illustrates the block form
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span><span class="w"> </span><span class="p">[{</span><span class="n">codepos1</span><span class="p">}..{</span><span class="n">codepos1</span><span class="p">}]</span><span class="w"> </span><span class="p">{</span><span class="n">codeoffset1</span><span class="p">}</span></code>.  We swap a block of two
+commands with a later, independent command.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc swap_block(x : int) : int = {\n    var a, b, c : int;\n\n    a <- x + 1;      (* 1 *)\n    b <- x + 2;      (* 2 *)\n    c <- x + 3;      (* 3 *)\n    a <- a + 10;     (* 4 *)\n\n    return a + b + c;\n  }\n}.\n\nlemma swap_block_correct (n : int) :\n  hoare [ M.swap_block : x = n ==> res = (n + 1 + 10) + (n + 2) + (n + 3) ].\nproof.\n  proc.\n  (* Swap the block [2..3] (b <- x+2; c <- x+3) with the following command\n     a <- a + 10. These fragments are independent since:\n     - the block assigns b and c, and\n     - the command updates a using only a. *)\n  swap [2..3] 1.\n\n  (* The goal is the same, but with the program rewritten. *)\n  admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    244,
+    359,
+    366,
+    374,
+    607,
+    679,
+    684
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.swap_block \n\npost = res = n + 1 + 10 + (n + 2) + (n + 3)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.swap_block \n\npost = res = n + 1 + 10 + (n + 2) + (n + 3)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b, c : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- x + 2               \n(3)  c <- x + 3               \n(4)  a <- a + 10              \n\npost = a + b + c = n + 1 + 10 + (n + 2) + (n + 3)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b, c : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  a <- a + 10              \n(3)  b <- x + 2               \n(4)  c <- x + 3               \n\npost = a + b + c = n + 1 + 10 + (n + 2) + (n + 3)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `swap_block_correct'"
+    }
+  ],
+  "initialSentence":4
+}</script>
+</div>
+</section>
+<section id="example-invalid-swap">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Example (invalid swap)</a><a class="headerlink" href="#example-invalid-swap" title="Link to this heading"></a></h2>
+<p>The following example shows a swap attempt that fails because the two
+commands are not independent: the second command reads the value written by
+the first one.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc bad_swap(x : int) : int = {\n    var a, b : int;\n    a <- x + 1;   (* 1 *)\n    b <- a + 2;   (* 2 *)\n    return b;\n  }\n}.\n\nlemma bad_swap_demo (n : int) :\n  hoare [ M.bad_swap : x = n ==> res = n + 3 ].\nproof.\n  proc.\n\n  (* This swap is invalid: b depends on a. *)\n  fail swap 1 1.\n\n  admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    165,
+    246,
+    253,
+    261,
+    325,
+    335,
+    340
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.bad_swap \n\npost = res = n + 3\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.bad_swap \n\npost = res = n + 3\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- a + 2               \n\npost = b = n + 3\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bad_swap_demo'"
+    }
+  ],
+  "initialSentence":4
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="splitwhile.html" class="btn btn-neutral float-left" title="Tactic: splitwhile Tactic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
