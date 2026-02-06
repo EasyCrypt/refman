@@ -1,0 +1,919 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: proc &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: skip" href="skip.html" />
+    <link rel="prev" title="Tactic: if" href="if.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-concrete-procedure-s">Variant: Concrete procedure(s)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-abstract-procedure-non-relational">Variant: Abstract procedure (non-relational)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-abstract-procedure-relational">Variant: Abstract procedure (relational)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/proc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-proc">
+<h1>Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span></code><a class="headerlink" href="#tactic-proc" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">proc</span></code> tactic applies to program-logic goals where the procedure(s)
+under consideration are referred to by name rather than content. It is
+typically the first tactic applied when reasoning about procedure calls
+or top level program logic statements.</p>
+<p>There are two variants of the <code class="docutils literal notranslate"><span class="pre">proc</span></code> tactic, depending on whether the
+procedure(s) in question are abstract (i.e., declared but not defined)
+or concrete (i.e., defined with a body of code).</p>
+<p>The abstract variant is a bit different for probabilistic relational
+Hoare logic compared to the other program logics, so we describe it
+separately.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-concrete-procedure-s" id="id1">Variant: Concrete procedure(s)</a></p></li>
+<li><p><a class="reference internal" href="#variant-abstract-procedure-non-relational" id="id2">Variant: Abstract procedure (non-relational)</a></p></li>
+<li><p><a class="reference internal" href="#variant-abstract-procedure-relational" id="id3">Variant: Abstract procedure (relational)</a></p></li>
+</ul>
+</nav>
+<section id="variant-concrete-procedure-s">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: Concrete procedure(s)</a><a class="headerlink" href="#variant-concrete-procedure-s" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">proc</span></code></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">proc</span></code> tactic, when applied to concrete procedures, unfolds the
+procedure definition(s) at hand, replacing the procedure call(s)
+with the body(ies) of the corresponding procedure(s). The proof goal is
+then updated accordingly.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(x : int) = {\n    x <- x + 1;\n    x <- x * 2;\n    return x;\n  }\n}.\n\npred p : int.\npred q : int.\n\nlemma L : hoare[M.f : p x ==> q res].\nproof.\n  proc.\nabort.\n",
+  "sentenceEnds":[
+    23,
+    112,
+    127,
+    141,
+    180,
+    187,
+    195,
+    202
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg\n\n    M.f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x : int}\n\npre = p x\n\n(1)  x <- x + 1               \n(2)  x <- x * 2               \n\npost = q x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":5,
+  "title":"Hoare logic example"
+}</script>
+</div>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule M1 = {\n  proc f(x : int) = {\n    x <- x + 1;\n    x <- x * 2;\n    return x;\n  }\n}.\n\nmodule M2 = {\n  proc f(x : int) = {\n    x <- x * 10;\n    x <- x - 3;\n    return x;\n  }\n}.\n\npred p : int & int.\npred q : int & int.\n\nlemma L : equiv[M1.f ~ M2.f : p x{1} x{2} ==> q res{1} res{2}].\nproof.\n  proc.\nabort.\n",
+  "sentenceEnds":[
+    23,
+    113,
+    204,
+    225,
+    245,
+    310,
+    317,
+    325,
+    332
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M1.f ~ M2.f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M1.f ~ M2.f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x : int}\n&2 (right) : {x : int}\n\npre = p x{1} x{2}\n\nx <- x + 1                 (1)  x <- x * 10              \nx <- x * 2                 (2)  x <- x - 3               \n\npost = q x{1} x{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":6,
+  "title":"Probabilistic relational Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-abstract-procedure-non-relational">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: Abstract procedure (non-relational)</a><a class="headerlink" href="#variant-abstract-procedure-non-relational" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">{formulaI}</span></code></p>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">{formulaI}</span></code> is an invariant that should be preserved by the
+procedure. The invariant can refer to global variables not being modified
+by the procedure. To ensure that variables of interest cannot be modified,
+it may be necessary to add restrictions to the module type of the abstract procedure, specifying which globals are not accessed.</p>
+<p>The tactic, when applied to abstract procedures, generates a proof
+obligation that the invariant holds initially (i.e., it is implied by the
+precondition) and another that the invariant is sufficient to ensure the
+postcondition. For every module argument to the abstract procedure, an
+additional proof obligation is generated to ensure that every procedure in
+the module argument preserves the invariant.</p>
+<p>The probabilistic Hoare logic variant only works when the invariant is
+guaranteed to hold with probability 1. Therefore it requires the initial
+bound to be 1 and generates an additional proof obligation requiring that
+losslessness of procedures of the module arguments implies losslessness
+of the procedure under consideration.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore.\n\nmodule type OT = {\n  proc g1(): int\n  proc g2(x: int): unit\n}.\n\nmodule type MT (O: OT) = {\n  proc f(x : int): int\n}.\n\nmodule O = {\n  var y: int\n  proc g1() = {\n    y <- y+1;\n    return y;\n  }\n\n  proc g2(x: int) = {\n  }\n}.\n\npred p : int.\npred q : int.\npred inv : int.\n\nlemma L (M <: MT {-O}): hoare[M(O).f : p x ==> q res].\nproof.\n  proc (inv O.y).\n  - admit. (* Invariant holds initially *)\n  - admit. (* Invariant implies postcondition *)\n  - admit. (* Procedure g1 preserves invariant *)\n  (* Procedure g2 preserves invariant *)\nabort.\n",
+  "sentenceEnds":[
+    23,
+    87,
+    141,
+    246,
+    261,
+    275,
+    291,
+    347,
+    354,
+    372,
+    383,
+    426,
+    475,
+    562
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate inv : int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = p arg\n\n    M(O).f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = p arg\n\n    M(O).f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, p arg{hr} => inv O.y{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, inv O.y{hr} => q res{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, inv O.y{hr} => q res{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":8,
+  "title":"Hoare logic example with abstract procedure"
+}</script>
+</div>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-3" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-3-data">{
+  "source":"require import AllCore.\n\nmodule type OT = {\n  proc g1(): int\n  proc g2(x: int): unit\n}.\n\nmodule type MT (O: OT) = {\n  proc f(x : int): int\n}.\n\nmodule O = {\n  var y: int\n  proc g1() = {\n    y <- y+1;\n    return y;\n  }\n\n  proc g2(x: int) = {\n  }\n}.\n\n\npred p : int.\npred q : int.\npred inv : int.\n\nlemma L (M <: MT {-O}): phoare[M(O).f : p x ==> q res] = 1%r.\nproof.\n  proc (inv O.y).\n  - admit. (* Invariant holds initially *)\n  - admit. (* Invariant implies postcondition *)\n  - admit. (* Losslessness of M(O).f *)\n  - admit. (* Procedure g1 preserves invariant *)\n  (* Procedure g2 preserves invariant *)\nabort.\n",
+  "sentenceEnds":[
+    23,
+    87,
+    141,
+    246,
+    262,
+    276,
+    292,
+    355,
+    362,
+    380,
+    391,
+    434,
+    483,
+    523,
+    610
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate inv : int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = p arg\n\n    M(O).f \n    [=] 1%r\n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = p arg\n\n    M(O).f \n    [=] 1%r\n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, p arg{hr} => inv O.y{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, inv O.y{hr} => q res{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall (O0 <: OT{-M}),\n  islossless O0.g1 => islossless O0.g2 => islossless M(O0).f\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n    [=] 1%r\n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n    [=] 1%r\n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, inv O.y{hr} => q res{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall (O0 <: OT{-M}),\n  islossless O0.g1 => islossless O0.g2 => islossless M(O0).f\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n    [=] 1%r\n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n    [=] 1%r\n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall (O0 <: OT{-M}),\n  islossless O0.g1 => islossless O0.g2 => islossless M(O0).f\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n    [=] 1%r\n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n    [=] 1%r\n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n    [=] 1%r\n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n    [=] 1%r\n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n    [=] 1%r\n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":8,
+  "title":"Probabilistic Hoare logic example with abstract procedure"
+}</script>
+</div>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-4" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-4-data">{
+  "source":"require import AllCore Xreal.\n\nmodule type OT = {\n  proc g1(): int\n  proc g2(x: int): unit\n}.\n\nmodule type MT (O: OT) = {\n  proc f(x : int): int\n}.\n\nmodule O = {\n  var y: int\n  proc g1() = {\n    y <- y+1;\n    return y;\n  }\n\n  proc g2(x: int) = {\n  }\n}.\n\n\nop p : int -> xreal.\nop q : int -> xreal.\nop inv : int -> xreal.\n\nlemma L (M <: MT {-O}): ehoare[M(O).f : p x ==> q res].\nproof.\n  proc (inv O.y).\n  - admit. (* Invariant holds initially *)\n  - admit. (* Invariant implies postcondition *)\n  - admit. (* Procedure g1 preserves invariant *)\n  (* Procedure g2 preserves invariant *)\nabort.\n",
+  "sentenceEnds":[
+    29,
+    93,
+    147,
+    252,
+    275,
+    296,
+    319,
+    376,
+    383,
+    401,
+    412,
+    455,
+    504,
+    591
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added operator p : int -> xreal"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator q : int -> xreal"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator inv : int -> xreal"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = p arg\n\n    M(O).f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = p arg\n\n    M(O).f \n\npost = q res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, inv O.y{hr} <= p arg{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, q res{hr} <= inv O.y{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\nforall &hr, q res{hr} <= inv O.y{hr}\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g1 \n\npost = inv O.y\n",
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O0 : OT) : MT{-O}\n------------------------------------------------------------------------\npre = inv O.y\n\n    O.g2 \n\npost = inv O.y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":8,
+  "title":"Expectation Hoare logic example with abstract procedure"
+}</script>
+</div>
+</section>
+<section id="variant-abstract-procedure-relational">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: Abstract procedure (relational)</a><a class="headerlink" href="#variant-abstract-procedure-relational" title="Link to this heading"></a></h2>
+<p>The relational variant of the <code class="docutils literal notranslate"><span class="pre">proc</span></code> tactic for abstract procedures
+requires both procedures to be the same, though their module arguments
+may differ.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">{formulaI}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">{formulaB}</span> <span class="pre">{formulaI}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">{formulaB}</span> <span class="pre">{formulaI}</span> <span class="pre">{formulaJ}</span></code></p></li>
+</ul>
+</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{formulaI}</span></code> is a two-sided invariant that should be preserved by the
+pair of procedures.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{formulaB}</span></code> is an optional formula representing a bad event on the
+right side after which the invariant need no longer hold.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{formulaJ}</span></code> is an optional formula representing the invariant after
+the bad event has occurred. This is optional even if <code class="docutils literal notranslate"><span class="pre">{formulaB}</span></code> is
+provided; in which case the invariant is taken to be <code class="docutils literal notranslate"><span class="pre">true</span></code> after the
+bad event.</p></li>
+</ul>
+<p>The tactic can be thought of as keeping both procedures in sync using
+<code class="docutils literal notranslate"><span class="pre">{formulaI}</span></code> until the bad event <code class="docutils literal notranslate"><span class="pre">{formulaB}</span></code> occurs on the right
+side, after which they are no longer kept in sync. Instead <code class="docutils literal notranslate"><span class="pre">{formulaJ}</span></code>
+is then preserved by the left and right procedures individually, no matter
+the order in which the two sides make progress.</p>
+<p>When only <code class="docutils literal notranslate"><span class="pre">{formulaI}</span></code> is provided, the tactic works similarly to the
+non-relational variants, generating proof obligations to ensure that
+the invariant, equality of the globals of the module containing the
+procedure and equality of arguments holds and that equality of the
+globals, result and the invariant suffices to ensure the postcondition.
+For every procedure of every module argument to the abstract procedure
+an additional proof obligation is generated to ensure that the procedure
+pairs of the module arguments on the left and right preserve the invariant
+and yield equal results when called on equal arguments.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-5" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-5-data">{
+  "source":"require import AllCore.\n\nmodule type OT = {\n  proc g1(): int\n  proc g2(x: int): unit\n}.\n\nmodule type MT (O: OT) = {\n  proc f(x : int): int\n}.\n\nmodule O1 = {\n  var y: int\n  proc g1() = {\n    y <- y+1;\n    return y;\n  }\n\n  proc g2(x: int) = {\n  }\n}.\nmodule O2 = {\n  var y: int\n  proc g1() = {\n    return y;\n  }\n\n  proc g2(x: int) = {\n    y <- y-1;\n  }\n}.\n\npred p : int & int.\npred q : int & int.\npred inv : int & int.\n\nlemma L (M <: MT {-O1, -O2}): equiv[M(O1).f ~ M(O2).f: p x{1} x{2} ==> q res{1} res{2}].\nproof.\n  proc (inv O1.y{1} O2.y{2}).\n  - admit. (* Invariant holds initially *)\n  - admit. (* Invariant implies postcondition *)\n  - admit. (* Procedure g1 preserves invariant *)\n  (* Procedure g2 preserves invariant *)\nabort.\n",
+  "sentenceEnds":[
+    23,
+    87,
+    141,
+    247,
+    352,
+    373,
+    393,
+    415,
+    505,
+    512,
+    542,
+    553,
+    596,
+    645,
+    732
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate inv : int -> int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M(O1).f ~ M(O2).f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M(O1).f ~ M(O2).f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1 &2,\n  p arg{1} arg{2} =>\n  arg{1} = arg{2} /\\ (glob M){1} = (glob M){2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1 &2,\n  res{1} = res{2} /\\ (glob M){1} = (glob M){2} /\\ inv O1.y{1} O2.y{2} =>\n  q res{1} res{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = true /\\ inv O1.y{1} O2.y{2}\n\n    O1.g1 ~ O2.g1 \n\npost = res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = arg{1} = arg{2} /\\ inv O1.y{1} O2.y{2}\n\n    O1.g2 ~ O2.g2 \n\npost = res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1 &2,\n  res{1} = res{2} /\\ (glob M){1} = (glob M){2} /\\ inv O1.y{1} O2.y{2} =>\n  q res{1} res{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = true /\\ inv O1.y{1} O2.y{2}\n\n    O1.g1 ~ O2.g1 \n\npost = res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = arg{1} = arg{2} /\\ inv O1.y{1} O2.y{2}\n\n    O1.g2 ~ O2.g2 \n\npost = res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = true /\\ inv O1.y{1} O2.y{2}\n\n    O1.g1 ~ O2.g1 \n\npost = res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = arg{1} = arg{2} /\\ inv O1.y{1} O2.y{2}\n\n    O1.g2 ~ O2.g2 \n\npost = res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = arg{1} = arg{2} /\\ inv O1.y{1} O2.y{2}\n\n    O1.g2 ~ O2.g2 \n\npost = res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":9,
+  "title":"Simple Probabilistic Relational Hoare logic example"
+}</script>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">{formulaB}</span></code> and <code class="docutils literal notranslate"><span class="pre">{formulaJ}</span></code> are provided, the equality of
+arguments, results, globals and <code class="docutils literal notranslate"><span class="pre">{formulaI}</span></code> obligations are modified to
+only hold/need to hold conditional on the bad event not having occurred on
+the right side. When the bad event has occurred, we instead require that
+<code class="docutils literal notranslate"><span class="pre">{formulaJ}</span></code> holds without any additional equality requirements. Since
+the behavior of the two sides is no longer synchronized after the bad
+event, an obligation is generated to ensure that the procedure is lossless
+when the procedures in its module arguments are lossless, to avoid the
+weights diverging after the bad event.</p>
+<p>For every procedure of every module argument to the abstract procedure on
+the left, an additional proof obligation is generated to ensure that the
+when the bad event has happened and <code class="docutils literal notranslate"><span class="pre">{formulaJ}</span></code> holds for some right
+memory, then it is guaranteed to still hold for that right memory after
+running the procedure of the argument on the left. Similarly, for every
+procedure of every module argument to the abstract procedure on the right,
+an additional proof obligation is generated to ensure that when the bad
+event has happened and <code class="docutils literal notranslate"><span class="pre">{formulaJ}</span></code> holds for some left memory, then the
+bad event on the right and the two-sided invariant <code class="docutils literal notranslate"><span class="pre">{formulaJ}</span></code> is
+guaranteed to still hold for the left memory after running the procedure
+of the argument on the right.</p>
+<p>If you want the bad event to be on the left side instead, you can swap the
+two programs using the <code class="docutils literal notranslate"><span class="pre">sym</span></code> tactic before applying <code class="docutils literal notranslate"><span class="pre">proc</span></code>.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-6" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-6-data">{
+  "source":"require import AllCore.\n\nmodule type OT = {\n  proc g(): unit\n}.\n\nmodule type MT (O: OT) = {\n  proc f(x : int): int\n}.\n\nmodule O1 = {\n  var y: int\n  proc g() = {\n    y <- y+1;\n  }\n}.\nmodule O2 = {\n  var y: int\n  proc g() = {\n    y <- y-1;\n  }\n}.\n\npred p : int & int.\npred q : int & int.\npred inv : int & int.\npred bad : int.\npred inv2 : int & int.\n\nlemma L (M <: MT {-O1, -O2}): equiv[M(O1).f ~ M(O2).f: p x{1} x{2} ==> q res{1} res{2}].\nproof.\n  proc (bad O2.y) (inv O1.y{1} O2.y{2}) (inv2 O1.y{1} O2.y{2}).\n  - admit. (* Connecting precondition to invariants *)\n  - admit. (* Connecting invariants to postcondition *)\n  - admit. (* Losslessness of M(O).f *)\n  - admit. (* Relating O1.g and O2.g during synchronization *)\n  - admit. (* Behaviour of O1.g after bad event *)\n  (* Behaviour of O2.g after bad event *)\nabort.\n",
+  "sentenceEnds":[
+    23,
+    63,
+    117,
+    181,
+    244,
+    265,
+    285,
+    307,
+    323,
+    346,
+    436,
+    443,
+    507,
+    518,
+    573,
+    629,
+    669,
+    732,
+    821
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : int -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate q : int -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate inv : int -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate bad : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate inv2 : int -> int -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M(O1).f ~ M(O2).f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = p arg{1} arg{2}\n\n    M(O1).f ~ M(O2).f \n\npost = q res{1} res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1 &2,\n  p arg{1} arg{2} =>\n  if bad O2.y{2} then inv2 O1.y{1} O2.y{2}\n  else arg{1} = arg{2} /\\ (glob M){1} = (glob M){2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1 &2,\n  (if bad O2.y{2} then inv2 O1.y{1} O2.y{2}\n   else res{1} = res{2} /\\ (glob M){1} = (glob M){2} /\\ inv O1.y{1} O2.y{2}) =>\n  q res{1} res{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall (O <: OT{-M}), islossless O.g => islossless M(O).f\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = ! bad O2.y{2} /\\ true /\\ inv O1.y{1} O2.y{2}\n\n    O1.g ~ O2.g \n\npost =\n  if bad O2.y{2} then inv2 O1.y{1} O2.y{2}\n  else res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &2,\n  bad O2.y{2} =>\n  phoare[ O1.g {&1}: inv2 O1.y O2.y{2} ==> inv2 O1.y O2.y{2}] = 1%r\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1,\n  phoare[ O2.g {&2}:\n           bad O2.y /\\ inv2 O1.y{1} O2.y ==> bad O2.y /\\ inv2 O1.y{1} O2.y] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1 &2,\n  (if bad O2.y{2} then inv2 O1.y{1} O2.y{2}\n   else res{1} = res{2} /\\ (glob M){1} = (glob M){2} /\\ inv O1.y{1} O2.y{2}) =>\n  q res{1} res{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall (O <: OT{-M}), islossless O.g => islossless M(O).f\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = ! bad O2.y{2} /\\ true /\\ inv O1.y{1} O2.y{2}\n\n    O1.g ~ O2.g \n\npost =\n  if bad O2.y{2} then inv2 O1.y{1} O2.y{2}\n  else res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &2,\n  bad O2.y{2} =>\n  phoare[ O1.g {&1}: inv2 O1.y O2.y{2} ==> inv2 O1.y O2.y{2}] = 1%r\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1,\n  phoare[ O2.g {&2}:\n           bad O2.y /\\ inv2 O1.y{1} O2.y ==> bad O2.y /\\ inv2 O1.y{1} O2.y] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall (O <: OT{-M}), islossless O.g => islossless M(O).f\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = ! bad O2.y{2} /\\ true /\\ inv O1.y{1} O2.y{2}\n\n    O1.g ~ O2.g \n\npost =\n  if bad O2.y{2} then inv2 O1.y{1} O2.y{2}\n  else res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &2,\n  bad O2.y{2} =>\n  phoare[ O1.g {&1}: inv2 O1.y O2.y{2} ==> inv2 O1.y O2.y{2}] = 1%r\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1,\n  phoare[ O2.g {&2}:\n           bad O2.y /\\ inv2 O1.y{1} O2.y ==> bad O2.y /\\ inv2 O1.y{1} O2.y] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\npre = ! bad O2.y{2} /\\ true /\\ inv O1.y{1} O2.y{2}\n\n    O1.g ~ O2.g \n\npost =\n  if bad O2.y{2} then inv2 O1.y{1} O2.y{2}\n  else res{1} = res{2} /\\ inv O1.y{1} O2.y{2}\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &2,\n  bad O2.y{2} =>\n  phoare[ O1.g {&1}: inv2 O1.y O2.y{2} ==> inv2 O1.y O2.y{2}] = 1%r\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1,\n  phoare[ O2.g {&2}:\n           bad O2.y /\\ inv2 O1.y{1} O2.y ==> bad O2.y /\\ inv2 O1.y{1} O2.y] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &2,\n  bad O2.y{2} =>\n  phoare[ O1.g {&1}: inv2 O1.y O2.y{2} ==> inv2 O1.y O2.y{2}] = 1%r\n",
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1,\n  phoare[ O2.g {&2}:\n           bad O2.y /\\ inv2 O1.y{1} O2.y ==> bad O2.y /\\ inv2 O1.y{1} O2.y] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nM(O : OT) : MT{-O1, -O2}\n------------------------------------------------------------------------\nforall &1,\n  phoare[ O2.g {&2}:\n           bad O2.y /\\ inv2 O1.y{1} O2.y ==> bad O2.y /\\ inv2 O1.y{1} O2.y] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":11,
+  "title":"Probabilistic Relational Hoare logic example with bad event"
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="if.html" class="btn btn-neutral float-left" title="Tactic: if" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="skip.html" class="btn btn-neutral float-right" title="Tactic: skip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
