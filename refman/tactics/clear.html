@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: clear &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: if" href="if.html" />
+    <link rel="prev" title="Proof tactics reference" href="../tactics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/clear.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-clear">
+<h1>Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code><a class="headerlink" href="#tactic-clear" title="Link to this heading"></a></h1>
+<p>The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code> tactic can be used with any goal to remove hypotheses and
+variables from the context. This is useful to simplify the context by
+removing assumptions and variables that are no longer needed.</p>
+<p>There are two variants of the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code> tactic: an opt-in variant where
+specific hypotheses and variables are removed, and an opt-out variant
+where all hypotheses and variables except for the specified ones are removed.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></p>
+</div>
+<p>When given no arguments, the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code> tactic removes all hypotheses and
+all variables not transitively used in the goal from the context.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span><span class="w"> </span><span class="o">-</span><span class="p">{</span><span class="n">idents</span><span class="p">}</span></code></p>
+</div>
+<p>Here, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">idents</span><span class="p">}</span></code> is a non-empty space separated list of identifiers of
+the hypotheses and variables that should <em>not</em> be cleared. The tactic
+removes all hypotheses and variables except for those in the list, and
+those used transitively in the goal <em>or</em> in the objects in the list.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span><span class="w"> </span><span class="p">{</span><span class="n">idents</span><span class="p">}</span></code></p>
+</div>
+<p>Here, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">idents</span><span class="p">}</span></code> is a non-empty space separated list of identifiers of
+the hypotheses and variables to be cleared. If one of these is transitively
+used in the goal, then it is not cleared and an error is raised.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"lemma L: true.\npose x:=false.\nclear x.\n(* `x` is now unbound *)\npose x:=false.\npose y:=x.\npose z:=y.\nclear -y.\n(* `z` is unbound, but `x` is not, since `y` depends on it *)\npose z:=x.\nclear y.\npose y:=z.\nclear.\n(* everything is unbound, since nothing is in the goal *)\npose x:=true.\npose y:=false.\nclear.\n(* we cannot clear `x` since it is in the goal,\n    but `y` is not used so it becomes unbound *)\npose y:= x.\nabort.\n",
+  "sentenceEnds":[
+    14,
+    29,
+    38,
+    78,
+    89,
+    100,
+    110,
+    183,
+    192,
+    203,
+    210,
+    282,
+    297,
+    304,
+    413,
+    420
+  ],
+  "sentences":[
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\ny: bool := x\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\ny: bool := x\nz: bool := y\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\ny: bool := x\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\ny: bool := x\nz: bool := x\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\nz: bool := x\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := false\nz: bool := x\ny: bool := z\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\ntrue\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := true\n------------------------------------------------------------------------\nx\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := true\ny: bool := false\n------------------------------------------------------------------------\nx\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := true\n------------------------------------------------------------------------\nx\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nx: bool := true\ny: bool := x\n------------------------------------------------------------------------\ny\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":1,
+  "title":"Hoare logic example"
+}</script>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tactics.html" class="btn btn-neutral float-left" title="Proof tactics reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="if.html" class="btn btn-neutral float-right" title="Tactic: if" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
