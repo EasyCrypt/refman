@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: cfold &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: clear" href="clear.html" />
+    <link rel="prev" title="Proof tactics reference" href="../tactics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/cfold.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-cfold">
+<h1>Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code><a class="headerlink" href="#tactic-cfold" title="Link to this heading"></a></h1>
+<p>The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code> tactic is part of the family of tactics that operate by
+rewriting the program into a semantically equivalent form.
+More concretely, given an assignment of the form:</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>the tactic propagates this (known) values of a through the program
+and inlining this (known) value whenever <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">a</span></code> would be used.</p>
+<p>For example, the following excerpt:</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="n">c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>would be converted into:</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="cm">(* 3 + 1 *)</span>
+<span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="cm">(* a = 3 + 2 = 5 at this point *)</span>
+<span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="cm">(* we need to make sure a has the</span>
+<span class="cm">           correct value at the end of execution *)</span>
+</pre></div>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+</ul>
+</nav>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>The general form of the tactic is:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span>?<span class="w"> </span><span class="p">{</span><span class="n">codepos</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="n">n</span><span class="p">}</span>?</code></p>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">side</span><span class="p">}</span></code> is optional and only applicable in relational goals
+to specify on which of the two programs the tactic is to be applied.</p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">codepos</span><span class="p">}</span></code> specifies the instruction on which the tactic will begin.
+The tactic will proceed to propagate the assignment as far as possible,
+even through other assignments to the same variable as long as it can or
+until it reaches the line limit (if given).</p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">n</span><span class="p">}</span></code> is an optional integer argument corresponding to the number of
+lines of the program to process in the folding. This serves to limit the
+scope of the tactic application and prevent it from acting in the whole
+program when this would not be desirable.</p></li>
+</ul>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f(a : int) = {\n    var x, y : int;\n\n    x <- a + 1;\n    y <- 2 * x;\n    x <- 3 * y;\n\n    return x;\n  }\n}.\n\nlemma L : hoare[M.f : witness a ==> witness res].\nproof.\n  proc.\n  cfold 1.\n\n  (* The goal is the same but the program is now rewritten *)\n  admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    150,
+    201,
+    208,
+    216,
+    227,
+    299,
+    304
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = witness arg\n\n    M.f \n\npost = witness res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = witness arg\n\n    M.f \n\npost = witness res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {a, x, y : int}\n\npre = witness a\n\n(1)  x <- a + 1               \n(2)  y <- 2 * x               \n(3)  x <- 3 * y               \n\npost = witness x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {a, x, y : int}\n\npre = witness a\n\n(1)  y <- 2 * (a + 1)         \n(2)  x <- 3 * y               \n\npost = witness x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Cfold example"
+}</script>
+</div>
+<p>The propagated variable is then set at the end of the part of the program
+where the tactic was applied (in this case, the end of the program, since
+the tactic applied to its entirety), and it is set to the value which the
+tactic accumulated.</p>
+<p>Here is an example of using the parameter <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">n</span><span class="p">}</span></code> for limiting tactic
+application:</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f() = {\n    var x, y : int;\n    var i : int;\n\n    i <- 0;\n\n    while (i < 10) {\n      x <- i + 1;\n      y <- 2 * x;\n      x <- 3 * y;\n      i <- i + 1;\n    }\n\n    return x;\n  }\n}.\n\nlemma L : hoare[M.f : witness ==> witness res].\nproof.\n  proc.\n\n  unroll for 2.\n  cfold 1 27.\n  (* The goal is the same but the program is now rewritten *)\n  admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    224,
+    273,
+    280,
+    288,
+    305,
+    319,
+    390,
+    395
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"warning: these procedures may use uninitialized local variables:\n  - Top.M.f -> [x]"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = witness\n\n    M.f \n\npost = witness res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = witness\n\n    M.f \n\npost = witness res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y, i : int}\n\npre = witness\n\n(1--)  i <- 0                   \n(2--)  while (i < 10) {         \n(2.1)    x <- i + 1             \n(2.2)    y <- 2 * x             \n(2.3)    x <- 3 * y             \n(2.4)    i <- i + 1             \n(2--)  }                        \n\npost = witness x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y, i : int}\n\npre = witness\n\n( 1)  x <- 1                   \n( 2)  y <- 2 * x               \n( 3)  x <- 3 * y               \n( 4)  x <- 2                   \n( 5)  y <- 2 * x               \n( 6)  x <- 3 * y               \n( 7)  x <- 3                   \n( 8)  y <- 2 * x               \n( 9)  x <- 3 * y               \n(10)  x <- 4                   \n(11)  y <- 2 * x               \n(12)  x <- 3 * y               \n(13)  x <- 5                   \n(14)  y <- 2 * x               \n(15)  x <- 3 * y               \n(16)  x <- 6                   \n(17)  y <- 2 * x               \n(18)  x <- 3 * y               \n(19)  x <- 7                   \n(20)  y <- 2 * x               \n(21)  x <- 3 * y               \n(22)  x <- 8                   \n(23)  y <- 2 * x               \n(24)  x <- 3 * y               \n(25)  x <- 9                   \n(26)  y <- 2 * x               \n(27)  x <- 3 * y               \n(28)  x <- 10                  \n(29)  y <- 2 * x               \n(30)  x <- 3 * y               \n(31)  i <- 10                  \n\npost = witness x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y, i : int}\n\npre = witness\n\n( 1)  y <- 2                   \n( 2)  y <- 4                   \n( 3)  y <- 6                   \n( 4)  y <- 8                   \n( 5)  y <- 10                  \n( 6)  y <- 12                  \n( 7)  y <- 14                  \n( 8)  y <- 16                  \n( 9)  y <- 18                  \n(10)  x <- 10                  \n(11)  y <- 2 * x               \n(12)  x <- 3 * y               \n(13)  i <- 10                  \n\npost = witness x\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Cfold line restriction"
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tactics.html" class="btn btn-neutral float-left" title="Proof tactics reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clear.html" class="btn btn-neutral float-right" title="Tactic: clear" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
