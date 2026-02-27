@@ -1,0 +1,701 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: rnd &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: skip" href="skip.html" />
+    <link rel="prev" title="Tactic: proc*" href="procstar.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-rnd-hl">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (HL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-rnd-phl-exact">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pHL exact)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-rnd-phl-upper-bound">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pHL upper bound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-rnd-prhl">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pRHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-rnd-side-prhl">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span></code> (pRHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-rnd-ehl">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (eHL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/rnd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-rnd">
+<h1>Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code><a class="headerlink" href="#tactic-rnd" title="Link to this heading"></a></h1>
+<p>In EasyCrypt, the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> tactic is a way of reasoning about program(s)
+that use random sampling statements, i.e., statements of the form
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span>$<span class="w"> </span><span class="n">dX</span><span class="p">;</span></code> where <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x</span></code> is an assigned variable and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">dX</span></code> is a distribution.</p>
+<p>Intuitively, the tactic exposes a probabilistic weakest precondition for
+the sampling statement.
+Therefore, EasyCrypt allows you to apply this rule only when the program
+ends with a sampling statement.
+If the sampling appears deeper in the code, you can first use the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">seq</span></code>
+tactic (or another tactic such as <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">wp</span></code> that eliminates the subsequent statements)
+to separate the subsequent statements from the conditional.
+Samplings can also be moved earlier or later in the program using the
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code> tactic, which can be used to reorder adjacent statements that do
+not have data dependencies.</p>
+<p>In the one-sided setting, i.e., in (probabilistic) Hoare logic the tactic allows
+you to reason about the probability that the sampling yields a value satisfying
+a certain property (in pHL) or to simply quantify over all possible sampled
+values (in HL).
+In the two-sided setting, i.e., in probabilistic relational Hoare logic,
+the tactic allows you to  couple the two samplings and establish a relation
+between the two sampled values.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-rnd-hl" id="id1">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (HL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-rnd-phl-exact" id="id2">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pHL exact)</a></p></li>
+<li><p><a class="reference internal" href="#variant-rnd-phl-upper-bound" id="id3">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pHL upper bound)</a></p></li>
+<li><p><a class="reference internal" href="#variant-rnd-prhl" id="id4">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pRHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-rnd-side-prhl" id="id5">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span></code> (pRHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-rnd-ehl" id="id6">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (eHL)</a></p></li>
+</ul>
+</nav>
+<section id="variant-rnd-hl">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (HL)</a><a class="headerlink" href="#variant-rnd-hl" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>If the conclusion is an Hoare logic statement judgement whose program ends</dt><dd><p>with a random assignment, then <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> consumes that random assignment,
+replacing the conclusion’s postcondition by the possibilistic
+weakest precondition of the random assignment.</p>
+</dd>
+</dl>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore Distr DBool.\n\nmodule M = {\n  proc f() : bool = {\n    var y : bool;\n\n    y <$ {0,1};\n\n    return (y && !y);\n  }\n}.\n\npred p : glob M.\n\nlemma L : hoare[M.f : p (glob M) ==> !res].\nproof.\n  proc.\n  rnd.\n  (* The post is now quantified over all `y`, in a context where\n    `y` is known to have been sampled from the uniform distribution\n    over {0,1}. *)\n  skip;smt().\nqed.\n",
+  "sentenceEnds":[
+    35,
+    136,
+    154,
+    199,
+    206,
+    214,
+    221,
+    387,
+    392
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : unit -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n\npost = !res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n\npost = !res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {y : bool}\n\npre = p tt\n\n(1)  y <$ {0,1}               \n\npost = ! (y && !y)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {y : bool}\n\npre = p tt\n\n\npost = forall (y0 : bool), y0 \\in {0,1} => ! (y0 && !y0)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-rnd-phl-exact">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pHL exact)</a><a class="headerlink" href="#variant-rnd-phl-exact" title="Link to this heading"></a></h2>
+<dl>
+<dt>If the conclusion is a probabilistic Hoare logic statement judgement whose program ends</dt><dd><p>with a random assignment, then <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> consumes that random assignment,
+replacing the conclusion’s postcondition by the probabilistic
+weakest precondition of the random assignment.</p>
+<p>This weakest precondition is defined with respect to an event <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">E</span></code>,
+which can be provided explicitly. When $E$ is not
+specified, it is inferred from the current postcondition.</p>
+</dd>
+</dl>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore Distr DBool Real.\n\nmodule M = {\n  proc f(x : bool) : bool = {\n    var y : bool;\n\n    y <$ {0,1};\n\n    return (x = y);\n  }\n}.\n\npred p : glob M.\n\nlemma L : phoare [M.f : p (glob M) ==> res] = (1%r/2%r).\nproof.\n  proc.\n  rnd (fun _y => _y = x).\n     (* The post now has two clauses, the first is to prove the\n        exact probability of the event, and the second one is to\n        prove that the event holding is equivalent to the\n        previous postcondition.  *)\n  skip => *;split.\n  + by exact dbool1E.\n  by smt().\nqed.\n",
+  "sentenceEnds":[
+    40,
+    147,
+    165,
+    223,
+    230,
+    238,
+    264,
+    506,
+    528,
+    540,
+    545
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : unit -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n    [=] 1%r / 2%r\n\npost = res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n    [=] 1%r / 2%r\n\npost = res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\nBound   : [=] 1%r / 2%r\n\npre = p tt\n\n(1)  y <$ {0,1}               \n\npost = x = y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\nBound   : [=] 1%r\n\npre = p tt /\\ true\n\n\npost =\n  mu {0,1} (fun (_y : bool) => _y = x) = 1%r / 2%r &&\n  forall (v : bool), v \\in {0,1} => (fun (_y : bool) => _y = x) v <=> x = v\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) = 1%r / 2%r\n",
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) = 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => (fun (_y : bool) => _y = x{`&hr}) v <=> x{`&hr} = v\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) = 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => (fun (_y : bool) => _y = x{`&hr}) v <=> x{`&hr} = v\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Probabilistic Hoare logic example (exact probability)"
+}</script>
+</div>
+</section>
+<section id="variant-rnd-phl-upper-bound">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pHL upper bound)</a><a class="headerlink" href="#variant-rnd-phl-upper-bound" title="Link to this heading"></a></h2>
+<dl>
+<dt>If the conclusion is a probabilistic Hoare logic statement judgement whose program ends</dt><dd><p>with a random assignment, then <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> consumes that random assignment,
+replacing the conclusion’s postcondition by the probabilistic
+weakest precondition of the random assignment.</p>
+<p>This weakest precondition is defined with respect to an event <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">E</span></code>,
+which can be provided explicitly. When <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">E</span>`</code> is not
+specified, it is inferred from the current postcondition.</p>
+</dd>
+</dl>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore Distr DBool Real.\n\nmodule M = {\n  proc f(x : bool) : bool = {\n    var y : bool;\n\n    y <$ {0,1};\n\n    return (x = y);\n  }\n}.\n\npred p : glob M.\n\nlemma L : phoare [M.f : p (glob M) ==> res] <= (1%r/2%r).\nproof.\n  proc.\n  rnd (fun _y => _y = x).\n     (* The post now has two clauses, the first is to prove the\n        probability upper bound on the event, and the second one is to\n        prove that the event holding implies the\n        previous postcondition. *)\n  skip => *;split.\n  + by smt(dbool1E).\n  by smt().\nqed.\n",
+  "sentenceEnds":[
+    40,
+    147,
+    165,
+    224,
+    231,
+    239,
+    265,
+    503,
+    524,
+    536,
+    541
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : unit -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n    [<=] 1%r / 2%r\n\npost = res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = p tt\n\n    M.f \n    [<=] 1%r / 2%r\n\npost = res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\nBound   : [<=] 1%r / 2%r\n\npre = p tt\n\n(1)  y <$ {0,1}               \n\npost = x = y\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\n\npre = p tt /\\ true\n\n\npost =\n  mu {0,1} (fun (_y : bool) => _y = x) <= 1%r / 2%r &&\n  forall (v : bool), v \\in {0,1} => x = v => (fun (_y : bool) => _y = x) v\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r\n",
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => x{`&hr} = v => (fun (_y : bool) => _y = x{`&hr}) v\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => x{`&hr} = v => (fun (_y : bool) => _y = x{`&hr}) v\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Probabilistic Hoare logic example (upper bound)"
+}</script>
+</div>
+</section>
+<section id="variant-rnd-prhl">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (pRHL)</a><a class="headerlink" href="#variant-rnd-prhl" title="Link to this heading"></a></h2>
+<p>In probabilistic relational Hoare logic, if the conclusion
+is a judgement whose programs end with random
+assignments <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x1</span><span class="w"> </span><span class="o">&lt;</span>$<span class="w"> </span><span class="n">d1</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x2</span><span class="w"> </span><span class="o">&lt;</span>$<span class="w"> </span><span class="n">d2</span></code>, and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">f</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">g</span></code> are functions
+between the types of <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x_1</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x_2</span></code>, then <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> consumes those random
+assignments, replacing the conclusion’s postcondition by the probabilistic
+weakest precondition of
+the random assignments wrt. <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">f</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">g</span></code>.  The new postcondition checks that:</p>
+<ul class="simple">
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">f</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">g</span></code> are an isomorphism between the distributions <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">d1</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">d2</span></code>;</p></li>
+<li><p>for all elements <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">u</span></code> in the support of <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">d1</span></code>, the result of substituting <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">u</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">f</span><span class="w"> </span><span class="n">u</span></code> for <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x1</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">x2</span></code> in the conclusion’s original postcondition holds.</p></li>
+</ul>
+<p>When <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">g</span></code> is <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">f</span></code>, it can be omitted. When <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">f</span></code> is the identity, it
+can be omitted.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-3" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-3-data">{
+  "source":" require import AllCore Distr DBool.\n\n module M = {\n    proc f1(x : bool) : bool = {\n      var y : bool;\n\n     y <$ {0,1};\n\n      return (x = y);\n   }\n\n   proc f2(x : bool) : bool = {\n     var y : bool;\n\n      y <$ {0,1};\n\n     return (x = !y);\n   }\n\n }.\n\n pred p : glob M.\n\n lemma L : equiv [M.f1 ~ M.f2 : ={x} ==> res{1} = res{2}].\n proof.\n  proc.\n  rnd (fun _y => !_y).\n     (* The post now has two clauses, the first is to prove that\n        `f` is an involution,  and the second one is to\n        prove that the previous post-condition holds under the\n        coupling established by `f`. *)\n  skip => *;split.\n  + by smt().\n  by smt().\n qed.\n",
+  "sentenceEnds":[
+    36,
+    254,
+    273,
+    333,
+    341,
+    349,
+    372,
+    615,
+    629,
+    641,
+    647
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : unit -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f1 ~ M.f2 \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f1 ~ M.f2 \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : bool} [programs are in sync]\n&2 (right) : {x, y : bool}\n\npre = x{1} = x{2}\n\n(1)  y <$ {0,1}               \n\npost = (x{1} = y{1}) = (x{2} = !y{2})\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y : bool} [programs are in sync]\n&2 (right) : {x, y : bool}\n\npre = x{1} = x{2}\n\n\npost =\n  (forall (yR : bool), yR \\in {0,1} => yR = ! !yR) &&\n  forall (yL : bool),\n    yL \\in {0,1} => yL = ! !yL && (x{1} = yL) = (x{2} = ! !yL)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n`&1: {x, y : bool}\n`&2: {x, y : bool}\n_: x{`&1} = x{`&2}\n`yL: bool\n_: `yL \\in {0,1}\n------------------------------------------------------------------------\n`yL = ! !`yL\n",
+        "Type variables: <none>\n\n`&1: {x, y : bool}\n`&2: {x, y : bool}\n_: x{`&1} = x{`&2}\n`yL: bool\n_: `yL \\in {0,1}\n------------------------------------------------------------------------\n`yL = ! !`yL => (x{`&1} = `yL) = (x{`&2} = ! !`yL)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n`&1: {x, y : bool}\n`&2: {x, y : bool}\n_: x{`&1} = x{`&2}\n`yL: bool\n_: `yL \\in {0,1}\n------------------------------------------------------------------------\n`yL = ! !`yL => (x{`&1} = `yL) = (x{`&2} = ! !`yL)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Relational Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-rnd-side-prhl">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span><span class="w"> </span><span class="p">{</span><span class="n">side</span><span class="p">}</span></code> (pRHL)</a><a class="headerlink" href="#variant-rnd-side-prhl" title="Link to this heading"></a></h2>
+<p>In the one-sided <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> tactic used in pRHL, the user specifies whether
+the random sampling to be consumed on the left or the right
+program. Then, if the conclusion is a judgement whose <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">side</span><span class="p">}</span></code> program
+ends with a random  assignment, the new post condition requires to prove that for
+all elements <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">u</span></code> in the support of the distribution, the result of substituting
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">u</span></code> for the assigned variable (in the correct <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">side</span></code>} in the conclusion’s
+original postcondition holds. Furthermore, the new postcondition also requires to prove
+that the sampling of the assigned variable doesn’t fail, i.e. that the distribution
+weight is 1. In other words, we get a possibilistic weakest precondition for
+the sampling statement on the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">side</span><span class="p">}</span></code> program.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-4" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-4-data">{
+  "source":" require import AllCore Distr DBool.\n\n op dB : bool distr.\n\n module M = {\n    proc f1(x : bool) : bool = {\n      var y : bool;\n\n     y <$ dB;\n\n      return (x && y);\n   }\n\n   proc f2(x : bool) : bool = {\n\n     return (x);\n   }\n\n }.\n\n pred p : glob M.\n\n lemma L :\n     weight dB = 1%r =>\n     equiv [M.f1 ~ M.f2 : ={x} /\\ !x{1} ==> res{1} = res{2}].\n proof.\n  move => HdB.\n  proc.\n  rnd {1}.\n     (* The post now has two clauses, the first is to prove that\n        the distribution is lossless, and the second one is to\n        prove that the previous post-condition holds for all possible\n        sampling outputs. EasyCrypt may automatically detect that\n        a losslessness assumption exists and discharges that goal\n        automatically. *)\n  skip => *;split.\n  + by smt().\n  by smt().\n qed.\n",
+  "sentenceEnds":[
+    36,
+    58,
+    231,
+    250,
+    348,
+    356,
+    371,
+    379,
+    390,
+    765,
+    779,
+    791,
+    797
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added operator dB : bool Distr.distr"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : unit -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nweight dB = 1%r =>\nequiv[ M.f1  ~ M.f2 : arg{1} = arg{2} /\\ !arg{1} ==> res{1} = res{2}]\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nweight dB = 1%r =>\nequiv[ M.f1  ~ M.f2 : arg{1} = arg{2} /\\ !arg{1} ==> res{1} = res{2}]\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nHdB: weight dB = 1%r\n------------------------------------------------------------------------\npre = arg{1} = arg{2} /\\ !arg{1}\n\n    M.f1 ~ M.f2 \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nHdB: weight dB = 1%r\n------------------------------------------------------------------------\n&1 (left ) : {x, y : bool}\n&2 (right) : {x : bool}\n\npre = x{1} = x{2} /\\ !x{1}\n\ny <$ dB                    (1)                           \n\npost = (x{1} && y{1}) = x{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nHdB: weight dB = 1%r\n------------------------------------------------------------------------\n&1 (left ) : {x, y : bool}\n&2 (right) : {x : bool}\n\npre = x{1} = x{2} /\\ !x{1}\n\n\npost = is_lossless dB && forall (y0 : bool), y0 \\in dB => (x{1} && y0) = x{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nHdB: weight dB = 1%r\n`&1: {x, y : bool}\n`&2: {x : bool}\n_: x{`&1} = x{`&2} /\\ !x{`&1}\n------------------------------------------------------------------------\nis_lossless dB\n",
+        "Type variables: <none>\n\nHdB: weight dB = 1%r\n`&1: {x, y : bool}\n`&2: {x : bool}\n_: x{`&1} = x{`&2} /\\ !x{`&1}\n------------------------------------------------------------------------\nis_lossless dB => forall (y0 : bool), y0 \\in dB => (x{`&1} && y0) = x{`&2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nHdB: weight dB = 1%r\n`&1: {x, y : bool}\n`&2: {x : bool}\n_: x{`&1} = x{`&2} /\\ !x{`&1}\n------------------------------------------------------------------------\nis_lossless dB => forall (y0 : bool), y0 \\in dB => (x{`&1} && y0) = x{`&2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":7,
+  "title":"One-sided Relational Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-rnd-ehl">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Variant: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> (eHL)</a><a class="headerlink" href="#variant-rnd-ehl" title="Link to this heading"></a></h2>
+<p>If the conclusion is an expectation Hoare logic statement judgement whose
+program ends with a random assignment, then <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> consumes that random
+assignment, and replaces the postcondition by the expectation of the original
+postcondition in the distribution of the sampled variable.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-5" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-5-data">{
+  "source":"require import AllCore Distr DBool Real Xreal.\n\nmodule M = {\n  proc f(x : bool) : bool = {\n    var y : bool;\n\n    y <$ {0,1};\n\n    return (x = y);\n  }\n}.\n\npred p : glob M.\n\nlemma L : ehoare [M.f : (1%r/2%r)%xr ==>  res%xr].\nproof.\n  proc.\n  rnd.\n     (* The post is now an expectation. *)\n  skip => *;rewrite Ep_dbool;smt().\nqed.\n",
+  "sentenceEnds":[
+    46,
+    153,
+    171,
+    223,
+    230,
+    238,
+    245,
+    324,
+    329
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added predicate p : unit -> bool"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = (1%r / 2%r)%xr\n\n    M.f \n\npost = res%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = (1%r / 2%r)%xr\n\n    M.f \n\npost = res%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\n\npre = (1%r / 2%r)%xr\n\n(1)  y <$ {0,1}               \n\npost = (x = y)%xr\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\n\npre = (1%r / 2%r)%xr\n\n\npost = Ep {0,1} (fun (y0 : bool) => (x = y0)%xr)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Expectation Hoare logic example"
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="procstar.html" class="btn btn-neutral float-left" title="Tactic: proc*" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="skip.html" class="btn btn-neutral float-right" title="Tactic: skip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
