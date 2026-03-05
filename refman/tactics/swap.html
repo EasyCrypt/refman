@@ -187,25 +187,25 @@ convenient for subsequent proof steps.</p>
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.reorder \n\npost = res = n + 1 + (n + 2)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.reorder \n\npost = res = n + 1 + (n + 2)\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.reorder \n\npost = res = n + 1 + (n + 2)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.reorder \n\npost = res = n + 1 + (n + 2)\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- x + 2               \n\npost = a + b = n + 1 + (n + 2)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- x + 2               \n\npost = a + b = n + 1 + (n + 2)\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  b <- x + 2               \n(2)  a <- x + 1               \n\npost = a + b = n + 1 + (n + 2)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  b <- x + 2               \n(2)  a <- x + 1               \n\npost = a + b = n + 1 + (n + 2)\n\n"
       ],
       "message":""
     },
@@ -253,25 +253,25 @@ commands with a later, independent command.</p>
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.swap_block \n\npost = res = n + 1 + 10 + (n + 2) + (n + 3)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.swap_block \n\npost = res = n + 1 + 10 + (n + 2) + (n + 3)\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.swap_block \n\npost = res = n + 1 + 10 + (n + 2) + (n + 3)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.swap_block \n\npost = res = n + 1 + 10 + (n + 2) + (n + 3)\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b, c : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- x + 2               \n(3)  c <- x + 3               \n(4)  a <- a + 10              \n\npost = a + b + c = n + 1 + 10 + (n + 2) + (n + 3)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b, c : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- x + 2               \n(3)  c <- x + 3               \n(4)  a <- a + 10              \n\npost = a + b + c = n + 1 + 10 + (n + 2) + (n + 3)\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b, c : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  a <- a + 10              \n(3)  b <- x + 2               \n(4)  c <- x + 3               \n\npost = a + b + c = n + 1 + 10 + (n + 2) + (n + 3)\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b, c : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  a <- a + 10              \n(3)  b <- x + 2               \n(4)  c <- x + 3               \n\npost = a + b + c = n + 1 + 10 + (n + 2) + (n + 3)\n\n"
       ],
       "message":""
     },
@@ -319,19 +319,19 @@ the first one.</p>
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.bad_swap \n\npost = res = n + 3\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.bad_swap \n\npost = res = n + 3\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.bad_swap \n\npost = res = n + 3\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.bad_swap \n\npost = res = n + 3\n\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- a + 2               \n\npost = b = n + 3\n"
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, a, b : int}\n\npre = x = n\n\n(1)  a <- x + 1               \n(2)  b <- a + 2               \n\npost = b = n + 3\n\n"
       ],
       "message":""
     },
