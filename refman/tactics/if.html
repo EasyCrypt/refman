@@ -561,45 +561,45 @@ flow.</p>
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = Rpbar.'0\n\n    M.f \n\npost = (! 0 <= res)%xr\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = '0\n\n    M.f \n\npost = (! 0 <= res)%xr\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = Rpbar.'0\n\n    M.f \n\npost = (! 0 <= res)%xr\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = '0\n\n    M.f \n\npost = (! 0 <= res)%xr\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = Rpbar.'0\n\n(1--)  if (x < 0) {             \n(1.1)    y <- -x                \n(1--)  } else {                 \n(1?1)    y <- x                 \n(1--)  }                        \n\npost = (! 0 <= y)%xr\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = '0\n\n(1--)  if (x < 0) {             \n(1.1)    y <- -x                \n(1--)  } else {                 \n(1?1)    y <- x                 \n(1--)  }                        \n\npost = (! 0 <= y)%xr\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (x < 0) `|` Rpbar.'0\n\n(1)  y <- -x                  \n\npost = (! 0 <= y)%xr\n",
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` Rpbar.'0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (x < 0) `|` '0\n\n(1)  y <- -x                  \n\npost = (! 0 <= y)%xr\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` '0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, (! 0 <= -x{hr})%xr <= (x{hr} < 0) `|` Rpbar.'0\n",
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` Rpbar.'0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, (! 0 <= -x{hr})%xr <= (x{hr} < 0) `|` '0\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` '0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` Rpbar.'0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = (! x < 0) `|` '0\n\n(1)  y <- x                   \n\npost = (! 0 <= y)%xr\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, (! 0 <= x{hr})%xr <= (! x{hr} < 0) `|` Rpbar.'0\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &hr, (! 0 <= x{hr})%xr <= (! x{hr} < 0) `|` '0\n"
       ],
       "message":""
     },
