@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: simplify if &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: skip" href="skip.html" />
+    <link rel="prev" title="Tactic: rnd" href="rnd.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnd.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-transform-at-a-given-code-position">Variant: Transform at a given code position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-transform-as-much-as-possible">Variant: Transform as much as possible</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/simplify-if.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-simplify-if">
+<h1>Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code><a class="headerlink" href="#tactic-simplify-if" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code> transformation performs an if-conversion on program
+statements, i.e., it rewrites <code class="docutils literal notranslate"><span class="pre">if</span></code> statements into conditional
+expressions. This transformation preserves the program semantics.</p>
+<p>This conversion helps prevent the weakest precondition from growing
+exponentially with the number of <code class="docutils literal notranslate"><span class="pre">if</span></code> statements.</p>
+<p>To illustrate this issue, consider the following example, which shows
+how the weakest precondition can grow exponentially:</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f (j:int) : int * int = {\n    var i, x, y;\n    x <- 0;\n    y <- 0;\n    i <- 0;\n    while (i < 6) {\n      if (i = j) x <- i;\n      else y <- y + i;\n      i <- i + 1;\n    }\n    return (x, y);\n  }\n}.\n\nhoare fP j_: M.f : j = j_ ==> res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0,15).\nproof.\n  proc.\n  unroll for ^while.\n  time wp. (* The size of the condition grow exponentially in the value of the bound (here 6). *)\n  skip.\n  move => />.\n  smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    241,
+    325,
+    332,
+    340,
+    361,
+    372,
+    467,
+    481,
+    490,
+    495
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\npre = arg = j_\n\n    M.f \n\npost = res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\npre = arg = j_\n\n    M.f \n\npost = res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1----)  x <- 0                   \n(2----)  y <- 0                   \n(3----)  i <- 0                   \n(4----)  while (i < 6) {          \n(4.1--)    if (i = j) {           \n(4.1.1)      x <- i               \n(4.1--)    } else {               \n(4.1?1)      y <- y + i           \n(4.1--)    }                      \n(4.2--)    i <- i + 1             \n(4----)  }                        \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1--)  x <- 0                   \n(2--)  y <- 0                   \n(3--)  if (0 = j) {             \n(3.1)    x <- 0                 \n(3--)  } else {                 \n(3?1)    y <- y                 \n(3--)  }                        \n(4--)  if (1 = j) {             \n(4.1)    x <- 1                 \n(4--)  } else {                 \n(4?1)    y <- y + 1             \n(4--)  }                        \n(5--)  if (2 = j) {             \n(5.1)    x <- 2                 \n(5--)  } else {                 \n(5?1)    y <- y + 2             \n(5--)  }                        \n(6--)  if (3 = j) {             \n(6.1)    x <- 3                 \n(6--)  } else {                 \n(6?1)    y <- y + 3             \n(6--)  }                        \n(7--)  if (4 = j) {             \n(7.1)    x <- 4                 \n(7--)  } else {                 \n(7?1)    y <- y + 4             \n(7--)  }                        \n(8--)  if (5 = j) {             \n(8.1)    x <- 5                 \n(8--)  } else {                 \n(8?1)    y <- y + 5             \n(8--)  }                        \n(9--)  i <- 6                   \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n\npost =\n  if 0 = j then\n    if 1 = j then\n      if 2 = j then\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, 0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, 0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y0 = 0 + 4 in\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y0 = 0 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y0 = 0 + 2 in\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (1, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y0 = 0 + 1 in\n      if 2 = j then\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y1 = y0 + 2 in\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y2 = y1 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y3 = y2 + 4 in\n            if 5 = j then\n              (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (0, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n  else\n    if 1 = j then\n      if 2 = j then\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, 0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, 0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y0 = 0 + 4 in\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y0 = 0 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y0 = 0 + 2 in\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (1, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y0 = 0 + 1 in\n      if 2 = j then\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y1 = y0 + 2 in\n        if 3 = j then\n          if 4 = j then\n            if 5 = j then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y2 = y1 + 3 in\n          if 4 = j then\n            if 5 = j then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y3 = y2 + 4 in\n            if 5 = j then\n              (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (0, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":"info: time: 0.001094"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nforall &hr,\n  j{hr} = j_ =>\n  if 0 = j{hr} then\n    if 1 = j{hr} then\n      if 2 = j{hr} then\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, 0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, 0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y0 = 0 + 4 in\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y0 = 0 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y0 = 0 + 2 in\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (1, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y0 = 0 + 1 in\n      if 2 = j{hr} then\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y1 = y0 + 2 in\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y2 = y1 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y3 = y2 + 4 in\n            if 5 = j{hr} then\n              (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (0, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n  else\n    if 1 = j{hr} then\n      if 2 = j{hr} then\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, 0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, 0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y0 = 0 + 4 in\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y0 = 0 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y0 = 0 + 2 in\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (1, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y0 = 0 + 1 in\n      if 2 = j{hr} then\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y0) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y0 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y1 = y0 + 4 in\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y1 = y0 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (2, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else\n        let y1 = y0 + 2 in\n        if 3 = j{hr} then\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y1) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y1 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y2 = y1 + 4 in\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (3, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n        else\n          let y2 = y1 + 3 in\n          if 4 = j{hr} then\n            if 5 = j{hr} then\n              (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (4, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n          else\n            let y3 = y2 + 4 in\n            if 5 = j{hr} then\n              (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n            else (0, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\n1 <> j_ =>\n2 <> j_ =>\n3 <> j_ =>\n4 <> j_ =>\n5 <> j_ => (0, 15) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `fP'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Weakest precondition grows exponentially."
+}</script>
+</div>
+<p>Since the tactic preserves semantics, it can be applied to all program
+logics.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span> <span class="pre">side?</span> <span class="pre">codepos?</span></code></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">side</span></code> argument is required when the goal is an <code class="docutils literal notranslate"><span class="pre">equiv</span></code>
+judgment; it specifies on which side the transformation should be
+applied. The <code class="docutils literal notranslate"><span class="pre">codepos</span></code> argument allows you to indicate which <code class="docutils literal notranslate"><span class="pre">if</span></code>
+statement the transformation should target.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-transform-at-a-given-code-position" id="id1">Variant: Transform at a given code position</a></p></li>
+<li><p><a class="reference internal" href="#variant-transform-as-much-as-possible" id="id2">Variant: Transform as much as possible</a></p></li>
+</ul>
+</nav>
+<section id="variant-transform-at-a-given-code-position">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: Transform at a given code position</a><a class="headerlink" href="#variant-transform-at-a-given-code-position" title="Link to this heading"></a></h2>
+<p>The tactic applies only if the branches of the selected <code class="docutils literal notranslate"><span class="pre">if</span></code> statement
+consist solely of assignments.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f (j:int) : int * int = {\n    var i, x, y;\n    x <- 0;\n    y <- 0;\n    i <- 0;\n    while (i < 6) {\n      if (i = j) x <- i;\n      else y <- y + i;\n      i <- i + 1;\n    }\n    return (x, y);\n  }\n}.\n\nhoare fP_simplify2 j_: M.f : j = j_ ==> res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0,15).\nproof.\n  proc.\n  unroll for ^while.\n  (* You can select a particular occurence of if using codepos *)\n  simplify if ^if. (* Apply the transformation on the first if *)\n  simplify if ^if{2}.  (* Apply the transformation on the second if *)\n  simplify if ^if{-2}. (* Apply the trnasformation of the penultimate if *)\n  time wp.\n  skip.\n  move => />.\n  smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    241,
+    335,
+    342,
+    350,
+    371,
+    456,
+    525,
+    597,
+    661,
+    669,
+    683,
+    692,
+    697
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\npre = arg = j_\n\n    M.f \n\npost = res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\npre = arg = j_\n\n    M.f \n\npost = res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1----)  x <- 0                   \n(2----)  y <- 0                   \n(3----)  i <- 0                   \n(4----)  while (i < 6) {          \n(4.1--)    if (i = j) {           \n(4.1.1)      x <- i               \n(4.1--)    } else {               \n(4.1?1)      y <- y + i           \n(4.1--)    }                      \n(4.2--)    i <- i + 1             \n(4----)  }                        \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1--)  x <- 0                   \n(2--)  y <- 0                   \n(3--)  if (0 = j) {             \n(3.1)    x <- 0                 \n(3--)  } else {                 \n(3?1)    y <- y                 \n(3--)  }                        \n(4--)  if (1 = j) {             \n(4.1)    x <- 1                 \n(4--)  } else {                 \n(4?1)    y <- y + 1             \n(4--)  }                        \n(5--)  if (2 = j) {             \n(5.1)    x <- 2                 \n(5--)  } else {                 \n(5?1)    y <- y + 2             \n(5--)  }                        \n(6--)  if (3 = j) {             \n(6.1)    x <- 3                 \n(6--)  } else {                 \n(6?1)    y <- y + 3             \n(6--)  }                        \n(7--)  if (4 = j) {             \n(7.1)    x <- 4                 \n(7--)  } else {                 \n(7?1)    y <- y + 4             \n(7--)  }                        \n(8--)  if (5 = j) {             \n(8.1)    x <- 5                 \n(8--)  } else {                 \n(8?1)    y <- y + 5             \n(8--)  }                        \n(9--)  i <- 6                   \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1--)  x <- 0                                                            \n(2--)  y <- 0                                                            \n(3--)  (x, y) <-                                                         \n(  -)    let x0 = 0 in                                                   \n(  -)    let y0 = y in (if 0 = j then x0 else x, if 0 = j then y else y0)\n(4--)  if (1 = j) {                                                      \n(4.1)    x <- 1                                                          \n(4--)  } else {                                                          \n(4?1)    y <- y + 1                                                      \n(4--)  }                                                                 \n(5--)  if (2 = j) {                                                      \n(5.1)    x <- 2                                                          \n(5--)  } else {                                                          \n(5?1)    y <- y + 2                                                      \n(5--)  }                                                                 \n(6--)  if (3 = j) {                                                      \n(6.1)    x <- 3                                                          \n(6--)  } else {                                                          \n(6?1)    y <- y + 3                                                      \n(6--)  }                                                                 \n(7--)  if (4 = j) {                                                      \n(7.1)    x <- 4                                                          \n(7--)  } else {                                                          \n(7?1)    y <- y + 4                                                      \n(7--)  }                                                                 \n(8--)  if (5 = j) {                                                      \n(8.1)    x <- 5                                                          \n(8--)  } else {                                                          \n(8?1)    y <- y + 5                                                      \n(8--)  }                                                                 \n(9--)  i <- 6                                                            \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1--)  x <- 0                                                                \n(2--)  y <- 0                                                                \n(3--)  (x, y) <-                                                             \n(  -)    let x0 = 0 in                                                       \n(  -)    let y0 = y in (if 0 = j then x0 else x, if 0 = j then y else y0)    \n(4--)  if (1 = j) {                                                          \n(4.1)    x <- 1                                                              \n(4--)  } else {                                                              \n(4?1)    y <- y + 1                                                          \n(4--)  }                                                                     \n(5--)  (x, y) <-                                                             \n(  -)    let x0 = 2 in                                                       \n(  -)    let y0 = y + 2 in (if 2 = j then x0 else x, if 2 = j then y else y0)\n(6--)  if (3 = j) {                                                          \n(6.1)    x <- 3                                                              \n(6--)  } else {                                                              \n(6?1)    y <- y + 3                                                          \n(6--)  }                                                                     \n(7--)  if (4 = j) {                                                          \n(7.1)    x <- 4                                                              \n(7--)  } else {                                                              \n(7?1)    y <- y + 4                                                          \n(7--)  }                                                                     \n(8--)  if (5 = j) {                                                          \n(8.1)    x <- 5                                                              \n(8--)  } else {                                                              \n(8?1)    y <- y + 5                                                          \n(8--)  }                                                                     \n(9--)  i <- 6                                                                \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1--)  x <- 0                                                                \n(2--)  y <- 0                                                                \n(3--)  (x, y) <-                                                             \n(  -)    let x0 = 0 in                                                       \n(  -)    let y0 = y in (if 0 = j then x0 else x, if 0 = j then y else y0)    \n(4--)  if (1 = j) {                                                          \n(4.1)    x <- 1                                                              \n(4--)  } else {                                                              \n(4?1)    y <- y + 1                                                          \n(4--)  }                                                                     \n(5--)  (x, y) <-                                                             \n(  -)    let x0 = 2 in                                                       \n(  -)    let y0 = y + 2 in (if 2 = j then x0 else x, if 2 = j then y else y0)\n(6--)  if (3 = j) {                                                          \n(6.1)    x <- 3                                                              \n(6--)  } else {                                                              \n(6?1)    y <- y + 3                                                          \n(6--)  }                                                                     \n(7--)  (x, y) <-                                                             \n(  -)    let x0 = 4 in                                                       \n(  -)    let y0 = y + 4 in (if 4 = j then x0 else x, if 4 = j then y else y0)\n(8--)  if (5 = j) {                                                          \n(8.1)    x <- 5                                                              \n(8--)  } else {                                                              \n(8?1)    y <- y + 5                                                          \n(8--)  }                                                                     \n(9--)  i <- 6                                                                \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n\npost =\n  let tpl =\n    let x0 = 0 in\n    let y0 = 0 in (if 0 = j then x0 else 0, if 0 = j then 0 else y0) in\n  let y0 = tpl.`2 in\n  if 1 = j then\n    let tpl0 =\n      let x0 = 2 in\n      let y1 = y0 + 2 in (if 2 = j then x0 else 1, if 2 = j then y0 else y1)\n    in\n    let y1 = tpl0.`2 in\n    if 3 = j then\n      let tpl1 =\n        let x0 = 4 in\n        let y2 = y1 + 4 in\n        (if 4 = j then x0 else 3, if 4 = j then y1 else y2) in\n      let y2 = tpl1.`2 in\n      if 5 = j then (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y2 = y1 + 3 in\n      let tpl1 =\n        let x0 = 4 in\n        let y3 = y2 + 4 in\n        (if 4 = j then x0 else tpl0.`1, if 4 = j then y2 else y3) in\n      let y3 = tpl1.`2 in\n      if 5 = j then (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n  else\n    let y1 = y0 + 1 in\n    let tpl0 =\n      let x0 = 2 in\n      let y2 = y1 + 2 in\n      (if 2 = j then x0 else tpl.`1, if 2 = j then y1 else y2) in\n    let y2 = tpl0.`2 in\n    if 3 = j then\n      let tpl1 =\n        let x0 = 4 in\n        let y3 = y2 + 4 in\n        (if 4 = j then x0 else 3, if 4 = j then y2 else y3) in\n      let y3 = tpl1.`2 in\n      if 5 = j then (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y3 = y2 + 3 in\n      let tpl1 =\n        let x0 = 4 in\n        let y4 = y3 + 4 in\n        (if 4 = j then x0 else tpl0.`1, if 4 = j then y3 else y4) in\n      let y4 = tpl1.`2 in\n      if 5 = j then (5, y4) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y4 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":"info: time: 0.000347"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nforall &hr,\n  j{hr} = j_ =>\n  let tpl =\n    let x0 = 0 in\n    let y0 = 0 in (if 0 = j{hr} then x0 else 0, if 0 = j{hr} then 0 else y0)\n  in\n  let y0 = tpl.`2 in\n  if 1 = j{hr} then\n    let tpl0 =\n      let x0 = 2 in\n      let y1 = y0 + 2 in\n      (if 2 = j{hr} then x0 else 1, if 2 = j{hr} then y0 else y1) in\n    let y1 = tpl0.`2 in\n    if 3 = j{hr} then\n      let tpl1 =\n        let x0 = 4 in\n        let y2 = y1 + 4 in\n        (if 4 = j{hr} then x0 else 3, if 4 = j{hr} then y1 else y2) in\n      let y2 = tpl1.`2 in\n      if 5 = j{hr} then\n        (5, y2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y2 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y2 = y1 + 3 in\n      let tpl1 =\n        let x0 = 4 in\n        let y3 = y2 + 4 in\n        (if 4 = j{hr} then x0 else tpl0.`1, if 4 = j{hr} then y2 else y3) in\n      let y3 = tpl1.`2 in\n      if 5 = j{hr} then\n        (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n  else\n    let y1 = y0 + 1 in\n    let tpl0 =\n      let x0 = 2 in\n      let y2 = y1 + 2 in\n      (if 2 = j{hr} then x0 else tpl.`1, if 2 = j{hr} then y1 else y2) in\n    let y2 = tpl0.`2 in\n    if 3 = j{hr} then\n      let tpl1 =\n        let x0 = 4 in\n        let y3 = y2 + 4 in\n        (if 4 = j{hr} then x0 else 3, if 4 = j{hr} then y2 else y3) in\n      let y3 = tpl1.`2 in\n      if 5 = j{hr} then\n        (5, y3) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y3 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n    else\n      let y3 = y2 + 3 in\n      let tpl1 =\n        let x0 = 4 in\n        let y4 = y3 + 4 in\n        (if 4 = j{hr} then x0 else tpl0.`1, if 4 = j{hr} then y3 else y4) in\n      let y4 = tpl1.`2 in\n      if 5 = j{hr} then\n        (5, y4) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n      else (tpl1.`1, y4 + 5) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\n1 <> j_ =>\n3 <> j_ =>\n5 <> j_ =>\n(if 4 = j_ then 4 else if 2 = j_ then 2 else 0,\n (if 4 = j_ then (if 2 = j_ then 1 else 3) + 3\n  else (if 2 = j_ then 1 else 3) + 7) +\n 5) =\nif 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `fP_simplify2'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Hoare logic example selecting where to apply the transformation."
+}</script>
+</div>
+</section>
+<section id="variant-transform-as-much-as-possible">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: Transform as much as possible</a><a class="headerlink" href="#variant-transform-as-much-as-possible" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></p>
+</div>
+<p>This variant attempts to find a position where the transformation can
+be applied and applies it. The process is repeated until no applicable
+position remains.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc f (j:int) : int * int = {\n    var i, x, y;\n    x <- 0;\n    y <- 0;\n    i <- 0;\n    while (i < 6) {\n      if (i = j) x <- i;\n      else y <- y + i;\n      i <- i + 1;\n    }\n    return (x, y);\n  }\n}.\n\nhoare fP_simplify j_: M.f : j = j_ ==> res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0,15).\nproof.\n  proc.\n  unroll for ^while.\n  simplify if. (* if instruction are transformed into single assignment *)\n  time wp.  (* The size of the wp is now linear in the number of instruction *)\n  skip.\n  move => />.\n  smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    241,
+    334,
+    341,
+    349,
+    370,
+    385,
+    456,
+    533,
+    547,
+    556,
+    561
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\npre = arg = j_\n\n    M.f \n\npost = res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\npre = arg = j_\n\n    M.f \n\npost = res = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1----)  x <- 0                   \n(2----)  y <- 0                   \n(3----)  i <- 0                   \n(4----)  while (i < 6) {          \n(4.1--)    if (i = j) {           \n(4.1.1)      x <- i               \n(4.1--)    } else {               \n(4.1?1)      y <- y + i           \n(4.1--)    }                      \n(4.2--)    i <- i + 1             \n(4----)  }                        \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1--)  x <- 0                   \n(2--)  y <- 0                   \n(3--)  if (0 = j) {             \n(3.1)    x <- 0                 \n(3--)  } else {                 \n(3?1)    y <- y                 \n(3--)  }                        \n(4--)  if (1 = j) {             \n(4.1)    x <- 1                 \n(4--)  } else {                 \n(4?1)    y <- y + 1             \n(4--)  }                        \n(5--)  if (2 = j) {             \n(5.1)    x <- 2                 \n(5--)  } else {                 \n(5?1)    y <- y + 2             \n(5--)  }                        \n(6--)  if (3 = j) {             \n(6.1)    x <- 3                 \n(6--)  } else {                 \n(6?1)    y <- y + 3             \n(6--)  }                        \n(7--)  if (4 = j) {             \n(7.1)    x <- 4                 \n(7--)  } else {                 \n(7?1)    y <- y + 4             \n(7--)  }                        \n(8--)  if (5 = j) {             \n(8.1)    x <- 5                 \n(8--)  } else {                 \n(8?1)    y <- y + 5             \n(8--)  }                        \n(9--)  i <- 6                   \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n(1)  x <- 0                                                                \n(2)  y <- 0                                                                \n(3)  (x, y) <-                                                             \n( )    let x0 = 0 in                                                       \n( )    let y0 = y in (if 0 = j then x0 else x, if 0 = j then y else y0)    \n(4)  (x, y) <-                                                             \n( )    let x0 = 1 in                                                       \n( )    let y0 = y + 1 in (if 1 = j then x0 else x, if 1 = j then y else y0)\n(5)  (x, y) <-                                                             \n( )    let x0 = 2 in                                                       \n( )    let y0 = y + 2 in (if 2 = j then x0 else x, if 2 = j then y else y0)\n(6)  (x, y) <-                                                             \n( )    let x0 = 3 in                                                       \n( )    let y0 = y + 3 in (if 3 = j then x0 else x, if 3 = j then y else y0)\n(7)  (x, y) <-                                                             \n( )    let x0 = 4 in                                                       \n( )    let y0 = y + 4 in (if 4 = j then x0 else x, if 4 = j then y else y0)\n(8)  (x, y) <-                                                             \n( )    let x0 = 5 in                                                       \n( )    let y0 = y + 5 in (if 5 = j then x0 else x, if 5 = j then y else y0)\n(9)  i <- 6                                                                \n\npost = (x, y) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nContext : hr: {j, i, x, y : int}\n\npre = j = j_\n\n\npost =\n  let tpl =\n    let x0 = 0 in\n    let y0 = 0 in (if 0 = j then x0 else 0, if 0 = j then 0 else y0) in\n  let y0 = tpl.`2 in\n  let tpl0 =\n    let x0 = 1 in\n    let y1 = y0 + 1 in\n    (if 1 = j then x0 else tpl.`1, if 1 = j then y0 else y1) in\n  let y1 = tpl0.`2 in\n  let tpl1 =\n    let x0 = 2 in\n    let y2 = y1 + 2 in\n    (if 2 = j then x0 else tpl0.`1, if 2 = j then y1 else y2) in\n  let y2 = tpl1.`2 in\n  let tpl2 =\n    let x0 = 3 in\n    let y3 = y2 + 3 in\n    (if 3 = j then x0 else tpl1.`1, if 3 = j then y2 else y3) in\n  let y3 = tpl2.`2 in\n  let tpl3 =\n    let x0 = 4 in\n    let y4 = y3 + 4 in\n    (if 4 = j then x0 else tpl2.`1, if 4 = j then y3 else y4) in\n  let y4 = tpl3.`2 in\n  let tpl4 =\n    let x0 = 5 in\n    let y5 = y4 + 5 in\n    (if 5 = j then x0 else tpl3.`1, if 5 = j then y4 else y5) in\n  (tpl4.`1, tpl4.`2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n\n"
+      ],
+      "message":"info: time: 0.000112"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\nforall &hr,\n  j{hr} = j_ =>\n  let tpl =\n    let x0 = 0 in\n    let y0 = 0 in (if 0 = j{hr} then x0 else 0, if 0 = j{hr} then 0 else y0)\n  in\n  let y0 = tpl.`2 in\n  let tpl0 =\n    let x0 = 1 in\n    let y1 = y0 + 1 in\n    (if 1 = j{hr} then x0 else tpl.`1, if 1 = j{hr} then y0 else y1) in\n  let y1 = tpl0.`2 in\n  let tpl1 =\n    let x0 = 2 in\n    let y2 = y1 + 2 in\n    (if 2 = j{hr} then x0 else tpl0.`1, if 2 = j{hr} then y1 else y2) in\n  let y2 = tpl1.`2 in\n  let tpl2 =\n    let x0 = 3 in\n    let y3 = y2 + 3 in\n    (if 3 = j{hr} then x0 else tpl1.`1, if 3 = j{hr} then y2 else y3) in\n  let y3 = tpl2.`2 in\n  let tpl3 =\n    let x0 = 4 in\n    let y4 = y3 + 4 in\n    (if 4 = j{hr} then x0 else tpl2.`1, if 4 = j{hr} then y3 else y4) in\n  let y4 = tpl3.`2 in\n  let tpl4 =\n    let x0 = 5 in\n    let y5 = y4 + 5 in\n    (if 5 = j{hr} then x0 else tpl3.`1, if 5 = j{hr} then y4 else y5) in\n  (tpl4.`1, tpl4.`2) = if 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nj_: int\n------------------------------------------------------------------------\n(if 5 = j_ then 5\n else\n   if 4 = j_ then 4\n   else if 3 = j_ then 3 else if 2 = j_ then 2 else if 1 = j_ then 1 else 0,\n if 5 = j_ then\n   if 4 = j_ then\n     if 3 = j_ then\n       if 2 = j_ then if 1 = j_ then 0 else 1\n       else (if 1 = j_ then 0 else 1) + 2\n     else\n       (if 2 = j_ then if 1 = j_ then 0 else 1\n        else (if 1 = j_ then 0 else 1) + 2) +\n       3\n   else\n     (if 3 = j_ then\n        if 2 = j_ then if 1 = j_ then 0 else 1\n        else (if 1 = j_ then 0 else 1) + 2\n      else\n        (if 2 = j_ then if 1 = j_ then 0 else 1\n         else (if 1 = j_ then 0 else 1) + 2) +\n        3) +\n     4\n else\n   (if 4 = j_ then\n      if 3 = j_ then\n        if 2 = j_ then if 1 = j_ then 0 else 1\n        else (if 1 = j_ then 0 else 1) + 2\n      else\n        (if 2 = j_ then if 1 = j_ then 0 else 1\n         else (if 1 = j_ then 0 else 1) + 2) +\n        3\n    else\n      (if 3 = j_ then\n         if 2 = j_ then if 1 = j_ then 0 else 1\n         else (if 1 = j_ then 0 else 1) + 2\n       else\n         (if 2 = j_ then if 1 = j_ then 0 else 1\n          else (if 1 = j_ then 0 else 1) + 2) +\n         3) +\n      4) +\n   5) =\nif 0 <= j_ < 6 then (j_, 15 - j_) else (0, 15)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `fP_simplify'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Hoare logic example."
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rnd.html" class="btn btn-neutral float-left" title="Tactic: rnd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="skip.html" class="btn btn-neutral float-right" title="Tactic: skip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
