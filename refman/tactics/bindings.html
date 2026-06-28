@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command: bind &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: cfold" href="cfold.html" />
+    <link rel="prev" title="Tactic: async while Tactic" href="async-while.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-bind-bitstring">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-bind-array">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">array</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-bind-op">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-catalog">Operator catalog</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-bind-circuit">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#tactic-proc-change-circuit">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extens.html">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">extens</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnd.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplify-if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/bindings.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="command-bind">
+<h1>Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code><a class="headerlink" href="#command-bind" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">bind</span></code> family of commands declares a correspondence between
+EasyCrypt objects and their counterparts in the boolean-circuit world
+used by the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code> family of tactics.</p>
+<p>Four variants are available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code> — declares that a type is a fixed-size bitstring,
+by giving an isomorphism with <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">list</span></code> together with conversions
+from/to (signed and unsigned) integers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">array</span></code> — declares that a polymorphic type constructor is a
+fixed-size array, by giving access/update operators plus an
+isomorphism with <code class="docutils literal notranslate"><span class="pre">list</span></code>. The element type need not be a bitstring
+at the time of binding, but it must become one whenever the array
+type is used at a circuit-translated site.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code> — declares that a user-defined operator implements one
+of a fixed catalog of bitvector/array primitives (corresponding to
+the operators of the QFABV theory of SMT-LIB). A monomorphic and a
+multi-type form are available.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code> — asserts that a user-defined operator is
+semantically equivalent to a circuit definition given in the
+low-level specification (<code class="docutils literal notranslate"><span class="pre">.spec</span></code>) language. <strong>These bindings are
+trusted and become part of the TCB</strong> (see the warning below).</p></li>
+</ul>
+<p>Each variant may be prefixed with the locality modifier <code class="docutils literal notranslate"><span class="pre">local</span></code> or
+<code class="docutils literal notranslate"><span class="pre">global</span></code>, with the usual section-locality semantics. The default,
+inside a section, is to be exported; outside a section the modifier is
+ignored.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-bind-bitstring" id="id1">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code></a></p></li>
+<li><p><a class="reference internal" href="#variant-bind-array" id="id2">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">array</span></code></a></p></li>
+<li><p><a class="reference internal" href="#variant-bind-op" id="id3">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="#operator-catalog" id="id4">Operator catalog</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#variant-bind-circuit" id="id5">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code></a></p></li>
+</ul>
+</nav>
+<section id="variant-bind-bitstring">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code></a><a class="headerlink" href="#variant-bind-bitstring" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code> <em>to_bits</em> <em>from_bits</em> <em>to_uint</em> <em>to_sint</em> <em>of_int</em> <em>type</em> <em>size</em> <code class="docutils literal notranslate"><span class="pre">.</span></code></p>
+</div>
+<p>The seven arguments are: the two halves of the <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">↔</span> <span class="pre">bool</span> <span class="pre">list</span></code>
+isomorphism (<code class="docutils literal notranslate"><span class="pre">to_bits</span></code>, <code class="docutils literal notranslate"><span class="pre">from_bits</span></code>), the two integer projections
+(<code class="docutils literal notranslate"><span class="pre">to_uint</span></code> for the unsigned reading and <code class="docutils literal notranslate"><span class="pre">to_sint</span></code> for the
+two’s-complement signed reading), the integer injection
+(<code class="docutils literal notranslate"><span class="pre">of_int</span></code>), the type being bound, and its size in bits (an integer
+formula).</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring\n  to_bits\n  from_bits\n  to_uint\n  to_sint\n  of_int\n  W8\n  8.\n\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    255,
+    283,
+    309,
+    335,
+    361,
+    387,
+    412,
+    442
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    }
+  ],
+  "initialSentence":6,
+  "title":"Bitstring Binding Example"
+}</script>
+</div>
+<p>The command leaves seven side conditions to be discharged via
+<code class="docutils literal notranslate"><span class="pre">realize</span></code> (in this example with <code class="docutils literal notranslate"><span class="pre">admit</span></code>; in practice they should
+be proved from the type’s defining equations). The axioms are those of
+the abstract <code class="docutils literal notranslate"><span class="pre">BV</span></code> theory in <code class="docutils literal notranslate"><span class="pre">theories/datatypes/QFABV.ec</span></code>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.0%" />
+<col style="width: 82.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Axiom</p></th>
+<th class="head"><p>Statement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gt0_size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">size</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">size_tolist</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">(tolist</span> <span class="pre">bv)</span> <span class="pre">=</span> <span class="pre">size</span></code> (the list image has the expected length)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tolistP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">oflist</span> <span class="pre">(tolist</span> <span class="pre">bv)</span> <span class="pre">=</span> <span class="pre">bv</span></code> (round-trip via the list isomorphism)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">oflistP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">xs</span> <span class="pre">=</span> <span class="pre">size</span> <span class="pre">=&gt;</span> <span class="pre">tolist</span> <span class="pre">(oflist</span> <span class="pre">xs)</span> <span class="pre">=</span> <span class="pre">xs</span></code> (other direction, on lists of the right length)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">touintP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">touint</span> <span class="pre">bv</span> <span class="pre">=</span> <span class="pre">bs2int</span> <span class="pre">(tolist</span> <span class="pre">bv)</span></code> (unsigned reading)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tosintP</span></code></p></td>
+<td><p>two’s-complement reading: <code class="docutils literal notranslate"><span class="pre">tosint</span> <span class="pre">bv</span> <span class="pre">=</span> <span class="pre">touint</span> <span class="pre">bv</span></code> when the MSB is 0, and <code class="docutils literal notranslate"><span class="pre">touint</span> <span class="pre">bv</span> <span class="pre">-</span> <span class="pre">2^size</span></code> otherwise (with <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">1</span></code> as a degenerate case)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ofintP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ofint</span> <span class="pre">i</span> <span class="pre">=</span> <span class="pre">oflist</span> <span class="pre">(int2bs</span> <span class="pre">size</span> <span class="pre">i)</span></code> (integer injection is the inverse of <code class="docutils literal notranslate"><span class="pre">bs2int</span></code> on size-many bits)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="variant-bind-array">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">array</span></code></a><a class="headerlink" href="#variant-bind-array" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">array</span></code> <em>get</em> <em>set</em> <em>tolist</em> <em>oflist</em> <em>type</em> <em>size</em> <code class="docutils literal notranslate"><span class="pre">.</span></code></p>
+</div>
+<p>The six arguments are: read/write operators (<code class="docutils literal notranslate"><span class="pre">get</span></code> of type
+<code class="docutils literal notranslate"><span class="pre">'a</span> <span class="pre">t</span> <span class="pre">-&gt;</span> <span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">'a</span></code> and <code class="docutils literal notranslate"><span class="pre">set</span></code> of type <code class="docutils literal notranslate"><span class="pre">'a</span> <span class="pre">t</span> <span class="pre">-&gt;</span> <span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">'a</span> <span class="pre">-&gt;</span> <span class="pre">'a</span>
+<span class="pre">t</span></code>), the two halves of the <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">↔</span> <span class="pre">list</span></code> isomorphism (<code class="docutils literal notranslate"><span class="pre">tolist</span></code>,
+<code class="docutils literal notranslate"><span class="pre">oflist</span></code>), the (polymorphic) type constructor being bound, and the
+array length.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore List QFABV.\n\ntheory Array8.\ntype 'a t.\n\nop tolist : 'a t -> 'a list.\nop oflist : 'a -> 'a list -> 'a t.\nop \"_.[_]\" : 'a t -> int -> 'a.\nop \"_.[_<-_]\" : 'a t -> int -> 'a -> 'a t.\n\nend Array8.\n\nbind array Array8.\"_.[_]\" Array8.\"_.[_<-_]\" Array8.tolist Array8.oflist Array8.t 8.\nrealize gt0_size by auto.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize eqP by admit.\nrealize get_setP by admit.\nrealize get_out by admit.\n",
+  "sentenceEnds":[
+    34,
+    50,
+    61,
+    91,
+    126,
+    158,
+    201,
+    214,
+    299,
+    325,
+    351,
+    377,
+    399,
+    426,
+    452
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `t'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator tolist ['a] : 'a t -> 'a list."
+    },
+    {
+      "goals":[],
+      "message":"info: added operator oflist ['a] : 'a -> 'a list -> 'a t."
+    },
+    {
+      "goals":[],
+      "message":"info: added operator _.[_] ['a] : 'a t -> int -> 'a."
+    },
+    {
+      "goals":[],
+      "message":"info: added operator _.[_<-_] ['a] : 'a t -> int -> 'a -> 'a t."
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `eqP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `get_setP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `get_out'"
+    }
+  ],
+  "initialSentence":7,
+  "title":"Array Binding Example"
+}</script>
+</div>
+<p>The command leaves six side conditions to be discharged. The axioms
+are those of the abstract <code class="docutils literal notranslate"><span class="pre">A</span></code> theory in
+<code class="docutils literal notranslate"><span class="pre">theories/datatypes/QFABV.ec</span></code>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.0%" />
+<col style="width: 82.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Axiom</p></th>
+<th class="head"><p>Statement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gt0_size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">size</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tolistP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">to_list</span> <span class="pre">a</span> <span class="pre">=</span> <span class="pre">mkseq</span> <span class="pre">(fun</span> <span class="pre">i</span> <span class="pre">=&gt;</span> <span class="pre">get</span> <span class="pre">a</span> <span class="pre">i)</span> <span class="pre">size</span></code> (the list view is the canonical enumeration)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">oflistP</span></code></p></td>
+<td><p>for indices <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">nth</span> <span class="pre">dfl</span> <span class="pre">xs</span> <span class="pre">i</span> <span class="pre">=</span> <span class="pre">get</span> <span class="pre">(of_list</span> <span class="pre">dfl</span> <span class="pre">xs)</span> <span class="pre">i</span></code> (the list-to-array constructor preserves indexing in range)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eqP</span></code></p></td>
+<td><p>extensional equality: two arrays are equal iff they agree at every in-range index</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">get_setP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">(set</span> <span class="pre">a</span> <span class="pre">j</span> <span class="pre">v)</span> <span class="pre">i</span></code> is <code class="docutils literal notranslate"><span class="pre">v</span></code> if <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">j</span></code>, else <code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">a</span> <span class="pre">i</span></code> (in-range)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">get_out</span></code></p></td>
+<td><p>out-of-range reads agree across all arrays (i.e. the value at an out-of-range index is unspecified-but-uniform)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="variant-bind-op">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code></a><a class="headerlink" href="#variant-bind-op" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code> <em>type</em> <em>operator</em> <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> <em>name</em> <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span> <span class="pre">[</span></code> <em>type₁</em> <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> <em>type₂</em> <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> … <code class="docutils literal notranslate"><span class="pre">]</span></code> <em>operator</em> <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> <em>name</em> <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">.</span></code></div>
+</div>
+</div>
+<p>The first (monomorphic) form is for operators whose signature mentions
+a single bound type. The second (multi-type) form takes a
+<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>-separated list of types inside brackets and is needed for
+operators whose signature mixes types — for instance <code class="docutils literal notranslate"><span class="pre">get</span></code> (a
+bitstring and a single-bit bitstring) or <code class="docutils literal notranslate"><span class="pre">ainit</span></code> (a bitstring index
+type and an array element type).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> string must be one of the operator catalog below.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring\n  to_bits\n  from_bits\n  to_uint\n  to_sint\n  of_int\n  W8\n  8.\n\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\n\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    255,
+    283,
+    309,
+    335,
+    361,
+    387,
+    412,
+    442,
+    469,
+    493,
+    518
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    }
+  ],
+  "initialSentence":15,
+  "title":"Operator Binding Example (monomorphic)"
+}</script>
+</div>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-3" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-3-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring\n  to_bits\n  from_bits\n  to_uint\n  to_sint\n  of_int\n  W8\n  8.\n\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop bool2bits (b : bool) : bool list = [b].\nop bits2bool (b : bool list) : bool = List.nth false b 0.\nop i2b : int -> bool.\nop b2si (b : bool) = 0.\n\nbind bitstring bool2bits bits2bool b2i b2si i2b bool 1.\nrealize gt0_size by done.\nrealize size_tolist by auto.\nrealize tolistP by auto.\nrealize oflistP by rewrite /bool2bits /bits2bool; smt(size_eq1).\nrealize touintP by admit.\nrealize tosintP by done.\nrealize ofintP by admit.\n\nop \"_.[_]\" : W8 -> int -> bool.\n\nbind op [W8 & bool] \"_.[_]\" \"get\".\nrealize le_size by auto.\nrealize eq1_size by auto.\nrealize bvgetP by admit.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    255,
+    283,
+    309,
+    335,
+    361,
+    387,
+    412,
+    442,
+    486,
+    544,
+    566,
+    590,
+    647,
+    673,
+    702,
+    727,
+    792,
+    818,
+    843,
+    868,
+    901,
+    937,
+    962,
+    988,
+    1013
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator bool2bits : bool -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator bits2bool : bool list -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator i2b : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator b2si : bool -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator _.[_] : W8 -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `le_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `eq1_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvgetP'"
+    }
+  ],
+  "initialSentence":27,
+  "title":"Operator Binding Example (multi-type)"
+}</script>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">[W8</span> <span class="pre">&amp;</span> <span class="pre">bool]</span></code> syntax names the two bitstring types involved in
+<code class="docutils literal notranslate"><span class="pre">get</span></code>’s signature: the bitvector being indexed, and the single-bit
+bitvector holding the extracted bit. Since <code class="docutils literal notranslate"><span class="pre">bool</span></code> is a primitive
+type, it must itself be <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code>-bound (to size 1) before
+it can appear in a multi-type <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code>.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code> leaves a single side condition of the form
+<code class="docutils literal notranslate"><span class="pre">bv&lt;name&gt;P</span></code>, stating the semantics of the operator (e.g. <code class="docutils literal notranslate"><span class="pre">bvxorP</span></code>
+for <code class="docutils literal notranslate"><span class="pre">xor</span></code>, <code class="docutils literal notranslate"><span class="pre">bvgetP</span></code> for <code class="docutils literal notranslate"><span class="pre">get</span></code>). Multi-type bindings may also
+leave size-relation side conditions, e.g. <code class="docutils literal notranslate"><span class="pre">le_size</span></code> (one bitstring
+size bounds another), <code class="docutils literal notranslate"><span class="pre">eq1_size</span></code> (a bitstring has size one). These
+all come from the corresponding sub-theories of <code class="docutils literal notranslate"><span class="pre">BVOperators</span></code> in
+<code class="docutils literal notranslate"><span class="pre">theories/datatypes/QFABV.ec</span></code>.</p>
+<p>Only this base catalog of operators needs an explicit binding.
+Operators built on top of them are translated into circuits by
+recursive descent through their definitions, applying the bindings at
+the leaves and composing the resulting sub-circuits.</p>
+<section id="operator-catalog">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Operator catalog</a><a class="headerlink" href="#operator-catalog" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> argument to <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code> must be one of the following.
+The “Types” column shows the shape of the bracketed type list expected
+by the multi-type form (<code class="docutils literal notranslate"><span class="pre">BV</span></code> = a bitstring type, <code class="docutils literal notranslate"><span class="pre">BV[1]</span></code> = a
+bitstring type of size 1, <code class="docutils literal notranslate"><span class="pre">A</span></code> = an array type); single-<code class="docutils literal notranslate"><span class="pre">BV</span></code>
+operators may also be given to the monomorphic form.</p>
+<p>Arithmetic (one <code class="docutils literal notranslate"><span class="pre">BV</span></code> argument):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">sub</span></code>, <code class="docutils literal notranslate"><span class="pre">mul</span></code>, <code class="docutils literal notranslate"><span class="pre">opp</span></code></dt><dd><p>signed-wrap arithmetic on bitvectors of size <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">udiv</span></code>, <code class="docutils literal notranslate"><span class="pre">urem</span></code>, <code class="docutils literal notranslate"><span class="pre">sdiv</span></code>, <code class="docutils literal notranslate"><span class="pre">srem</span></code></dt><dd><p>unsigned and signed division and remainder.</p>
+</dd>
+</dl>
+<p>Bitwise (one <code class="docutils literal notranslate"><span class="pre">BV</span></code> argument):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">xor</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code></dt><dd><p>pointwise boolean operations.</p>
+</dd>
+</dl>
+<p>Constant shifts (one <code class="docutils literal notranslate"><span class="pre">BV</span></code> argument):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">shl</span></code>, <code class="docutils literal notranslate"><span class="pre">shr</span></code>, <code class="docutils literal notranslate"><span class="pre">ashr</span></code></dt><dd><p>shift left, logical shift right, arithmetic (sign-extending) shift right.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">rol</span></code>, <code class="docutils literal notranslate"><span class="pre">ror</span></code></dt><dd><p>rotate left, rotate right.</p>
+</dd>
+</dl>
+<p>Variable shifts (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span></code> — value, amount):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">shls</span></code>, <code class="docutils literal notranslate"><span class="pre">shrs</span></code>, <code class="docutils literal notranslate"><span class="pre">ashrs</span></code></dt><dd><p>shift left / logical shift right / arithmetic shift right where the
+shift amount is itself a bitvector.</p>
+</dd>
+</dl>
+<p>Comparisons (<code class="docutils literal notranslate"><span class="pre">BV[1]</span> <span class="pre">&amp;</span> <span class="pre">BV</span></code> — result and operand):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ult</span></code>, <code class="docutils literal notranslate"><span class="pre">ule</span></code>, <code class="docutils literal notranslate"><span class="pre">slt</span></code>, <code class="docutils literal notranslate"><span class="pre">sle</span></code></dt><dd><p>unsigned and signed strict and non-strict ordering, returning a
+one-bit bitvector.</p>
+</dd>
+</dl>
+<p>Size manipulation (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span></code> — source and target sizes):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">zextend</span></code>, <code class="docutils literal notranslate"><span class="pre">sextend</span></code></dt><dd><p>zero- and sign-extension to a wider bitvector.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">truncate</span></code></dt><dd><p>truncation to a narrower bitvector.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">insert</span></code>, <code class="docutils literal notranslate"><span class="pre">extract</span></code>, <code class="docutils literal notranslate"><span class="pre">aextract</span></code></dt><dd><p>insert/extract a sub-bitvector; <code class="docutils literal notranslate"><span class="pre">aextract</span></code> is the
+arithmetic-extracting variant.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">concat</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span></code>)</dt><dd><p>concatenation of two bitvectors.</p>
+</dd>
+</dl>
+<p>Bit-level indexing:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">init</span></code> (<code class="docutils literal notranslate"><span class="pre">BV[1]</span> <span class="pre">&amp;</span> <span class="pre">BV</span></code>)</dt><dd><p>build a bitvector from a function <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">bit</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">get</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV[1]</span></code>)</dt><dd><p>extract a single bit at a given index.</p>
+</dd>
+</dl>
+<p>Array primitives:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ainit</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">A</span></code>)</dt><dd><p>build an array of bitvectors from a function <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">BV</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">asliceget</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">A</span></code>), <code class="docutils literal notranslate"><span class="pre">asliceset</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">A</span></code>)</dt><dd><p>read/write a sub-bitvector slice spanning array cells.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">a2b</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">A</span></code>), <code class="docutils literal notranslate"><span class="pre">b2a</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">A</span></code>)</dt><dd><p>reshape between a single wide bitvector and an array of bitvectors
+whose concatenation has the same width.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">map</span></code> (<code class="docutils literal notranslate"><span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">BV</span> <span class="pre">&amp;</span> <span class="pre">A</span></code>)</dt><dd><p>pointwise map of a bitvector function over an array of bitvectors.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="variant-bind-circuit">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code></a><a class="headerlink" href="#variant-bind-circuit" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code> <em>op₁</em> <code class="docutils literal notranslate"><span class="pre">&lt;-</span> <span class="pre">&quot;</span></code> <em>name₁</em> <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">,</span></code> … <code class="docutils literal notranslate"><span class="pre">,</span></code> <em>opₖ</em> <code class="docutils literal notranslate"><span class="pre">&lt;-</span> <span class="pre">&quot;</span></code> <em>nameₖ</em> <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">from</span> <span class="pre">&quot;</span></code> <em>file</em> <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">.</span></code></p>
+</div>
+<p>A non-empty comma-separated list of <code class="docutils literal notranslate"><span class="pre">op</span> <span class="pre">&lt;-</span> <span class="pre">&quot;name&quot;</span></code> associations is
+followed by a mandatory <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">&quot;&lt;file&gt;&quot;</span></code> clause naming the
+<code class="docutils literal notranslate"><span class="pre">.spec</span></code> file from which the named circuit definitions are loaded.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The equivalences declared by <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code> are <strong>trusted</strong>: no
+proof obligation is generated, and so an incorrect binding silently
+becomes part of the trusted computing base of every proof that
+uses it. Use <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code> whenever possible. The recommended use of
+<code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code> is to attach circuit semantics to operators that
+are otherwise abstract, treating the binding as an axiomatisation
+rather than as a definition — proofs about the operator are then
+discharged via the <code class="docutils literal notranslate"><span class="pre">circuit</span></code> tactic, which makes use of these
+semantics.</p>
+</div>
+<p>A typical use looks like the following (this example is shown as
+plain text rather than as a checked proof because it depends on a
+spec file outside the example’s working directory):</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="kd">require</span><span class="w"> </span><span class="kd">import</span><span class="w"> </span><span class="n">AllCore</span><span class="w"> </span><span class="n">List</span><span class="w"> </span><span class="n">QFABV</span><span class="p">.</span>
+
+<span class="kd">type</span><span class="w"> </span><span class="n">W8</span><span class="p">.</span>
+
+<span class="kd">op</span><span class="w"> </span><span class="n">to_bits</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">list</span><span class="p">.</span>
+<span class="kd">op</span><span class="w"> </span><span class="n">from_bits</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="p">.</span>
+<span class="kd">op</span><span class="w"> </span><span class="n">of_int</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">int</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="p">.</span>
+<span class="kd">op</span><span class="w"> </span><span class="n">to_uint</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="p">.</span>
+<span class="kd">op</span><span class="w"> </span><span class="n">to_sint</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="p">.</span>
+
+<span class="n">bind</span><span class="w"> </span><span class="n">bitstring</span>
+<span class="w">  </span><span class="n">to_bits</span><span class="w"> </span><span class="n">from_bits</span><span class="w"> </span><span class="n">to_uint</span><span class="w"> </span><span class="n">to_sint</span><span class="w"> </span><span class="n">of_int</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span>
+<span class="cm">(* ... realize side conditions ... *)</span>
+
+<span class="kd">op</span><span class="w"> </span><span class="p">(</span><span class="o">+</span>^<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="p">.</span>
+
+<span class="n">bind</span><span class="w"> </span><span class="n">circuit</span>
+<span class="w">  </span><span class="p">(</span><span class="o">+</span>^<span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">&quot;BVXOR_8&quot;</span><span class="w"> </span><span class="kd">from</span><span class="w"> </span><span class="s2">&quot;specs.spec&quot;</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>The definition of the <code class="docutils literal notranslate"><span class="pre">BVXOR_8</span></code> circuit, in the
+companion <code class="docutils literal notranslate"><span class="pre">specs.spec</span></code> file, is:</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="n">BVXOR_8</span><span class="p">(</span><span class="n">w1</span>@<span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">w2</span>@<span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>@<span class="mi">8</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="n">xor</span><span class="o">&lt;</span><span class="mi">8</span><span class="o">&gt;</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span><span class="w"> </span><span class="n">w2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">op</span></code> named in the binding list must already be declared, its
+arity must match the corresponding spec definition, and every argument
+and the return type must be <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code>-bound to a bitstring of
+the size declared in the spec.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="async-while.html" class="btn btn-neutral float-left" title="Tactic: async while Tactic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cfold.html" class="btn btn-neutral float-right" title="Tactic: cfold" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

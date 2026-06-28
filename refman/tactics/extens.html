@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactical: extens &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: hoare split" href="hoare-split.html" />
+    <link rel="prev" title="Tactic: clear" href="clear.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bindings.html">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#tactic-proc-change-circuit">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">extens</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-list-enumeration-over-iota">Variant: List enumeration over <code class="docutils literal notranslate"><span class="pre">iota_</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-hoare-triple-enumeration-over-a-bitstring-variable">Variant: Hoare-triple enumeration over a bitstring variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#failure-modes">Failure modes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnd.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplify-if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">extens</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/extens.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactical-extens">
+<h1>Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">extens</span></code><a class="headerlink" href="#tactical-extens" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">extens</span></code> is a tactical that performs an extensionality-style
+case-split: it enumerates the concrete values of a finite quantity,
+generates one subgoal per case, and runs a user-supplied tactic on
+each generated subgoal. The original goal closes only when every
+subgoal closes.</p>
+<p>Two goal shapes are recognised, distinguished by the presence or
+absence of the bracketed binder:</p>
+<ul class="simple">
+<li><p>A first-order proposition of the form <code class="docutils literal notranslate"><span class="pre">all</span> <span class="pre">P</span> <span class="pre">(iota_</span> <span class="pre">start</span> <span class="pre">len)</span></code>
+(over <code class="docutils literal notranslate"><span class="pre">int</span></code>) — no binder. The split produces one subgoal <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">i</span></code>
+per integer <code class="docutils literal notranslate"><span class="pre">i</span></code> in the range <code class="docutils literal notranslate"><span class="pre">[start,</span> <span class="pre">start+len)</span></code>.</p></li>
+<li><p>A Hoare triple <code class="docutils literal notranslate"><span class="pre">hoare[M.f</span> <span class="pre">:</span> <span class="pre">pre</span> <span class="pre">==&gt;</span> <span class="pre">post]</span></code> together with a binder
+<code class="docutils literal notranslate"><span class="pre">[v]</span></code> naming a program variable. The variable’s type must be
+<code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code>-bound (see <a class="reference internal" href="bindings.html"><span class="doc">Command: bind</span></a>). The split produces
+<code class="docutils literal notranslate"><span class="pre">2^n</span></code> Hoare triples (with <code class="docutils literal notranslate"><span class="pre">n</span></code> the bound bitstring size), in
+each of which the program variable <code class="docutils literal notranslate"><span class="pre">v</span></code> has been substituted by
+the corresponding <code class="docutils literal notranslate"><span class="pre">of_int</span> <span class="pre">i</span></code> everywhere — in the program, in the
+precondition, and in the postcondition.</p></li>
+</ul>
+<p>In both cases the inner tactic is then run on each generated subgoal.
+If a subgoal fails to close, the residual goal is reported as an
+error.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">extens</span></code> <em>[v]</em>? <code class="docutils literal notranslate"><span class="pre">:</span></code> <em>tactic</em></p>
+</div>
+<p>The bracketed binder <code class="docutils literal notranslate"><span class="pre">[v]</span></code> is required for the Hoare-triple variant
+(it picks the program variable to enumerate) and forbidden for the
+<code class="docutils literal notranslate"><span class="pre">iota_</span></code> variant.</p>
+<p>The most common use is <code class="docutils literal notranslate"><span class="pre">extens</span> <span class="pre">[v]</span> <span class="pre">:</span> <span class="pre">circuit</span></code> (or, with
+simplification first, <code class="docutils literal notranslate"><span class="pre">extens</span> <span class="pre">[v]</span> <span class="pre">:</span> <span class="pre">(circuit</span> <span class="pre">simplify;</span> <span class="pre">...)</span></code>).
+The benefit over a bare <code class="docutils literal notranslate"><span class="pre">circuit</span></code> is that the per-case translation
+sees a program in which one input has been replaced by a concrete
+constant, which lets circuit translation succeed on programs whose
+whole-input translation would fail or blow up.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-list-enumeration-over-iota" id="id1">Variant: List enumeration over <code class="docutils literal notranslate"><span class="pre">iota_</span></code></a></p></li>
+<li><p><a class="reference internal" href="#variant-hoare-triple-enumeration-over-a-bitstring-variable" id="id2">Variant: Hoare-triple enumeration over a bitstring variable</a></p></li>
+<li><p><a class="reference internal" href="#failure-modes" id="id3">Failure modes</a></p></li>
+</ul>
+</nav>
+<section id="variant-list-enumeration-over-iota">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: List enumeration over <code class="docutils literal notranslate"><span class="pre">iota_</span></code></a><a class="headerlink" href="#variant-list-enumeration-over-iota" title="Link to this heading"></a></h2>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore List QFABV IntDiv.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring to_bits from_bits to_uint to_sint of_int W8 8.\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop bool2bits (b : bool) : bool list = [b].\nop bits2bool (b : bool list) : bool = List.nth false b 0.\nop i2b : int -> bool.\nop b2si (b : bool) = 0.\n\nbind bitstring bool2bits bits2bool b2i b2si i2b bool 1.\nrealize gt0_size by done.\nrealize size_tolist by auto.\nrealize tolistP by auto.\nrealize oflistP by rewrite /bool2bits /bits2bool; smt(size_eq1).\nrealize touintP by admit.\nrealize tosintP by done.\nrealize ofintP by admit.\n\nop \"_.[_]\" : W8 -> int -> bool.\nbind op [W8 & bool] \"_.[_]\" \"get\".\nrealize le_size by auto.\nrealize eq1_size by auto.\nrealize bvgetP by admit.\n\nlemma W8_ext (a : W8) : all (fun i => a.[i] = a.[i]) (iota_ 0 8).\nproof.\n  extens : circuit.\nqed.\n",
+  "sentenceEnds":[
+    41,
+    51,
+    82,
+    114,
+    137,
+    161,
+    185,
+    248,
+    402,
+    428,
+    454,
+    480,
+    506,
+    531,
+    561,
+    605,
+    663,
+    685,
+    709,
+    766,
+    792,
+    821,
+    846,
+    911,
+    937,
+    962,
+    987,
+    1020,
+    1055,
+    1080,
+    1106,
+    1131,
+    1198,
+    1205,
+    1225,
+    1230
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator bool2bits : bool -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator bits2bool : bool list -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator i2b : int -> bool"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator b2si : bool -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator _.[_] : W8 -> int -> bool"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `le_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `eq1_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvgetP'"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na: W8\n------------------------------------------------------------------------\nall (fun (i : int) => a.[i] = a.[i]) (iota_ 0 8)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na: W8\n------------------------------------------------------------------------\nall (fun (i : int) => a.[i] = a.[i]) (iota_ 0 8)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `W8_ext'"
+    }
+  ],
+  "initialSentence":34,
+  "title":"List-all enumeration example"
+}</script>
+</div>
+<p>The goal <code class="docutils literal notranslate"><span class="pre">all</span> <span class="pre">(fun</span> <span class="pre">i</span> <span class="pre">=&gt;</span> <span class="pre">a.[i]</span> <span class="pre">=</span> <span class="pre">a.[i])</span> <span class="pre">(iota_</span> <span class="pre">0</span> <span class="pre">8)</span></code> is split into
+eight independent subgoals (one per <code class="docutils literal notranslate"><span class="pre">i</span></code> in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">8)</span></code>), each of
+which is then discharged by <code class="docutils literal notranslate"><span class="pre">circuit</span></code>.</p>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">len</span></code> arguments of <code class="docutils literal notranslate"><span class="pre">iota_</span></code> must be ground
+integer literals; <code class="docutils literal notranslate"><span class="pre">extens</span></code> rejects a non-constant range with
+<code class="docutils literal notranslate"><span class="pre">Iota</span> <span class="pre">start</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">constant</span></code> or <code class="docutils literal notranslate"><span class="pre">Iota</span> <span class="pre">length</span> <span class="pre">should</span> <span class="pre">be</span>
+<span class="pre">constant</span></code>.</p>
+</section>
+<section id="variant-hoare-triple-enumeration-over-a-bitstring-variable">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: Hoare-triple enumeration over a bitstring variable</a><a class="headerlink" href="#variant-hoare-triple-enumeration-over-a-bitstring-variable" title="Link to this heading"></a></h2>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore List QFABV IntDiv.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring to_bits from_bits to_uint to_sint of_int W8 8.\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nmodule M = {\n  proc test (a : W8, b : W8) = {\n    var c : W8;\n    c <- a +^ b;\n    return c;\n  }\n}.\n\nlemma L (a_ b_ : W8) :\n  hoare[M.test : a_ = a /\\ b_ = b ==> res = a_ +^ b_].\nproof.\n  proc.\n  extens [a] : (wp; skip; smt()).\nqed.\n",
+  "sentenceEnds":[
+    41,
+    51,
+    82,
+    114,
+    137,
+    161,
+    185,
+    248,
+    402,
+    428,
+    454,
+    480,
+    506,
+    531,
+    561,
+    588,
+    611,
+    636,
+    737,
+    816,
+    823,
+    831,
+    865,
+    870
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.test \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.test \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\nContext : hr: {a, b, c : W8}\n\npre = a_ = (a, b).`1 /\\ b_ = (a, b).`2\n\n(1)  c <- a +^ b              \n\npost = c = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":22,
+  "title":"Hoare triple bitstring enumeration"
+}</script>
+</div>
+<p>The binder <code class="docutils literal notranslate"><span class="pre">[a]</span></code> picks the program variable to enumerate. Since
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">:</span> <span class="pre">W8</span></code> is bound to an eight-bit bitstring, the tactic produces
+<code class="docutils literal notranslate"><span class="pre">2^8</span> <span class="pre">=</span> <span class="pre">256</span></code> Hoare triples in which <code class="docutils literal notranslate"><span class="pre">a</span></code> has been replaced by each
+concrete value <code class="docutils literal notranslate"><span class="pre">of_int</span> <span class="pre">i</span></code>; the supplied tactic
+<code class="docutils literal notranslate"><span class="pre">wp;</span> <span class="pre">skip;</span> <span class="pre">smt()</span></code> then closes each.</p>
+<p>This pattern is most useful when the inner tactic is <code class="docutils literal notranslate"><span class="pre">circuit</span></code>
+itself: replacing one program input by a concrete constant often lets
+the per-case circuit translation succeed even when the
+whole-program circuit translation would not. The same example with
+<code class="docutils literal notranslate"><span class="pre">circuit</span></code> as the inner tactic:</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore List QFABV IntDiv.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring to_bits from_bits to_uint to_sint of_int W8 8.\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nmodule M = {\n  proc test (a : W8, b : W8) = {\n    var c : W8;\n    c <- a +^ b;\n    return c;\n  }\n}.\n\nlemma L (a_ b_ : W8) :\n  hoare[M.test : a_ = a /\\ b_ = b ==> res = a_ +^ b_].\nproof.\n  by proc; extens [a] : circuit.\nqed.\n",
+  "sentenceEnds":[
+    41,
+    51,
+    82,
+    114,
+    137,
+    161,
+    185,
+    248,
+    402,
+    428,
+    454,
+    480,
+    506,
+    531,
+    561,
+    588,
+    611,
+    636,
+    737,
+    816,
+    823,
+    856,
+    861
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.test \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.test \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":21,
+  "title":"Bitstring enumeration paired with ``circuit``"
+}</script>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">2^n</span></code> blow-up makes this variant practical only for small bit
+widths: <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">8</span></code> already produces 256 subgoals, and the cost grows
+exponentially.</p>
+</section>
+<section id="failure-modes">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Failure modes</a><a class="headerlink" href="#failure-modes" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Wrong</span> <span class="pre">goal</span> <span class="pre">shape</span></code></dt><dd><p>The goal is neither <code class="docutils literal notranslate"><span class="pre">all</span> <span class="pre">_</span> <span class="pre">(iota_</span> <span class="pre">_</span> <span class="pre">_)</span></code> nor a Hoare triple, or
+the binder presence does not match the goal shape (binder given on
+an <code class="docutils literal notranslate"><span class="pre">iota_</span></code> goal, or omitted on a Hoare triple).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">find</span> <span class="pre">var</span> <span class="pre">&lt;name&gt;</span> <span class="pre">in</span> <span class="pre">memory</span> <span class="pre">&lt;m&gt;</span></code></dt><dd><p>The bracketed binder names a variable that does not exist in the
+Hoare triple’s memory.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">get</span> <span class="pre">size</span> <span class="pre">for</span> <span class="pre">type</span> <span class="pre">&lt;τ&gt;</span></code></dt><dd><p>The bracketed binder names a variable whose type is not
+<code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code>-bound (or is bound only abstractly, without a
+concrete size). Arrays are not currently supported for the binder.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Iota</span> <span class="pre">start</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">constant</span></code> / <code class="docutils literal notranslate"><span class="pre">Iota</span> <span class="pre">length</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">constant</span></code></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">iota_</span></code> arguments are not ground integer literals.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Unsupported</span> <span class="pre">List</span> <span class="pre">pattern</span></code></dt><dd><p>The list inside <code class="docutils literal notranslate"><span class="pre">all</span></code> is not of the form <code class="docutils literal notranslate"><span class="pre">iota_</span> <span class="pre">start</span> <span class="pre">len</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">close</span> <span class="pre">goal:</span> <span class="pre">&lt;residual&gt;</span></code></dt><dd><p>The inner tactic ran on every subgoal but left at least one
+unclosed. The residual goal is reported as part of the error.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clear.html" class="btn btn-neutral float-left" title="Tactic: clear" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hoare-split.html" class="btn btn-neutral float-right" title="Tactic: hoare split" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

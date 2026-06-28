@@ -1,0 +1,1191 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: circuit &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: clear" href="clear.html" />
+    <link rel="prev" title="Tactic: cfold" href="cfold.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bindings.html">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-circuit-fol">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (FOL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-circuit-hl">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (HL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-circuit-rhl">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (rHL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-circuit-simplify">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#failure-modes">Failure modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tactic-proc-change-circuit">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#failure-modes-proc-change-circuit">Failure modes (<code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extens.html">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">extens</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnd.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplify-if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/circuit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-circuit">
+<h1>Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code><a class="headerlink" href="#tactic-circuit" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">circuit</span></code> tactic discharges or simplifies goals over finite
+types by translating them into boolean circuits and reasoning about
+the resulting bit-level representation. It applies to three goal
+shapes — first-order propositions, Hoare triples, and program
+equivalences — and has two modes, <code class="docutils literal notranslate"><span class="pre">circuit</span></code> and <code class="docutils literal notranslate"><span class="pre">circuit</span>
+<span class="pre">simplify</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">circuit</span></code> attempts to close the current goal by translating it into
+a boolean circuit and checking that the circuit is identically true.</p>
+<p><code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code> performs the same translation but does not close
+the goal: instead, it rewrites the postcondition using bit-level
+equalities derived from the circuit, leaving a simpler residual goal
+to be discharged by other tactics.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">circuit</span></code> family of tactics relies entirely on the
+<code class="docutils literal notranslate"><span class="pre">bind</span></code> family of commands to know how EasyCrypt types and
+operators correspond to their bit-level counterparts. Every type
+appearing in the goal must be <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code>- or <code class="docutils literal notranslate"><span class="pre">bind</span>
+<span class="pre">array</span></code>-bound; every operator must be <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code>- or <code class="docutils literal notranslate"><span class="pre">bind</span>
+<span class="pre">circuit</span></code>-bound, or definable in terms of bound operators; and
+every program statement must be an assignment whose right-hand
+side translates to a circuit.</p>
+<p>See <a class="reference internal" href="bindings.html"><span class="doc">Command: bind</span></a> for the syntax and semantics of the <code class="docutils literal notranslate"><span class="pre">bind</span></code>
+commands and the catalog of supported operator names — the
+examples below all begin with <code class="docutils literal notranslate"><span class="pre">bind</span></code> declarations, whose side
+conditions (the <code class="docutils literal notranslate"><span class="pre">realize</span></code> lines) come from that catalog.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-circuit-fol" id="id1">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (FOL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-circuit-hl" id="id2">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (HL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-circuit-rhl" id="id3">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (rHL)</a></p></li>
+<li><p><a class="reference internal" href="#variant-circuit-simplify" id="id4">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code></a></p></li>
+<li><p><a class="reference internal" href="#failure-modes" id="id5">Failure modes</a></p></li>
+<li><p><a class="reference internal" href="#limitations" id="id6">Limitations</a></p></li>
+</ul>
+</nav>
+<section id="variant-circuit-fol">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (FOL)</a><a class="headerlink" href="#variant-circuit-fol" title="Link to this heading"></a></h2>
+<p>When the goal is a first-order proposition (i.e., not a Hoare or
+equivalence judgement), <code class="docutils literal notranslate"><span class="pre">circuit</span></code> translates the formula directly
+into a boolean circuit and checks that it is a tautology.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring\n  to_bits\n  from_bits\n  to_uint\n  to_sint\n  of_int\n  W8\n  8.\n\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nlemma L (w1 w2 : W8) : w1 +^ w2 = w2 +^ w1.\nproof.\n  circuit.\nqed.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    255,
+    410,
+    436,
+    462,
+    488,
+    514,
+    539,
+    569,
+    596,
+    619,
+    644,
+    689,
+    696,
+    707,
+    712
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nw1: W8\nw2: W8\n------------------------------------------------------------------------\nw1 +^ w2 = w2 +^ w1\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nw1: W8\nw2: W8\n------------------------------------------------------------------------\nw1 +^ w2 = w2 +^ w1\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":20,
+  "title":"First-order example"
+}</script>
+</div>
+<p>The equality <code class="docutils literal notranslate"><span class="pre">w1</span> <span class="pre">+^</span> <span class="pre">w2</span> <span class="pre">=</span> <span class="pre">w2</span> <span class="pre">+^</span> <span class="pre">w1</span></code> is translated into a boolean
+circuit parameterised by the bits of <code class="docutils literal notranslate"><span class="pre">w1</span></code> and <code class="docutils literal notranslate"><span class="pre">w2</span></code> and equal to
+<code class="docutils literal notranslate"><span class="pre">true</span></code> exactly when the two sides agree. The tactic closes the goal
+by checking that this circuit is identically true — in effect, a
+case-analysis over all assignments of the input bits, but performed
+symbolically on the circuit structure.</p>
+<p>The goal must contain no free type variables (the FOL case requires a
+ground context).</p>
+</section>
+<section id="variant-circuit-hl">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (HL)</a><a class="headerlink" href="#variant-circuit-hl" title="Link to this heading"></a></h2>
+<p>When the goal is a Hoare triple, <code class="docutils literal notranslate"><span class="pre">circuit</span></code> translates the
+precondition, the program, and the postcondition into circuits and
+checks that the postcondition circuit is implied by the precondition
+on every initial state.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring\n  to_bits\n  from_bits\n  to_uint\n  to_sint\n  of_int\n  W8\n  8.\n\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nmodule M = {\n  proc f(w : W8) = {\n    return w +^ w;\n  }\n}.\n\nlemma L (w_ : W8) : hoare[M.f : w_ = w ==> res = of_int 0].\nproof.\n  proc. circuit.\nabort.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    255,
+    410,
+    436,
+    462,
+    488,
+    514,
+    539,
+    569,
+    596,
+    619,
+    644,
+    705,
+    766,
+    773,
+    781,
+    790,
+    797
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nw_: W8\n------------------------------------------------------------------------\npre = w_ = arg\n\n    M.f \n\npost = res = of_int 0\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nw_: W8\n------------------------------------------------------------------------\npre = w_ = arg\n\n    M.f \n\npost = res = of_int 0\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nw_: W8\n------------------------------------------------------------------------\nContext : hr: {w : W8}\n\npre = w_ = w\n\n\npost = w +^ w = of_int 0\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":22,
+  "title":"Hoare logic example"
+}</script>
+</div>
+<p>The execution proceeds in three phases:</p>
+<ol class="arabic simple">
+<li><p><strong>Precondition processing.</strong> The precondition is split along its
+top-level conjunctions. Each equation of the form <code class="docutils literal notranslate"><span class="pre">prog_var</span> <span class="pre">=</span>
+<span class="pre">expr</span></code> (in either direction) is treated as a definition: it is
+added to the symbolic state and used to specialise the
+construction of all later circuits. Each remaining clause that
+translates to a boolean circuit is recorded as an antecedent;
+clauses that do not translate are silently dropped.</p></li>
+<li><p><strong>Program translation.</strong> The body is processed instruction by
+instruction, maintaining a mapping from each program variable to
+the circuit that computes its current value from the program’s
+inputs. The inputs are the program variables (treated as
+universally quantified bit-vectors) together with any logical
+variables constrained by the precondition.</p></li>
+<li><p><strong>Postcondition discharge.</strong> The postcondition is split along its
+conjuncts; each conjunct is translated into a boolean circuit
+using the input-to-output map computed in phase 2. The tactic then
+checks that, on every input satisfying the precondition
+antecedents, every postcondition circuit is true.</p></li>
+</ol>
+<p>When the goal is an equality, the postcondition is decomposed
+bit-by-bit and the tactic looks for structurally identical
+sub-conditions across the bits, sharing them so that each input bit
+is examined only once.</p>
+</section>
+<section id="variant-circuit-rhl">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (rHL)</a><a class="headerlink" href="#variant-circuit-rhl" title="Link to this heading"></a></h2>
+<p>When the goal is a program equivalence (<code class="docutils literal notranslate"><span class="pre">equiv[M.f1</span> <span class="pre">~</span> <span class="pre">M.f2</span> <span class="pre">:</span> <span class="pre">pre</span>
+<span class="pre">==&gt;</span> <span class="pre">post]</span></code>), the tactic produces a separate input-to-output map for
+each program, then checks that the postcondition relating the two
+sides holds on every joint initial state satisfying the precondition.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring\n  to_bits\n  from_bits\n  to_uint\n  to_sint\n  of_int\n  W8\n  8.\n\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nmodule M = {\n  proc f1(w1 w2 : W8) = {\n    var a : W8;\n    a <- w1 +^ w2;\n    return a;\n  }\n\n  proc f2(w1 w2 : W8) = {\n    var a : W8;\n    a <- w2 +^ w1;\n    return a;\n  }\n}.\n\nlemma L : equiv[M.f1 ~ M.f2 : ={arg} ==> ={res}].\nproof.\n  proc. circuit.\nabort.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    255,
+    410,
+    436,
+    462,
+    488,
+    514,
+    539,
+    569,
+    596,
+    619,
+    644,
+    820,
+    871,
+    878,
+    886,
+    895,
+    902
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f1 ~ M.f2 \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.f1 ~ M.f2 \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {w1, w2, a : W8}\n&2 (right) : {w1, w2, a : W8}\n\npre = (w1{1}, w2{1}) = (w1{2}, w2{2})\n\na <- w1 +^ w2              (1)  a <- w2 +^ w1            \n\npost = a{1} = a{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    }
+  ],
+  "initialSentence":22,
+  "title":"Program equivalence example"
+}</script>
+</div>
+</section>
+<section id="variant-circuit-simplify">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Variant: <code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code></a><a class="headerlink" href="#variant-circuit-simplify" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code> runs the same translation as <code class="docutils literal notranslate"><span class="pre">circuit</span></code> (HL) but
+does not attempt to close the goal. Instead, it rewrites the
+postcondition using the bit-level equalities derived from the circuit
+translation of the program, then normalises by callbyvalue reduction.
+The result is a new Hoare triple with the same precondition and
+program but a simplified postcondition, which can then be discharged
+by ordinary tactics.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-3" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-3-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring\n  to_bits\n  from_bits\n  to_uint\n  to_sint\n  of_int\n  W8\n  8.\n\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nmodule M = {\n  proc test (a : W8, b : W8) = {\n    var c : W8;\n    c <- a +^ b;\n    return c;\n  }\n}.\n\nlemma L (a_ b_ : W8) : hoare[M.test : a_ = a /\\ b_ = b ==> res = a_ +^ b_].\nproof.\n  proc. circuit simplify. trivial.\nqed.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    255,
+    410,
+    436,
+    462,
+    488,
+    514,
+    539,
+    569,
+    596,
+    619,
+    644,
+    745,
+    822,
+    829,
+    837,
+    855,
+    864,
+    869
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.test \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.test \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\nContext : hr: {a, b, c : W8}\n\npre = a_ = (a, b).`1 /\\ b_ = (a, b).`2\n\n(1)  c <- a +^ b              \n\npost = c = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\nContext : hr: {a, b, c : W8}\n\npre = a_ = (a, b).`1 /\\ b_ = (a, b).`2\n\n(1)  c <- a +^ b              \n\npost = true\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":22,
+  "title":"Simplification mode"
+}</script>
+</div>
+<p>Here the original postcondition <code class="docutils literal notranslate"><span class="pre">res</span> <span class="pre">=</span> <span class="pre">a_</span> <span class="pre">+^</span> <span class="pre">b_</span></code> becomes <code class="docutils literal notranslate"><span class="pre">true</span></code>
+after the circuit-level simplification, which <code class="docutils literal notranslate"><span class="pre">trivial</span></code> then closes.
+More generally, <code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code> is useful as a preprocessing step
+when the full <code class="docutils literal notranslate"><span class="pre">circuit</span></code> translation would succeed only on part of
+the postcondition and other reasoning is needed for the rest.</p>
+<p><code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code> only applies to Hoare triples.</p>
+</section>
+<section id="failure-modes">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Failure modes</a><a class="headerlink" href="#failure-modes" title="Link to this heading"></a></h2>
+<p>Both <code class="docutils literal notranslate"><span class="pre">circuit</span></code> and <code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code> may fail in the following
+ways:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">failed</span> <span class="pre">to</span> <span class="pre">verify</span> <span class="pre">postcondition</span></code></dt><dd><p>The translation succeeded but the resulting circuit is not a
+tautology — i.e., the postcondition is genuinely false on some
+input satisfying the precondition, or its translation was too weak
+to capture the property.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exception(s)</span> <span class="pre">not</span> <span class="pre">supported</span></code></dt><dd><p>The Hoare triple’s postcondition includes an
+exception-monad invariant component; the circuit translation
+handles only the pure (<code class="docutils literal notranslate"><span class="pre">inv</span></code>-empty) part of the goal.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">solve</span> <span class="pre">failed</span> <span class="pre">with</span> <span class="pre">error:</span> <span class="pre">…</span></code> (or <code class="docutils literal notranslate"><span class="pre">Circuit</span> <span class="pre">simplify</span> <span class="pre">failed</span> <span class="pre">with</span> <span class="pre">error:</span> <span class="pre">…</span></code>)</dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">CircError</span></code> was raised during translation. The most common
+causes are: an operator with no <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code> or <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">circuit</span></code>
+binding; a type with no <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code> or <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">array</span></code>
+binding; a program statement that is not a translatable
+assignment.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Wrong</span> <span class="pre">goal</span> <span class="pre">shape</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code> was invoked on a goal that is not a Hoare
+triple.</p>
+</dd>
+</dl>
+</section>
+<section id="limitations">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Limitations</a><a class="headerlink" href="#limitations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Program statements must be assignments whose right-hand sides
+translate into circuits. Control flow (<code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, <code class="docutils literal notranslate"><span class="pre">match</span></code>)
+and module/procedure calls are not handled — they must be
+eliminated (e.g. via unrolling or inlining) before <code class="docutils literal notranslate"><span class="pre">circuit</span></code> is
+invoked.</p></li>
+<li><p>Sampling statements (<code class="docutils literal notranslate"><span class="pre">&lt;$</span></code>) and exception-raising statements are
+not supported.</p></li>
+<li><p>Every type appearing in the goal must be either <code class="docutils literal notranslate"><span class="pre">bind</span>
+<span class="pre">bitstring</span></code>-bound to a concrete (non-abstract) size, or <code class="docutils literal notranslate"><span class="pre">bind</span>
+<span class="pre">array</span></code>-bound with a bound element type.</p></li>
+<li><p>The FOL variant additionally requires that the goal has no free
+type variables.</p></li>
+<li><p>The cost of the equivalence check grows with the bit-width of the
+variables and the depth of the resulting circuit; goals over
+large bitstrings or with many independent inputs may be infeasible
+to check directly. <code class="docutils literal notranslate"><span class="pre">circuit</span> <span class="pre">simplify</span></code> and the <code class="docutils literal notranslate"><span class="pre">extens</span></code> tactical
+(see <a class="reference internal" href="extens.html"><span class="doc">Tactical: extens</span></a>) are the usual escape hatches.</p></li>
+</ul>
+</section>
+</section>
+<section id="tactic-proc-change-circuit">
+<h1>Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code><a class="headerlink" href="#tactic-proc-change-circuit" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code> rewrites a contiguous run of program
+statements into an alternative block, using circuit equivalence as the
+soundness check. Unlike the regular <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span></code> — which generates
+a separate proof obligation for the equivalence of the two fragments
+— <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code> discharges that obligation automatically
+through the same machinery as the <code class="docutils literal notranslate"><span class="pre">circuit</span></code> tactic.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code> <em>[bindings]</em>? <em>cpos</em> <code class="docutils literal notranslate"><span class="pre">+</span></code> <em>N</em> <code class="docutils literal notranslate"><span class="pre">{</span></code> <em>stmt</em> <code class="docutils literal notranslate"><span class="pre">}</span> <span class="pre">.</span></code></p>
+</div>
+<ul class="simple">
+<li><p><em>cpos</em> is the code position at which to begin rewriting.</p></li>
+<li><p><em>N</em> is the number of source instructions to replace, starting at
+<em>cpos</em>.</p></li>
+<li><p><em>stmt</em> is the replacement block, enclosed in braces.</p></li>
+<li><p><em>[bindings]</em> (optional) introduces fresh local variables visible
+only inside the replacement block, using the standard
+<code class="docutils literal notranslate"><span class="pre">[x</span> <span class="pre">:</span> <span class="pre">ty,</span> <span class="pre">…]</span></code> syntax. This lets the new code use intermediate
+names that did not exist in the original procedure.</p></li>
+</ul>
+<p>The equivalence check considers only those variables that are
+<strong>live</strong> at the end of the rewritten region — i.e., read by the rest
+of the procedure body or by the postcondition. Variables written by
+the replacement block but never read again may freely differ.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-4" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-4-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring to_bits from_bits to_uint to_sint of_int W8 8.\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nmodule M = {\n  proc f (a : W8, b : W8) = {\n    var c : W8;\n    c <- a +^ b;\n    return c;\n  }\n}.\n\nlemma swap_xor_args (a_ b_ : W8) :\n  hoare[M.f : a_ = a /\\ b_ = b ==> res = a_ +^ b_].\nproof.\n  proc.\n  proc change circuit 1 + 1 { c <- b +^ a; }.\n  circuit.\nqed.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    241,
+    395,
+    421,
+    447,
+    473,
+    499,
+    524,
+    554,
+    581,
+    604,
+    629,
+    727,
+    815,
+    822,
+    830,
+    876,
+    887,
+    892
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.f \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.f \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\nContext : hr: {a, b, c : W8}\n\npre = a_ = (a, b).`1 /\\ b_ = (a, b).`2\n\n(1)  c <- a +^ b              \n\npost = c = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\nContext : hr: {a, b, c : W8}\n\npre = a_ = (a, b).`1 /\\ b_ = (a, b).`2\n\n(1)  c <- b +^ a              \n\npost = c = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `swap_xor_args'"
+    }
+  ],
+  "initialSentence":22,
+  "title":"Replacing a fragment with an equivalent one"
+}</script>
+</div>
+<p>The single instruction at code position <code class="docutils literal notranslate"><span class="pre">1</span></code> is replaced by
+<code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">&lt;-</span> <span class="pre">b</span> <span class="pre">+^</span> <span class="pre">a</span></code>; the circuit-equivalence checker establishes that the
+two fragments agree on the value of <code class="docutils literal notranslate"><span class="pre">c</span></code>, which is the only variable
+read downstream.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-5" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-5-data">{
+  "source":"require import AllCore List QFABV.\n\ntype W8.\n\nop to_bits : W8 -> bool list.\nop from_bits : bool list -> W8.\nop of_int : int -> W8.\nop to_uint : W8 -> int.\nop to_sint : W8 -> int.\n\nbind bitstring to_bits from_bits to_uint to_sint of_int W8 8.\n(* The realizes below discharge the side conditions left by\n   [bind bitstring]; refer to the [bind] command documentation. *)\nrealize gt0_size by admit.\nrealize tolistP by admit.\nrealize oflistP by admit.\nrealize touintP by admit.\nrealize tosintP by admit.\nrealize ofintP by admit.\nrealize size_tolist by admit.\n\nop (+^) : W8 -> W8 -> W8.\nbind op W8 (+^) \"xor\".\nrealize bvxorP by admit.\n\nmodule M = {\n  proc f (a : W8, b : W8) = {\n    var c : W8;\n    c <- a +^ b;\n    return c;\n  }\n}.\n\nlemma with_fresh_local (a_ b_ : W8) :\n  hoare[M.f : a_ = a /\\ b_ = b ==> res = a_ +^ b_].\nproof.\n  proc.\n  proc change circuit [d : W8] 1 + 1 { d <- a; c <- d +^ b; }.\n  circuit.\nqed.\n",
+  "sentenceEnds":[
+    34,
+    44,
+    75,
+    107,
+    130,
+    154,
+    178,
+    241,
+    395,
+    421,
+    447,
+    473,
+    499,
+    524,
+    554,
+    581,
+    604,
+    629,
+    727,
+    818,
+    825,
+    833,
+    896,
+    907,
+    912
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added type: `W8'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_bits : W8 -> bool list"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator from_bits : bool list -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator of_int : int -> W8"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_uint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator to_sint : W8 -> int"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `gt0_size'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tolistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `oflistP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `touintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `tosintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ofintP'"
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `size_tolist'"
+    },
+    {
+      "goals":[],
+      "message":"info: added operator +^ : W8 -> W8 -> W8"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `bvxorP'"
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.f \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\npre = a_ = a /\\ b_ = b\n\n    M.f \n\npost = res = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\nContext : hr: {a, b, c : W8}\n\npre = a_ = (a, b).`1 /\\ b_ = (a, b).`2\n\n(1)  c <- a +^ b              \n\npost = c = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\na_: W8\nb_: W8\n------------------------------------------------------------------------\nContext : hr: {a, b, c, d : W8}\n\npre = a_ = (a, b).`1 /\\ b_ = (a, b).`2\n\n(1)  d <- a                   \n(2)  c <- d +^ b              \n\npost = c = a_ +^ b_\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `with_fresh_local'"
+    }
+  ],
+  "initialSentence":22,
+  "title":"Introducing a fresh local"
+}</script>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">[d</span> <span class="pre">:</span> <span class="pre">W8]</span></code> binding introduces a fresh local that exists only
+inside the replacement block; the original procedure body has no such
+variable.</p>
+<section id="failure-modes-proc-change-circuit">
+<h2>Failure modes (<code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code>)<a class="headerlink" href="#failure-modes-proc-change-circuit" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">statements</span> <span class="pre">are</span> <span class="pre">not</span> <span class="pre">circuit-equivalent</span></code></dt><dd><p>Both fragments translated into circuits, but the equivalence check
+failed. This means the rewrite is genuinely unsound on at least one
+live output. (Use <code class="docutils literal notranslate"><span class="pre">fail</span> <span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span> <span class="pre">…</span></code> to assert that a
+rewrite is rejected — see <code class="docutils literal notranslate"><span class="pre">tests/proc-change-circuit.ec</span></code> for an
+example.)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">circuit-equivalence</span> <span class="pre">checker</span> <span class="pre">error:</span> <span class="pre">…</span></code></dt><dd><p>Translation of one of the fragments raised an exception. The
+typical cause is the same as for <code class="docutils literal notranslate"><span class="pre">circuit</span></code>: an unbound operator,
+an unbound type, or a non-assignment instruction inside the
+region being replaced.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exceptions</span> <span class="pre">not</span> <span class="pre">supported</span></code></dt><dd><p>The postcondition’s exception-monad invariant is non-empty.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cfold.html" class="btn btn-neutral float-left" title="Tactic: cfold" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clear.html" class="btn btn-neutral float-right" title="Tactic: clear" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
