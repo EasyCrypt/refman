@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hints: hint simplify &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: hoare split" href="hoare-split.html" />
+    <link rel="prev" title="Tactical: extens" href="extens.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bindings.html">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#tactic-proc-change-circuit">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extens.html">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">extens</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hints: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-declarations">Global declarations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-hint-clause">The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> clause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proof-local-commands">Proof-local commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scoped-application">Scoped application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnd.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplify-if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Hints: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/hint-simplify.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hints-hint-simplify">
+<h1>Hints: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span></code><a class="headerlink" href="#hints-hint-simplify" title="Link to this heading"></a></h1>
+<p>The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span></code> commands manage user reduction rules used by
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code>, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code>, and tactics that rely on the same simplification
+machinery.</p>
+<p>Hints can be declared globally in a theory, selected through named
+databases, and adjusted locally inside a proof.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#global-declarations" id="id1">Global declarations</a></p></li>
+<li><p><a class="reference internal" href="#the-hint-clause" id="id2">The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> clause</a></p></li>
+<li><p><a class="reference internal" href="#proof-local-commands" id="id3">Proof-local commands</a></p></li>
+<li><p><a class="reference internal" href="#scoped-application" id="id4">Scoped application</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id5">Example</a></p></li>
+</ul>
+</nav>
+<section id="global-declarations">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Global declarations</a><a class="headerlink" href="#global-declarations" title="Link to this heading"></a></h2>
+<p>Global declarations add lemmas to a simplification database.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span><span class="w"> </span><span class="p">{</span><span class="kd">lemma</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">.</span></code></p>
+</div>
+<p>Add the listed lemmas to the default simplification database.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="kd">lemma</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">.</span></code></p>
+</div>
+<p>Add the listed lemmas to the named database <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">db</span><span class="p">}</span></code>.</p>
+<p>These commands are theory-level declarations: once imported, the
+corresponding rules are available to simplification.</p>
+</section>
+<section id="the-hint-clause">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> clause</a><a class="headerlink" href="#the-hint-clause" title="Link to this heading"></a></h2>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code> accept a single <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> clause that controls which
+user-reduction rules are used. The clause is introduced by the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code>
+keyword and is built from an unsigned base database selection followed by
+any number of signed items:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span><span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="n">item</span><span class="p">}</span><span class="o">*</span></code></p>
+</div>
+<p>where each <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">item</span><span class="p">}</span></code> is one of:</p>
+<ul class="simple">
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span></code> / <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span></code> — activate / deactivate a database;</p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="kd">op</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">]</span></code> / <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">-</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="kd">op</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">]</span></code> — head filter: keep only / drop rules headed
+by the listed operators (at most one filter per clause);</p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="kd">lemma</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">}</span></code> — add lemmas to the default database for this call.</p></li>
+</ul>
+<p>The delimiter disambiguates an item: a bare name is a database, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">[</span>…<span class="p">]</span></code>
+holds operators, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span>…<span class="p">}</span></code> holds lemmas. Lemma sets are add-only – a clause
+never removes lemmas from a database; use the head filter to restrict
+which rules apply. The same clause is accepted by <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code>.</p>
+<p>The database part of a clause is <em>either</em> an unsigned selection <em>or</em>
+signed deltas, never both (mixing them is redundant and rejected). An
+unsigned list <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="n">d2</span></code> <strong>replaces</strong> the consulted databases with
+exactly <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">}</span></code>. Signed <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span></code> / <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span></code> instead modify the current
+set (the proof-local default, else the active set): <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="o">+</span><span class="n">d2</span></code>
+adds <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">d2</span></code> to it, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="o">-</span><span class="n">d3</span></code> removes <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">d3</span></code>.</p>
+<p>A head filter performs full simplification (like a bare <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code>) with
+user reduction restricted to the selected operators.</p>
+<p>The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> clause is independent of the reduction arguments that
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code> already accept: a bare <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code> performs full
+simplification, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span><span class="w"> </span><span class="kr">delta</span></code> additionally unfolds all definitions,
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">g</span></code> unfolds the operators <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">f</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">g</span></code>, and a keyword-less list
+such as <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">beta</span><span class="w"> </span><span class="kr">zeta</span></code> performs only the named reductions. A <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> clause
+may follow any of these (for example <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span><span class="w"> </span><span class="kr">delta</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="o">+</span><span class="p">[</span><span class="n">f</span><span class="p">]</span></code>).</p>
+</section>
+<section id="proof-local-commands">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Proof-local commands</a><a class="headerlink" href="#proof-local-commands" title="Link to this heading"></a></h2>
+<p>Inside a proof, the simplify configuration can be changed without
+modifying the theory-level declarations. The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> command takes the
+same clause as the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code>/<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code> tactics, and each kind of item has a
+persistent effect on the proof state:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span><span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="n">item</span><span class="p">}</span><span class="o">*</span><span class="w"> </span><span class="p">.</span></code></p>
+</div>
+<ul class="simple">
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span></code> / <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span></code> — activate / deactivate a database (for later bare
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code>/<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code>);</p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="kd">lemma</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">}</span></code> — add lemmas to the default database;</p></li>
+<li><p>an unsigned database list <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">db</span><span class="p">}</span><span class="o">+</span></code> — set the proof-local default
+databases used by later <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code>/<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code> calls;</p></li>
+<li><p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="kd">op</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">]</span></code> / <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">-</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="kd">op</span><span class="p">}</span><span class="o">+</span><span class="w"> </span><span class="p">]</span></code> — set the proof-local default head filter.</p></li>
+</ul>
+<p>As in the tactic clause, the database part is <em>either</em> an unsigned
+selection <em>or</em> signed <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">+</span></code>/<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">-</span></code> deltas, never both.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">clear</span><span class="w"> </span><span class="p">{</span><span class="n">db</span><span class="p">}</span>?<span class="w"> </span><span class="p">.</span></code></p>
+</div>
+<p>Clear the local lemma additions: for the default database when <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">db</span><span class="p">}</span></code> is
+omitted, or for the named database <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">db</span><span class="p">}</span></code>. Note that <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">clear</span><span class="w"> </span><span class="n">default</span></code>
+is reserved for the form below, so a database named <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">default</span></code> cannot be
+cleared this way.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">clear</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="p">.</span></code></p>
+</div>
+<p>Clear the proof-local default database and head filter.</p>
+<p>These proof-local changes are part of the proof state and therefore
+follow the usual subgoal branching behavior. Explicit arguments on
+<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">simplify</span></code>/<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cbv</span></code> take precedence over the proof-local defaults.</p>
+</section>
+<section id="scoped-application">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Scoped application</a><a class="headerlink" href="#scoped-application" title="Link to this heading"></a></h2>
+<p>A <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span></code> command can be used as a scoped wrapper around a tactic, with the
+same clause syntax.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">with</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="p">{</span><span class="n">clause</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">{</span><span class="n">tactic</span><span class="p">}</span><span class="w"> </span><span class="p">)</span></code></p>
+</div>
+<p>For example:</p>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="kd">with</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="o">+</span><span class="kr">ring</span><span class="w"> </span><span class="p">(</span><span class="kr">simplify</span><span class="p">).</span>
+<span class="kd">with</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="p">{</span><span class="n">fooE</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="kr">rewrite</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">/=</span><span class="p">).</span>
+<span class="kd">with</span><span class="w"> </span><span class="kd">hint</span><span class="w"> </span><span class="kr">ring</span><span class="w"> </span><span class="p">(</span><span class="kr">cbv</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>The wrapped tactic runs with the modified hint configuration, but the
+subgoals produced afterwards are restored to the original configuration.</p>
+</section>
+<section id="example">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">easycrypt</span><span class="w"> </span><span class="n">failed</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="extens.html" class="btn btn-neutral float-left" title="Tactical: extens" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hoare-split.html" class="btn btn-neutral float-right" title="Tactic: hoare split" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
