@@ -312,13 +312,15 @@ weakest precondition of the random assignment.</p>
 <p>This weakest precondition is defined with respect to an event <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">E</span></code>,
 which can be provided explicitly. When <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">E</span>`</code> is not
 specified, it is inferred from the current postcondition.</p>
+<p>The <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code> tactic additionally verifies that the bound is non-negative,
+as a separate goal, and tries to close it automatically.</p>
 </dd>
 </dl>
 
 <div class="proofnav-sphinx">
   <div id="proofnav-2" class="proofnav-mount"></div>
   <script type="application/json" id="proofnav-2-data">{
-  "source":"require import AllCore Distr DBool Real.\n\nmodule M = {\n  proc f(x : bool) : bool = {\n    var y : bool;\n\n    y <$ {0,1};\n\n    return (x = y);\n  }\n}.\n\npred p : glob M.\n\nlemma L : phoare [M.f : p (glob M) ==> res] <= (1%r/2%r).\nproof.\n  proc.\n  rnd (fun _y => _y = x).\n     (* The post now has two clauses, the first is to prove the\n        probability upper bound on the event, and the second one is to\n        prove that the event holding implies the\n        previous postcondition. *)\n  skip => *;split.\n  + by smt(dbool1E).\n  by smt().\nqed.\n",
+  "source":"require import AllCore Distr DBool Real.\n\nmodule M = {\n  proc f(x : bool) : bool = {\n    var y : bool;\n\n    y <$ {0,1};\n\n    return (x = y);\n  }\n}.\n\npred p : glob M.\n\nlemma L : phoare [M.f : p (glob M) ==> res] <= (1%r/2%r).\nproof.\n  proc.\n  rnd (fun _y => _y = x).\n     (* The post now has two clauses, the first is to prove the\n        probability upper bound on the event, and the second one is to\n        prove that the event holding implies the\n        previous postcondition. A third goal requires the bound to\n        be non-negative. *)\n  + skip => *;split.\n    + by smt(dbool1E).\n    by smt().\n  by smt().\nqed.\n",
   "sentenceEnds":[
     40,
     147,
@@ -327,10 +329,11 @@ specified, it is inferred from the current postcondition.</p>
     231,
     239,
     265,
-    503,
-    524,
-    536,
-    541
+    565,
+    588,
+    602,
+    614,
+    619
   ],
   "sentences":[
     {
@@ -365,20 +368,29 @@ specified, it is inferred from the current postcondition.</p>
     },
     {
       "goals":[
-        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\n\npre = p tt /\\ true\n\n\npost =\n  mu {0,1} (fun (_y : bool) => _y = x) <= 1%r / 2%r &&\n  forall (v : bool), v \\in {0,1} => x = v => (fun (_y : bool) => _y = x) v\n\n"
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {x, y : bool}\n\npre = p tt /\\ true\n\n\npost =\n  mu {0,1} (fun (_y : bool) => _y = x) <= 1%r / 2%r &&\n  forall (v : bool), v \\in {0,1} => x = v => (fun (_y : bool) => _y = x) v\n\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall _, 0%r <= 1%r / 2%r\n"
       ],
       "message":""
     },
     {
       "goals":[
         "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r\n",
-        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => x{`&hr} = v => (fun (_y : bool) => _y = x{`&hr}) v\n"
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => x{`&hr} = v => (fun (_y : bool) => _y = x{`&hr}) v\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall _, 0%r <= 1%r / 2%r\n"
       ],
       "message":""
     },
     {
       "goals":[
-        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => x{`&hr} = v => (fun (_y : bool) => _y = x{`&hr}) v\n"
+        "Type variables: <none>\n\n`&hr: {x, y : bool}\n_: p tt /\\ true\n------------------------------------------------------------------------\nmu {0,1} (fun (_y : bool) => _y = x{`&hr}) <= 1%r / 2%r =>\nforall (v : bool),\n  v \\in {0,1} => x{`&hr} = v => (fun (_y : bool) => _y = x{`&hr}) v\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall _, 0%r <= 1%r / 2%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall _, 0%r <= 1%r / 2%r\n"
       ],
       "message":""
     },
