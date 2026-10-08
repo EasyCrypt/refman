@@ -838,7 +838,11 @@ names that did not exist in the original procedure.</p></li>
 <p>The equivalence check considers only those variables that are
 <strong>live</strong> at the end of the rewritten region — i.e., read by the rest
 of the procedure body or by the postcondition. Variables written by
-the replacement block but never read again may freely differ.</p>
+the replacement block but never read again may freely differ. When
+the region is inside a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, the rest of the procedure body
+includes the loop guard and the whole loop body, which run again on
+the next iterations; the variables read by both fragments are then
+live too, as the fragment itself runs again.</p>
 
 <div class="proofnav-sphinx">
   <div id="proofnav-4" class="proofnav-mount"></div>
