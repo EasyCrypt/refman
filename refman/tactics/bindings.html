@@ -50,7 +50,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code></a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">bind</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#variant-bind-bitstring">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#variant-bind-array">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">array</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#variant-bind-op">Variant: <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">op</span></code></a><ul>
@@ -61,10 +61,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="circuit.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">circuit</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="circuit.html#tactic-proc-change-circuit">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="extens.html">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">extens</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extens.html">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kp">extens</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="hint-simplify.html">Hints: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
@@ -94,7 +94,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
-      <li class="breadcrumb-item active">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code></li>
+      <li class="breadcrumb-item active">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">bind</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tactics/bindings.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,10 +105,10 @@
            <div itemprop="articleBody">
              
   <section id="command-bind">
-<h1>Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">bind</span></code><a class="headerlink" href="#command-bind" title="Link to this heading"></a></h1>
+<h1>Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">bind</span></code><a class="headerlink" href="#command-bind" title="Link to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">bind</span></code> family of commands declares a correspondence between
 EasyCrypt objects and their counterparts in the boolean-circuit world
-used by the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">circuit</span></code> family of tactics.</p>
+used by the <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">circuit</span></code> family of tactics.</p>
 <p>Four variants are available:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">bitstring</span></code> — declares that a type is a fixed-size bitstring,
@@ -830,14 +830,14 @@ spec file outside the example’s working directory):</p>
 <span class="kd">op</span><span class="w"> </span><span class="n">to_uint</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="p">.</span>
 <span class="kd">op</span><span class="w"> </span><span class="n">to_sint</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="p">.</span>
 
-<span class="n">bind</span><span class="w"> </span><span class="n">bitstring</span>
+<span class="kd">bind</span><span class="w"> </span><span class="kd">bitstring</span>
 <span class="w">  </span><span class="n">to_bits</span><span class="w"> </span><span class="n">from_bits</span><span class="w"> </span><span class="n">to_uint</span><span class="w"> </span><span class="n">to_sint</span><span class="w"> </span><span class="n">of_int</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span>
 <span class="cm">(* ... realize side conditions ... *)</span>
 
-<span class="kd">op</span><span class="w"> </span><span class="p">(</span><span class="o">+</span>^<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="p">.</span>
+<span class="kd">op</span><span class="w"> </span><span class="o">(+^)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">W8</span><span class="p">.</span>
 
-<span class="n">bind</span><span class="w"> </span><span class="n">circuit</span>
-<span class="w">  </span><span class="p">(</span><span class="o">+</span>^<span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"BVXOR_8"</span><span class="w"> </span><span class="kd">from</span><span class="w"> </span><span class="s2">"specs.spec"</span><span class="p">.</span>
+<span class="kd">bind</span><span class="w"> </span><span class="kd">circuit</span>
+<span class="w">  </span><span class="o">(+^)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"BVXOR_8"</span><span class="w"> </span><span class="kd">from</span><span class="w"> </span><span class="s2">"specs.spec"</span><span class="p">.</span>
 </pre></div>
 </div>
 <p>The definition of the <code class="docutils literal notranslate"><span class="pre">BVXOR_8</span></code> circuit, in the
