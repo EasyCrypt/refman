@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: while &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tactic: swap" href="swap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bindings.html">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">bind</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#tactic-proc-change-circuit">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extens.html">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kp">extens</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hint-simplify.html">Hints: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnd.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplify-if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="docutils literal notranslate"><span class="pre">while</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-hoare-logic">Variant: Hoare logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-probabilistic-relational-hoare-logic-one-sided">Variant: Probabilistic relational Hoare logic (one-sided)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-probabilistic-hoare-logic-with-bound">Variant: Probabilistic Hoare logic with (&lt;=) bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-probabilistic-hoare-logic-with-strict-variant">Variant: Probabilistic Hoare logic with strict variant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-probabilistic-hoare-logic-with-non-strict-variant-and-or-bound">Variant: Probabilistic Hoare logic with non-strict variant and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">&gt;=</span></code> or <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">=</span></code> bound</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="docutils literal notranslate"><span class="pre">while</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/while.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-while">
+<h1>Tactic: <code class="docutils literal notranslate"><span class="pre">while</span></code><a class="headerlink" href="#tactic-while" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">while</span></code> tactic applies to program-logic goals where the next
+statement to reason about is a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop.</p>
+<p>Applying <code class="docutils literal notranslate"><span class="pre">while</span></code> replaces the original goal with proof obligations that let
+you reason about the loop via an invariant (and, in some variants, a
+termination variant). Intuitively, you prove that the invariant is initially
+true, is preserved by one iteration of the loop, and you then use the invariant
+to justify what follows once the loop condition becomes false.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-hoare-logic" id="id1">Variant: Hoare logic</a></p></li>
+<li><p><a class="reference internal" href="#variant-probabilistic-relational-hoare-logic-one-sided" id="id2">Variant: Probabilistic relational Hoare logic (one-sided)</a></p></li>
+<li><p><a class="reference internal" href="#variant-probabilistic-hoare-logic-with-bound" id="id3">Variant: Probabilistic Hoare logic with (&lt;=) bound</a></p></li>
+<li><p><a class="reference internal" href="#variant-probabilistic-hoare-logic-with-strict-variant" id="id4">Variant: Probabilistic Hoare logic with strict variant</a></p></li>
+<li><p><a class="reference internal" href="#variant-probabilistic-hoare-logic-with-non-strict-variant-and-or-bound" id="id5">Variant: Probabilistic Hoare logic with non-strict variant and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">&gt;=</span></code> or <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">=</span></code> bound</a></p></li>
+</ul>
+</nav>
+<section id="variant-hoare-logic">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: Hoare logic</a><a class="headerlink" href="#variant-hoare-logic" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">({formula})</span></code></p>
+</div>
+<p>The formula is a loop invariant that must hold whenever the loop condition is
+evaluated (at the start of each iteration). It may reference variables of the
+program.</p>
+<p>Applying this form of <code class="docutils literal notranslate"><span class="pre">while</span></code> generates (at least) the following goals:</p>
+<ul class="simple">
+<li><p><strong>Preservation goal (one iteration):</strong> assuming the invariant holds and the
+loop condition is true, executing the loop body re-establishes the invariant.</p></li>
+<li><p><strong>Exit/continuation goal:</strong> you must show that the invariant holds when the
+loop is entered, and that when the loop condition becomes false, the
+invariant is strong enough to derive the desired postcondition.</p></li>
+</ul>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc sumsq(n : int) : int = {\n    var x, i;\n    x <- 0;\n    i <- 0;\n    while (i < n) {\n      x <- x + (i + 1);\n      i <- i + 1;\n    }\n    return x;\n  }\n}.\n\nlemma ex_while_hl (n : int) :\n  hoare [M.sumsq : 0 <= n ==> 0 <= res].\nproof.\n  proc.\n  while (0 <= i <= n /\\ 0 <= x).\n  - admit.\n  - admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    196,
+    268,
+    275,
+    283,
+    316,
+    327,
+    338,
+    343
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = 0 <= n\n\n    M.sumsq \n\npost = 0 <= res\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = 0 <= n\n\n    M.sumsq \n\npost = 0 <= res\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {n, x, i : int}\n\npre = 0 <= n\n\n(1--)  x <- 0                   \n(2--)  i <- 0                   \n(3--)  while (i < n{!hr}) {     \n(3.1)    x <- x + (i + 1)       \n(3.2)    i <- i + 1             \n(3--)  }                        \n\npost = 0 <= x\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {n, x, i : int}\n\npre = (0 <= i <= n /\\ 0 <= x) /\\ i < n{!hr}\n\n(1)  x <- x + (i + 1)         \n(2)  i <- i + 1               \n\npost = 0 <= i <= n /\\ 0 <= x\n\n",
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {n, x, i : int}\n\npre = 0 <= n\n\n(1)  x <- 0                   \n(2)  i <- 0                   \n\npost =\n  (0 <= i <= n /\\ 0 <= x) /\\\n  forall (i0 x0 : int), ! i0 < n{!hr} => 0 <= i0 <= n /\\ 0 <= x0 => 0 <= x0\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {n, x, i : int}\n\npre = 0 <= n\n\n(1)  x <- 0                   \n(2)  i <- 0                   \n\npost =\n  (0 <= i <= n /\\ 0 <= x) /\\\n  forall (i0 x0 : int), ! i0 < n{!hr} => 0 <= i0 <= n /\\ 0 <= x0 => 0 <= x0\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ex_while_hl'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-probabilistic-relational-hoare-logic-one-sided">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: Probabilistic relational Hoare logic (one-sided)</a><a class="headerlink" href="#variant-probabilistic-relational-hoare-logic-one-sided" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">{side}</span> <span class="pre">{formula}</span> <span class="pre">{expr}</span></code></p>
+</div>
+<p>Here <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">formula</span><span class="p">}</span></code> is a relational invariant, and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">expr</span><span class="p">}</span></code> is an integer-valued
+termination variant. This variant applies when the program designated by
+<code class="docutils literal notranslate"><span class="pre">{side}</span></code> ends with a <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">while</span></code> loop.</p>
+<p>Applying this form of <code class="docutils literal notranslate"><span class="pre">while</span></code> generates two main goals:</p>
+<ul class="simple">
+<li><p><strong>Loop-body goal (designated side):</strong> assuming the invariant holds and the
+loop condition is true, executing the loop body re-establishes the
+invariant and decreases the variant with probability 1.</p></li>
+<li><p><strong>Remaining relational goal:</strong> the loop is removed from the designated
+program, and the postcondition is strengthened with the invariant together
+with pure logical conditions connecting loop exit to the desired
+postcondition.</p></li>
+</ul>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc sumsq(n : int) : int = {\n    var x, i;\n    x <- 0;\n    i <- 0;\n    while (i < n) {\n      x <- x + (i + 1);\n      i <- i + 1;\n    }\n    return x;\n  }\n}.\n\nlemma ex_while_prhl :\n  equiv [ M.sumsq ~ M.sumsq : ={n} ==> res{1} = res{2} ].\nproof.\n  proc.\n  while{1} (true) (0).\n  - admit.\n  - admit.\nqed.\n",
+  "sentenceEnds":[
+    23,
+    196,
+    277,
+    284,
+    292,
+    315,
+    326,
+    337,
+    342
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.sumsq ~ M.sumsq \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    M.sumsq ~ M.sumsq \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {n, x, i : int} [programs are in sync]\n&2 (right) : {n, x, i : int}\n\npre = n{1} = n{2}\n\n(1--)  x <- 0                   \n(2--)  i <- 0                   \n(3--)  while (i < n) {          \n(3.1)    x <- x + (i + 1)       \n(3.2)    i <- i + 1             \n(3--)  }                        \n\npost = x{1} = x{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall _ (z : int),\n  phoare[ x <- x + (i + 1); i <- i + 1; : i < n /\\ 0 = z ==> 0 < z] = 1%r\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {n, x, i : int}\n&2 (right) : {n, x, i : int}\n\npre = n{1} = n{2}\n\nx <- 0                     (1--)  x <- 0                   \ni <- 0                     (2--)  i <- 0                   \n                           (3--)  while (i < n) {          \n                           (3.1)    x <- x + (i + 1)       \n                           (3.2)    i <- i + 1             \n                           (3--)  }                        \n\npost =\n  forall (i_L x_L : int),\n    (0 <= 0 => ! i_L < n{1}) /\\ (! i_L < n{1} => x_L = x{2})\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {n, x, i : int}\n&2 (right) : {n, x, i : int}\n\npre = n{1} = n{2}\n\nx <- 0                     (1--)  x <- 0                   \ni <- 0                     (2--)  i <- 0                   \n                           (3--)  while (i < n) {          \n                           (3.1)    x <- x + (i + 1)       \n                           (3.2)    i <- i + 1             \n                           (3--)  }                        \n\npost =\n  forall (i_L x_L : int),\n    (0 <= 0 => ! i_L < n{1}) /\\ (! i_L < n{1} => x_L = x{2})\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `ex_while_prhl'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Relational example (shape)"
+}</script>
+</div>
+</section>
+<section id="variant-probabilistic-hoare-logic-with-bound">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: Probabilistic Hoare logic with (&lt;=) bound</a><a class="headerlink" href="#variant-probabilistic-hoare-logic-with-bound" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">while</span><span class="w"> </span><span class="p">{</span><span class="n">formula</span><span class="p">}</span></code></p>
+</div>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">easycrypt</span><span class="w"> </span><span class="n">failed</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="variant-probabilistic-hoare-logic-with-strict-variant">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Variant: Probabilistic Hoare logic with strict variant</a><a class="headerlink" href="#variant-probabilistic-hoare-logic-with-strict-variant" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">while</span><span class="w"> </span><span class="p">{</span><span class="n">formula</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="n">expr</span><span class="p">}</span></code></p>
+</div>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-2" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-2-data">{
+  "source":"require import AllCore DBool.\n\nmodule M = {\n  proc p(b, e) = {\n    var r;\n    r <- 1;\n    while (0 < e) {\n      r <- r * b;\n      e <- e - 1;\n    }\n    return r;\n  }\n}.\n\nlemma L b' e': 0<=e' => b' <> 0 =>\n  phoare[M.p: (b, e) = (b', e') ==> res = b'^e'] = 1%r.\nproof.\nmove => e_ge0 b_ne0.\nproc.\nsp.\nwhile (r = b^(e'-e) /\\ b = b' /\\ 0 <= e <= e') e.\n- move => z.\n  auto.\n  smt(expr_pred).\nauto.\nsmt(expr_pred expr0).\nqed.\n",
+  "sentenceEnds":[
+    29,
+    168,
+    260,
+    267,
+    288,
+    294,
+    298,
+    348,
+    361,
+    369,
+    387,
+    393,
+    415,
+    420
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\n------------------------------------------------------------------------\n0 <= e' =>\nb' <> 0 => phoare[ M.p : (b, e) = (b', e') ==> res = b' ^ e'] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\n------------------------------------------------------------------------\n0 <= e' =>\nb' <> 0 => phoare[ M.p : (b, e) = (b', e') ==> res = b' ^ e'] = 1%r\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\npre = (b, e) = (b', e')\n\n    M.p \n    [=] 1%r\n\npost = res = b' ^ e'\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nContext : hr: {b, e, r : int}\nBound   : [=] 1%r\n\npre = ((b, e).`1, (b, e).`2) = (b', e')\n\n(1--)  r <- 1                   \n(2--)  while (0 < e) {          \n(2.1)    r <- r * b             \n(2.2)    e <- e - 1             \n(2--)  }                        \n\npost = r = b' ^ e'\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nContext : hr: {b, e, r : int}\nBound   : [=] 1%r\n\npre = r = 1 /\\ ((b, e).`1, (b, e).`2) = (b', e')\n\n(1--)  while (0 < e) {          \n(1.1)    r <- r * b             \n(1.2)    e <- e - 1             \n(1--)  }                        \n\npost = r = b' ^ e'\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nforall (z : int),\n  phoare[ r <- r * b; e <- e - 1; :\n           ((r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\ 0 < e) /\\ e = z ==>\n           (r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\ e < z] = 1%r\n",
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nContext : hr: {b, e, r : int}\nBound   : [=] 1%r\n\npre = r = 1 /\\ ((b, e).`1, (b, e).`2) = (b', e')\n\n\npost =\n  (r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\\n  forall (e0 r0 : int),\n    (r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => e0 <= 0 => ! 0 < e0) /\\\n    (! 0 < e0 =>\n     r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => r0 = b' ^ e')\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\nz: int\n------------------------------------------------------------------------\nContext : hr: {b, e, r : int}\nBound   : [=] 1%r\n\npre = ((r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\ 0 < e) /\\ e = z\n\n(1)  r <- r * b               \n(2)  e <- e - 1               \n\npost = (r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\ e < z\n",
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nContext : hr: {b, e, r : int}\nBound   : [=] 1%r\n\npre = r = 1 /\\ ((b, e).`1, (b, e).`2) = (b', e')\n\n\npost =\n  (r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\\n  forall (e0 r0 : int),\n    (r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => e0 <= 0 => ! 0 < e0) /\\\n    (! 0 < e0 =>\n     r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => r0 = b' ^ e')\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\nz: int\n------------------------------------------------------------------------\nforall &hr,\n  ((r{hr} = b{hr} ^ (e' - e{hr}) /\\ b{hr} = b' /\\ 0 <= e{hr} <= e') /\\\n   0 < e{hr}) /\\\n  e{hr} = z =>\n  let e0 = e{hr} - 1 in\n  (r{hr} * b{hr} = b{hr} ^ (e' - e0) /\\ b{hr} = b' /\\ 0 <= e0 <= e') /\\\n  e0 < z\n",
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nContext : hr: {b, e, r : int}\nBound   : [=] 1%r\n\npre = r = 1 /\\ ((b, e).`1, (b, e).`2) = (b', e')\n\n\npost =\n  (r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\\n  forall (e0 r0 : int),\n    (r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => e0 <= 0 => ! 0 < e0) /\\\n    (! 0 < e0 =>\n     r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => r0 = b' ^ e')\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nContext : hr: {b, e, r : int}\nBound   : [=] 1%r\n\npre = r = 1 /\\ ((b, e).`1, (b, e).`2) = (b', e')\n\n\npost =\n  (r = b ^ (e' - e) /\\ b = b' /\\ 0 <= e <= e') /\\\n  forall (e0 r0 : int),\n    (r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => e0 <= 0 => ! 0 < e0) /\\\n    (! 0 < e0 =>\n     r0 = b ^ (e' - e0) /\\ b = b' /\\ 0 <= e0 <= e' => r0 = b' ^ e')\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nb': int\ne': int\ne_ge0: 0 <= e'\nb_ne0: b' <> 0\n------------------------------------------------------------------------\nforall &hr,\n  r{hr} = 1 /\\ b{hr} = b' /\\ e{hr} = e' =>\n  (r{hr} = b{hr} ^ (e' - e{hr}) /\\ b{hr} = b' /\\ 0 <= e{hr} <= e') /\\\n  forall (e0 r0 : int),\n    (r0 = b{hr} ^ (e' - e0) /\\ b{hr} = b' /\\ 0 <= e0 <= e' =>\n     e0 <= 0 => ! 0 < e0) /\\\n    (! 0 < e0 =>\n     r0 = b{hr} ^ (e' - e0) /\\ b{hr} = b' /\\ 0 <= e0 <= e' => r0 = b' ^ e')\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":6
+}</script>
+</div>
+</section>
+<section id="variant-probabilistic-hoare-logic-with-non-strict-variant-and-or-bound">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Variant: Probabilistic Hoare logic with non-strict variant and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">&gt;=</span></code> or <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">=</span></code> bound</a><a class="headerlink" href="#variant-probabilistic-hoare-logic-with-non-strict-variant-and-or-bound" title="Link to this heading"></a></h2>
+<p>This variant only works on pHL goals whose body only contains a while loop.
+It can be seen as a variation of the variant pHL with <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">&gt;=</span></code> bounds
+with some additional requirements to handle issues with termination.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">while</span><span class="w"> </span><span class="p">{</span><span class="n">formula</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="kr">var</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="n">varbd</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="n">prob</span><span class="p">}</span></code></p>
+</div>
+<p>Here <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">formula</span><span class="p">}</span></code> is an invariant, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="kr">var</span><span class="p">}</span></code> is an integer
+termination variant, <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">varbd</span><span class="p">}</span></code> is an upper bound on the variant,
+and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">prob</span><span class="p">}</span></code> is a lower bound on the probability that the variant decreases.</p>
+<p>Program variables used in <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">varbd</span><span class="p">}</span></code> and <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">prob</span><span class="p">}</span></code> need to be unmodified by the loop body.</p>
+<p>Though this tactic can be used to prove non-<code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="mi">1</span><span class="o">%</span><span class="n">r</span></code> bounds, it only works with
+almost certain termination. The bounds are proven using co-induction,
+similarly to the variant of while for pHL with <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="o">&gt;=</span></code> bounds. Using this
+requires carefully setting up the precondition and bounds to facilitate this.</p>
+<p>The tactic generates 6 goals</p>
+<ul class="simple">
+<li><p>A goal that connects the precondition to the invariant</p></li>
+<li><p>A goal that handles the case where the loop is never entered, connecting
+the bound of the pHL statement to both the precondition and postcondition.</p></li>
+<li><p>A goal requiring that <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">varbd</span><span class="p">}</span></code> bounds the variant from above, and that the loop
+condition fails when the variant reaches 0.</p></li>
+<li><p>A goal requiring that the pHL holds from coinduction.</p></li>
+<li><p>A goal requiring that the invariant is always preserved</p></li>
+<li><p>A goal requiring that <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="p">{</span><span class="n">prob</span><span class="p">}</span></code> is positive and lower bounds the probability of
+the variant decreasing.</p></li>
+</ul>
+<p>The previous example is simpler and more well motivated, but does
+not fully demonstrate the power of the tactic, which we demonstrate
+with the following example.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-3" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-3-data">{
+  "source":"require import AllCore DBool.\n\nmodule M = {\n  proc p(i: int, f: bool) = {\n    var c;\n    while (0 < i) {\n      c <$ {0,1};\n      if (c) {\n        i <- i-1;\n      } else {\n        f <- false;\n      }\n    }\n    return f;\n  }\n}.\n\nlemma L: phoare[M.p: 0 <= i /\\ f==> res] = ((2%r)^(-i)).\nproof.\nproc.\nexlim i => I.\nconseq (: 0 <= i <= I ==> f:\n  = (if f then 2%r ^ -i else 0%r)) => //.\n+ smt().\nwhile (i <= I) i I (1%r/2%r).\n- (* Connecting precondition to invariant *)\n  done.\n- (* Connecting precondition to pHL bound and postcondition\n     when the loop is never entered *)\n  smt(RField.expr0).\n- (* Showing that I bounds the variant, and that the variant\n     reaching 0 means exiting the loop *)\n  smt().\n- (* Using coinduction to prove that the pHL bound is as desired *)\n  move => wH.\n  exlim i => i'.\n  seq 2: f (if f then 1%r/2%r else 0%r)\n         (2%r ^ (1-i')) _ 0%r\n         (0 <= i <= I /\\ (f => i' = i + 1))=> //.\n  + auto.\n    smt().\n  + wp.\n    rnd (fun c => c = true /\\ f).\n    auto => /> &hr.\n    rewrite dboolE.\n    smt().\n  + conseq wH.\n    * smt().\n    smt().\n  + conseq wH.\n    * smt().\n    smt().\n  rewrite (StdBigop.Bigreal.Num.Domain.exprD) // RField.expr1 => />.\n  smt(RField.unitrX).\n- (* Showing that the invariant is preserved *)\n  auto; smt(dboolE).\n(* Showing that the probabiliy bound on the variant decreasing\n   is exactly that *)\nsplit.\n- smt().\nmove => z.\nwp.\nrnd.\nauto => />.\nsmt(dboolE).\nqed.\n",
+  "sentenceEnds":[
+    29,
+    225,
+    283,
+    290,
+    296,
+    310,
+    381,
+    390,
+    420,
+    473,
+    593,
+    705,
+    787,
+    804,
+    924,
+    934,
+    945,
+    953,
+    987,
+    1007,
+    1027,
+    1038,
+    1053,
+    1066,
+    1077,
+    1092,
+    1105,
+    1116,
+    1185,
+    1207,
+    1276,
+    1368,
+    1377,
+    1388,
+    1392,
+    1397,
+    1409,
+    1422,
+    1427
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = 0 <= i /\\ f\n\n    M.p \n    [=] 2%r ^ - i\n\npost = res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = 0 <= i /\\ f\n\n    M.p \n    [=] 2%r ^ - i\n\npost = res\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ - (i, f).`1\n\npre = 0 <= (i, f).`1 /\\ (i, f).`2\n\n(1----)  while (0 < i) {          \n(1.1--)    c <$ {0,1}             \n(1.2--)    if (c) {               \n(1.2.1)      i <- i - 1           \n(1.2--)    } else {               \n(1.2?1)      f <- false           \n(1.2--)    }                      \n(1----)  }                        \n\npost = f\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ - (i, f).`1\n\npre = I = i /\\ 0 <= (i, f).`1 /\\ (i, f).`2\n\n(1----)  while (0 < i) {          \n(1.1--)    c <$ {0,1}             \n(1.2--)    if (c) {               \n(1.2.1)      i <- i - 1           \n(1.2--)    } else {               \n(1.2?1)      f <- false           \n(1.2--)    }                      \n(1----)  }                        \n\npost = f\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall &hr,\n  0%r <= 2%r ^ - (i{hr}, f{hr}).`1 /\\\n  (I = i{hr} /\\ 0 <= (i{hr}, f{hr}).`1 /\\ (i{hr}, f{hr}).`2 =>\n   (if f{hr} then 2%r ^ -i{hr} else 0%r) = 2%r ^ - (i{hr}, f{hr}).`1)\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 2%r ^ -i else 0%r\n\npre = 0 <= i <= I\n\n(1----)  while (0 < i) {          \n(1.1--)    c <$ {0,1}             \n(1.2--)    if (c) {               \n(1.2.1)      i <- i - 1           \n(1.2--)    } else {               \n(1.2?1)      f <- false           \n(1.2--)    }                      \n(1----)  }                        \n\npost = f\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 2%r ^ -i else 0%r\n\npre = 0 <= i <= I\n\n(1----)  while (0 < i) {          \n(1.1--)    c <$ {0,1}             \n(1.2--)    if (c) {               \n(1.2.1)      i <- i - 1           \n(1.2--)    } else {               \n(1.2?1)      f <- false           \n(1.2--)    }                      \n(1----)  }                        \n\npost = f\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall &hr, 0 <= i{hr} <= I => i{hr} <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall _ (f0 : bool) (i0 : int),\n  0 <= i0 <= I => ! 0 < i0 => (if f0 then 2%r ^ -i0 else 0%r) = b2r f0\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall _ (i0 : int), i0 <= I => i0 <= I /\\ (i0 <= 0 => ! 0 < i0)\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\n------------------------------------------------------------------------\nphoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r) =>\nphoare[ c <$ ${0,1}; ...; w : 0 <= i <= I /\\ 0 < i ==> f] = (if f then\n                                                               2%r ^ -i\n                                                             else 0%r)\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall _ (f0 : bool) (i0 : int),\n  0 <= i0 <= I => ! 0 < i0 => (if f0 then 2%r ^ -i0 else 0%r) = b2r f0\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall _ (i0 : int), i0 <= I => i0 <= I /\\ (i0 <= 0 => ! 0 < i0)\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\n------------------------------------------------------------------------\nphoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r) =>\nphoare[ c <$ ${0,1}; ...; w : 0 <= i <= I /\\ 0 < i ==> f] = (if f then\n                                                               2%r ^ -i\n                                                             else 0%r)\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall _ (i0 : int), i0 <= I => i0 <= I /\\ (i0 <= 0 => ! 0 < i0)\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\n------------------------------------------------------------------------\nphoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r) =>\nphoare[ c <$ ${0,1}; ...; w : 0 <= i <= I /\\ 0 < i ==> f] = (if f then\n                                                               2%r ^ -i\n                                                             else 0%r)\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\n------------------------------------------------------------------------\nphoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r) =>\nphoare[ c <$ ${0,1}; ...; w : 0 <= i <= I /\\ 0 < i ==> f] = (if f then\n                                                               2%r ^ -i\n                                                             else 0%r)\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 2%r ^ -i else 0%r\n\npre = 0 <= i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n(3--)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 2%r ^ -i else 0%r\n\npre = i' = i /\\ 0 <= i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n(3--)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\n\npre = i' = i /\\ 0 <= i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = 0 <= i <= I /\\ (f => i' = i + 1)\n\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 1%r / 2%r else 0%r\n\npre = i' = i /\\ 0 <= i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  forall (c0 : bool),\n    Distr.(\\in) c0 {0,1} =>\n    if c0 then let i0 = i{hr} - 1 in 0 <= i0 <= I /\\ (f{hr} => i' = i0 + 1)\n    else 0 <= i{hr} <= I /\\ (false => i' = i{hr} + 1)\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 1%r / 2%r else 0%r\n\npre = i' = i /\\ 0 <= i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 1%r / 2%r else 0%r\n\npre = i' = i /\\ 0 <= i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] if f then 1%r / 2%r else 0%r\n\npre = i' = i /\\ 0 <= i <= I /\\ 0 < i\n\n(1)  c <$ {0,1}               \n\npost = if c then f else false\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = (i' = i /\\ 0 <= i <= I /\\ 0 < i) /\\ true\n\n\npost =\n  (mu {0,1} (fun (c0 : bool) => c0 = true /\\ f) =\n   if f then 1%r / 2%r else 0%r) &&\n  forall (v : bool),\n    Distr.(\\in) v {0,1} =>\n    (fun (c0 : bool) => c0 = true /\\ f) v <=> if v then f else false\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\ni': int\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\n&hr: {f, c : bool, i : int}\n------------------------------------------------------------------------\n0 <= i' =>\ni' <= I =>\n0 < i' =>\nmu {0,1} (fun (c0 : bool) => c0 = true /\\ f{hr}) =\nif f{hr} then inv 2%r else 0%r\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\ni': int\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\n&hr: {f, c : bool, i : int}\n------------------------------------------------------------------------\n0 <= i' =>\ni' <= I =>\n0 < i' =>\n((if (fun (c0 : bool) => c0 = true /\\ f{hr}) true then 1%r / 2%r else 0%r) +\n if (fun (c0 : bool) => c0 = true /\\ f{hr}) false then 1%r / 2%r else 0%r) =\nif f{hr} then inv 2%r else 0%r\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 2%r ^ (1 - i')\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  0%r <= 2%r ^ (1 - i') /\\\n  ((0 <= i{hr} <= I /\\ (f{hr} => i' = i{hr} + 1)) /\\ f{hr} =>\n   (if f{hr} then 2%r ^ -i{hr} else 0%r) = 2%r ^ (1 - i'))\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  (0 <= i{hr} <= I /\\ (f{hr} => i' = i{hr} + 1)) /\\ f{hr} => 0 <= i{hr} <= I\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  (0 <= i{hr} <= I /\\ (f{hr} => i' = i{hr} + 1)) /\\ f{hr} => 0 <= i{hr} <= I\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 0%r\n\npre = (0 <= i <= I /\\ (f => i' = i + 1)) /\\ !f\n\n(1)  w                        \n\npost = f\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  0%r <= 0%r /\\\n  ((0 <= i{hr} <= I /\\ (f{hr} => i' = i{hr} + 1)) /\\ !f{hr} =>\n   (if f{hr} then 2%r ^ -i{hr} else 0%r) = 0%r)\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  (0 <= i{hr} <= I /\\ (f{hr} => i' = i{hr} + 1)) /\\ !f{hr} => 0 <= i{hr} <= I\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  (0 <= i{hr} <= I /\\ (f{hr} => i' = i{hr} + 1)) /\\ !f{hr} => 0 <= i{hr} <= I\n",
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\ni': int\n------------------------------------------------------------------------\nforall &hr,\n  i' = i{hr} /\\ 0 <= i{hr} <= I /\\ 0 < i{hr} =>\n  (if f{hr} then 1%r / 2%r else 0%r) * 2%r ^ (1 - i') =\n  if f{hr} then 2%r ^ -i{hr} else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nw: statement { calls: None, reads: (c : bool), (i : int), writes: (c : bool), (f : bool), (i : int) }\ni': int\nwH: phoare[ w : 0 <= i <= I ==> f] = (if f then 2%r ^ -i else 0%r)\n------------------------------------------------------------------------\nforall &hr,\n  0 <= i' =>\n  i' <= I =>\n  0 < i' =>\n  (if f{hr} then inv 2%r else 0%r) * (2%r * 2%r ^ -i') =\n  if f{hr} then 2%r ^ -i' else 0%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [=] 1%r\n\npre = i <= I /\\ 0 < i\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i <= I\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\n(forall &hr, i{hr} <= I => 0%r < 1%r / 2%r) /\\\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall &hr, i{hr} <= I => 0%r < 1%r / 2%r\n",
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\n------------------------------------------------------------------------\nforall (z : int),\n  phoare[ c <$ ${0,1}; if (c) {...} : i <= I /\\ 0 < i /\\ i = z ==> i < z] >= (\n  1%r / 2%r)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nz: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [>=] 1%r / 2%r\n\npre = i <= I /\\ 0 < i /\\ i = z\n\n(1--)  c <$ {0,1}               \n(2--)  if (c) {                 \n(2.1)    i <- i - 1             \n(2--)  } else {                 \n(2?1)    f <- false             \n(2--)  }                        \n\npost = i < z\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nz: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [>=] 1%r / 2%r\n\npre = i <= I /\\ 0 < i /\\ i = z\n\n(1)  c <$ {0,1}               \n\npost = if c then i - 1 < z else i < z\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nz: int\n------------------------------------------------------------------------\nContext : hr: {f, c : bool, i : int}\nBound   : [>=] 1%r\n\npre = (i <= I /\\ 0 < i /\\ i = z) /\\ true\n\n\npost =\n  1%r / 2%r <= mu {0,1} (fun (x : bool) => if x then i - 1 < z else i < z) &&\n  forall (v : bool),\n    Distr.(\\in) v {0,1} =>\n    (fun (x : bool) => if x then i - 1 < z else i < z) v =>\n    if v then i - 1 < z else i < z\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nI: int\nz: int\n------------------------------------------------------------------------\nz <= I => 0 < z => inv 2%r <= mu {0,1} (fun (x : bool) => x && z - 1 < z)\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `L'"
+    }
+  ],
+  "initialSentence":7
+}</script>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="swap.html" class="btn btn-neutral float-left" title="Tactic: swap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
