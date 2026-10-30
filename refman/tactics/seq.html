@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactic: seq &mdash; EasyCrypt refman  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/proofnav/proofnav.css?v=4392ad40" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/easycrypt.css?v=38956531" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script defer="defer" src="../_static/proofnav/proofnav.bundle.js?v=3ab35e3c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tactic: simplify if" href="simplify-if.html" />
+    <link rel="prev" title="Tactic: rnd" href="rnd.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EasyCrypt refman
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tactics.html">Proof tactics reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async-while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">while</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bindings.html">Command: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">bind</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfold.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">cfold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#tactic-proc-change-circuit">Tactic: <code class="docutils literal notranslate"><span class="pre">proc</span> <span class="pre">change</span> <span class="pre">circuit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clear.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">clear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extens.html">Tactical: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kp">extens</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hint-simplify.html">Hints: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kd">hint</span><span class="w"> </span><span class="kr">simplify</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoare-split.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">hoare</span><span class="w"> </span><span class="kr">split</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="procstar.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">proc</span><span class="o">*</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnd.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">rnd</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tactic: <code class="docutils literal notranslate"><span class="pre">seq</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variant-hoare-logic">Variant: Hoare logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-probabilistic-relation-hoare-logic-two-sided">Variant: Probabilistic relation Hoare logic (two-sided)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-probabilistic-relation-hoare-logic-one-sided">Variant: Probabilistic relation Hoare logic (one-sided)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-probabilistic-hoare-logic">Variant: Probabilistic Hoare logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-expectation-hoare-logic">Variant: Expectation Hoare logic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simplify-if.html">Tactic: <code class="docutils literal notranslate"><span class="pre">simplify</span> <span class="pre">if</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="skip.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">skip</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="splitwhile.html">Tactic: <code class="docutils literal notranslate"><span class="pre">splitwhile</span></code> Tactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swap.html">Tactic: <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">swap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="while.html">Tactic: <code class="docutils literal notranslate"><span class="pre">while</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EasyCrypt refman</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tactics.html">Proof tactics reference</a></li>
+      <li class="breadcrumb-item active">Tactic: <code class="docutils literal notranslate"><span class="pre">seq</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tactics/seq.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tactic-seq">
+<h1>Tactic: <code class="docutils literal notranslate"><span class="pre">seq</span></code><a class="headerlink" href="#tactic-seq" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">seq</span></code> tactic applies to program-logic goals by splitting the
+program(s) under consideration into two consecutive parts.</p>
+<p>Applying <code class="docutils literal notranslate"><span class="pre">seq</span></code> allows one to decompose such a goal into two separate
+program-logic obligations by splitting the program(s) at a chosen point.
+The first obligation establishes that the initial precondition ensures
+some intermediate assertion after execution of the first part. The second
+obligation then shows that, assuming this intermediate assertion, execution
+of the second part entails the desired postcondition.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">seq</span></code> tactic requires the intermediate assertion to be supplied by
+the user, it is not inferred automatically.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#variant-hoare-logic" id="id1">Variant: Hoare logic</a></p></li>
+<li><p><a class="reference internal" href="#variant-probabilistic-relation-hoare-logic-two-sided" id="id2">Variant: Probabilistic relation Hoare logic (two-sided)</a></p></li>
+<li><p><a class="reference internal" href="#variant-probabilistic-relation-hoare-logic-one-sided" id="id3">Variant: Probabilistic relation Hoare logic (one-sided)</a></p></li>
+<li><p><a class="reference internal" href="#variant-probabilistic-hoare-logic" id="id4">Variant: Probabilistic Hoare logic</a></p></li>
+<li><p><a class="reference internal" href="#variant-expectation-hoare-logic" id="id5">Variant: Expectation Hoare logic</a></p></li>
+</ul>
+</nav>
+<section id="variant-hoare-logic">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Variant: Hoare logic</a><a class="headerlink" href="#variant-hoare-logic" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">{codepos}</span> <span class="pre">:</span> <span class="pre">({formula})</span></code></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">{codepos}</span></code> specifies the position in the program where the split
+should occur. The formula <code class="docutils literal notranslate"><span class="pre">{formula}</span></code> is the intermediate assertion that
+must hold after execution of the first part of the program.</p>
+<p>Applying this form of <code class="docutils literal notranslate"><span class="pre">seq</span></code> produces two Hoare-style proof obligations:
+one for the first segment, from the original precondition to the supplied
+intermediate assertion, and one for the remaining segment, from this
+assertion to the original postcondition.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-0" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-0-data">{
+  "source":"require import AllCore.\n\nmodule M = {\n  proc add3(x : int) : int = {\n    var y : int;\n    y <- x + 1;\n    y <- y + 2;\n    return y;\n  }\n}.\n\nlemma add3_correct (n : int) :\n  hoare [M.add3 : x = n ==> res = n + 3].\nproof.\n  proc.\n\n  (* Split after the first command, and supply an intermediate assertion. *)\n  seq 1 : (y = n + 1).\n\n  - (* First part: y <- x + 1 *)\n    wp. skip. smt().\n\n  - (* Second part: y <- y + 2; return y *)\n    wp. skip. smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    138,
+    212,
+    219,
+    227,
+    328,
+    370,
+    376,
+    383,
+    436,
+    442,
+    449,
+    454
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.add3 \n\npost = res = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\npre = arg = n\n\n    M.add3 \n\npost = res = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = x = n\n\n(1)  y <- x + 1               \n(2)  y <- y + 2               \n\npost = y = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = x = n\n\n(1)  y <- x + 1               \n\npost = y = n + 1\n\n",
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = y = n + 1\n\n(1)  y <- y + 2               \n\npost = y = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = x = n\n\n\npost = x + 1 = n + 1\n\n",
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = y = n + 1\n\n(1)  y <- y + 2               \n\npost = y = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nforall &hr, x{hr} = n => x{hr} + 1 = n + 1\n",
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = y = n + 1\n\n(1)  y <- y + 2               \n\npost = y = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = y = n + 1\n\n(1)  y <- y + 2               \n\npost = y = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nContext : hr: {x, y : int}\n\npre = y = n + 1\n\n\npost = y + 2 = n + 3\n\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\nn: int\n------------------------------------------------------------------------\nforall &hr, y{hr} = n + 1 => y{hr} + 2 = n + 3\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `add3_correct'"
+    }
+  ],
+  "initialSentence":4,
+  "title":"Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-probabilistic-relation-hoare-logic-two-sided">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Variant: Probabilistic relation Hoare logic (two-sided)</a><a class="headerlink" href="#variant-probabilistic-relation-hoare-logic-two-sided" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">{codepos}</span> <span class="pre">{codepos}</span> <span class="pre">:</span> <span class="pre">{formula}</span></code></p>
+</div>
+<p>Here, the first <code class="docutils literal notranslate"><span class="pre">{codepos}</span></code> specifies where to split the left-hand
+program, and the second <code class="docutils literal notranslate"><span class="pre">{codepos}</span></code> specifies where to split the right-hand
+program. The formula <code class="docutils literal notranslate"><span class="pre">{formula}</span></code> is the intermediate <em>relational</em> assertion
+that must hold between the two memories after execution of the first parts.</p>
+<p>Applying this form of <code class="docutils literal notranslate"><span class="pre">seq</span></code> produces two relational proof obligations:
+one for the initial segments of both programs, from the original precondition
+to the supplied intermediate assertion, and one for the remaining segments,
+from this assertion to the original postcondition.</p>
+
+<div class="proofnav-sphinx">
+  <div id="proofnav-1" class="proofnav-mount"></div>
+  <script type="application/json" id="proofnav-1-data">{
+  "source":"require import AllCore.\n\nmodule L = {\n  proc inc_then_double(x : int) : int = {\n    var y, z : int;\n\n    y <- x + 1;\n    z <- y * 2;\n    return z;\n  }\n}.\n\nmodule R = {\n  proc keep_then_double_as_if_inc(x : int) : int = {\n    var y, z : int;\n\n    y <- x;\n    z <- (y + 1) * 2;\n    return z;\n  }\n}.\n\nlemma inc_then_double_equiv : equiv [\n  L.inc_then_double ~ R.keep_then_double_as_if_inc :\n    x{1} = x{2} ==> res{1} = res{2}\n].\nproof.\n  proc.\n\n  (* Split after the first command on both sides, and relate the intermediate states. *)\n  seq 1 1 : (y{1} = y{2} + 1).\n\n  - (* First parts: y <- x + 1   ~   y <- x *)\n    wp. skip. smt().\n\n  - (* Second parts: z <- ...; return z   ~   z <- ...; return z *)\n    wp. skip. smt().\nqed.\n",
+  "sentenceEnds":[
+    23,
+    153,
+    296,
+    427,
+    434,
+    442,
+    563,
+    619,
+    625,
+    632,
+    709,
+    715,
+    722,
+    727
+  ],
+  "sentences":[
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    L.inc_then_double ~ R.keep_then_double_as_if_inc \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\npre = arg{1} = arg{2}\n\n    L.inc_then_double ~ R.keep_then_double_as_if_inc \n\npost = res{1} = res{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int}\n&2 (right) : {x, y, z : int}\n\npre = x{1} = x{2}\n\ny <- x + 1                 (1)  y <- x                   \nz <- y * 2                 (2)  z <- (y + 1) * 2         \n\npost = z{1} = z{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int}\n&2 (right) : {x, y, z : int}\n\npre = x{1} = x{2}\n\ny <- x + 1                 (1)  y <- x                   \n\npost = y{1} = y{2} + 1\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int}\n&2 (right) : {x, y, z : int}\n\npre = y{1} = y{2} + 1\n\nz <- y * 2                 (1)  z <- (y + 1) * 2         \n\npost = z{1} = z{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int} [programs are in sync]\n&2 (right) : {x, y, z : int}\n\npre = x{1} = x{2}\n\n\npost = x{1} + 1 = x{2} + 1\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int}\n&2 (right) : {x, y, z : int}\n\npre = y{1} = y{2} + 1\n\nz <- y * 2                 (1)  z <- (y + 1) * 2         \n\npost = z{1} = z{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, x{1} = x{2} => x{1} + 1 = x{2} + 1\n",
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int}\n&2 (right) : {x, y, z : int}\n\npre = y{1} = y{2} + 1\n\nz <- y * 2                 (1)  z <- (y + 1) * 2         \n\npost = z{1} = z{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int}\n&2 (right) : {x, y, z : int}\n\npre = y{1} = y{2} + 1\n\nz <- y * 2                 (1)  z <- (y + 1) * 2         \n\npost = z{1} = z{2}\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\n&1 (left ) : {x, y, z : int} [programs are in sync]\n&2 (right) : {x, y, z : int}\n\npre = y{1} = y{2} + 1\n\n\npost = y{1} * 2 = (y{2} + 1) * 2\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[
+        "Type variables: <none>\n\n------------------------------------------------------------------------\nforall &1 &2, y{1} = y{2} + 1 => y{1} * 2 = (y{2} + 1) * 2\n"
+      ],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":""
+    },
+    {
+      "goals":[],
+      "message":"info: added lemma: `inc_then_double_equiv'"
+    }
+  ],
+  "initialSentence":5,
+  "title":"Probabilistic relational Hoare logic example"
+}</script>
+</div>
+</section>
+<section id="variant-probabilistic-relation-hoare-logic-one-sided">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Variant: Probabilistic relation Hoare logic (one-sided)</a><a class="headerlink" href="#variant-probabilistic-relation-hoare-logic-one-sided" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">{side}</span> <span class="pre">{codepos}</span> <span class="pre">:</span> <span class="pre">(_:</span> <span class="pre">{formula}</span> <span class="pre">==&gt;</span> <span class="pre">{formula})</span></code></p>
+</div>
+</section>
+<section id="variant-probabilistic-hoare-logic">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Variant: Probabilistic Hoare logic</a><a class="headerlink" href="#variant-probabilistic-hoare-logic" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">{codepos}</span> <span class="pre">:</span> <span class="pre">{formula}</span> <span class="pre">{formula|_}</span> <span class="pre">{formula|_}</span> <span class="pre">{formula|_}</span> <span class="pre">{formula|_}</span> <span class="pre">{formula}?</span></code></p>
+</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{codepos}</span></code> specifies where the program is split into a first and a
+second part.</p></li>
+<li><p>The first <code class="docutils literal notranslate"><span class="pre">{formula}</span></code> is the probabilistic intermediate assertion,
+used to connect the probability reasoning between the two parts of the
+program.</p></li>
+<li><p>The four arguments <code class="docutils literal notranslate"><span class="pre">{formula|_}</span></code> are the real probability bounds required
+by the probabilistic sequencing rule. Each may be given explicitly, or left
+as <code class="docutils literal notranslate"><span class="pre">_</span></code> to let EasyCrypt infer or simplify it.</p></li>
+<li><p>The last optional <code class="docutils literal notranslate"><span class="pre">{formula}</span></code> is a non-probabilistic intermediate
+assertion that is required to hold after execution of the first part.
+When provided, it is added to the preconditions of the subgoals targeting
+the second part of the program.</p></li>
+</ul>
+<p>The four real coefficients supplied to <code class="docutils literal notranslate"><span class="pre">seq</span></code> correspond to the two possible
+outcomes of the intermediate probabilistic assertion:</p>
+<ul class="simple">
+<li><p>The <strong>first coefficient</strong> bounds the probability that the intermediate
+assertion holds after executing the first part of the program.</p></li>
+<li><p>The <strong>second coefficient</strong> bounds the probability of reaching the final
+postcondition after executing the second part, assuming the intermediate
+assertion holds.</p></li>
+<li><p>The <strong>third coefficient</strong> bounds the probability that the intermediate
+assertion does <em>not</em> hold after the first part.</p></li>
+<li><p>The <strong>fourth coefficient</strong> bounds the probability of reaching the final
+postcondition after the second part, assuming the intermediate assertion
+does not hold.</p></li>
+</ul>
+<p>These coefficients are then combined in the final arithmetic goal to obtain
+the probability bound of the original judgement.</p>
+<p>When <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="kr">seq</span></code> is applied to a probabilistic Hoare-logic goal, EasyCrypt splits
+the program into two parts and generates several proof obligations that
+justify how the probability of the whole program is obtained from the two
+fragments.</p>
+<p>Concretely, the tactic produces the following kinds of goals:</p>
+<ul class="simple">
+<li><p><strong>A Hoare goal for the optional pure assertion</strong>.
+If a final (non-probabilistic) intermediate assertion is provided, the
+first goal is to prove that the first part of the program establishes this
+assertion from the current precondition. If no assertion is given, it is
+taken to be <code class="code highlight easycrypt docutils literal highlight-easycrypt"><span class="n">true</span></code>, and this goal is trivial.</p></li>
+<li><p><strong>A probabilistic goal for the first part</strong>.
+A goal is generated to bound the probability that the first part of the
+program establishes the intermediate probabilistic assertion.</p></li>
+<li><p><strong>Probabilistic goals for the second part under the intermediate assertion</strong>.
+The second part of the program is then considered assuming that the
+intermediate probabilistic assertion holds (and also assuming the optional
+pure assertion, if one was provided). A goal is generated to bound the
+probability of reaching the final postcondition in this case.</p></li>
+<li><p><strong>Probabilistic goals for the second part under the negation of the intermediate assertion</strong>.
+A symmetric goal is generated for the case where the intermediate
+probabilistic assertion does <em>not</em> hold after the first part.</p></li>
+<li><p><strong>A final logical side-condition combining the bounds</strong>
+Finally, EasyCrypt generates a pure arithmetic obligation stating that the
+probability bounds supplied to <code class="docutils literal notranslate"><span class="pre">seq</span></code> correctly combine to give the overall
+probability bound of the original goal.</p></li>
+</ul>
+<div class="highlight-easycrypt notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">easycrypt</span><span class="w"> </span><span class="n">failed</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="variant-expectation-hoare-logic">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Variant: Expectation Hoare logic</a><a class="headerlink" href="#variant-expectation-hoare-logic" title="Link to this heading"></a></h2>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">{codepos}</span> <span class="pre">:</span> <span class="pre">{formula}</span></code></p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rnd.html" class="btn btn-neutral float-left" title="Tactic: rnd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simplify-if.html" class="btn btn-neutral float-right" title="Tactic: simplify if" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, EasyCrypt development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
